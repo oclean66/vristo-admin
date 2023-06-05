@@ -45,7 +45,7 @@ Admin interface for KDeportes.
 
 ### 1. Clone the repository.
 ```shell
-git clone 
+git clone git@github.com:oclean66/vristo-admin.git
 ```
 
 ### 2. Go into the folder and create a `.env` file, inside the file you must add your globals for the enviroment, database, port, password, etc.
