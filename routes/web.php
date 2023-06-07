@@ -14,9 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('home');
 });
 
-Route::view('/test', 'test');
+Route::view('/dashboard', 'dashboard')->middleware('auth')->name('dashboard');
 
-Route::view('/home', 'home');
+Route::view('/home', 'home')->name('home');

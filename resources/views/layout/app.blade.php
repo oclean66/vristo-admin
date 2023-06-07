@@ -93,15 +93,15 @@
 
     <div class="main-container text-black dark:text-white-dark min-h-screen" :class="[$store.app.navbar]">
 
-        <x-sidebar />
+        <x-interface.sidebar />
 
         <div class="main-content">
-            <x-navbar />
+            <x-interface.navbar />
 
             <div class="p-6 animate__animated" :class="[$store.app.animation]">
                 {{ $slot }}
 
-                {{-- <x-vristo.footer /> --}}
+                <x-interface.footer />
             </div>
         </div>
     </div>

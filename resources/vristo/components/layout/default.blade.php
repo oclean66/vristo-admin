@@ -1,29 +1,34 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="ltr">
+<html lang="en" dir="ltr">
 
 <head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>{{ $title ?? config('app.name', 'Laravel') }}</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel="icon" type="image/x-icon" href="/assets/images/favicon.png" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <meta charset='utf-8' />
+    <meta http-equiv='X-UA-Compatible' content='IE=edge' />
+    <title>{{ $title ?? 'VRISTO - Multipurpose Tailwind Dashboard Template' }}</title>
 
-    @vite(['resources/css/app.css'])
+    <meta name='viewport' content='width=device-width, initial-scale=1' />
+    <link rel="icon" type="image/svg" href="/assets/images/favicon.svg" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
 
     <script src="/assets/js/perfect-scrollbar.min.js"></script>
     <script defer src="/assets/js/popper.min.js"></script>
     <script defer src="/assets/js/tippy-bundle.umd.min.js"></script>
     <script defer src="/assets/js/sweetalert.min.js"></script>
+    @vite(['resources/css/app.css'])
 </head>
-
 
 <body x-data="main" class="antialiased relative font-nunito text-sm font-normal overflow-x-hidden"
     :class="[$store.app.sidebar ? 'toggle-sidebar' : '', $store.app.theme, $store.app.menu, $store.app.layout, $store.app
         .rtlClass
     ]">
+
+    <!-- sidebar menu overlay -->
+    <div x-cloak class="fixed inset-0 bg-[black]/60 z-50 lg:hidden" :class="{ 'hidden': !$store.app.sidebar }"
+        @click="$store.app.toggleSidebar()"></div>
 
     <!-- screen loader -->
     <div
@@ -42,9 +47,11 @@
         </svg>
     </div>
 
-    <div class="fixed bottom-6 right-6 z-50" x-data="scrollToTop">
+    <div class="fixed bottom-6 ltr:right-6 rtl:left-6 z-50" x-data="scrollToTop">
         <template x-if="showTopButton">
-            <button type="button" class="btn btn-outline-primary rounded-full p-2 animate-pulse" @click="goToTop">
+            <button type="button"
+                class="btn btn-outline-primary rounded-full p-2 animate-pulse bg-[#fafafa] dark:bg-[#060818] dark:hover:bg-primary"
+                @click="goToTop">
                 <svg width="24" height="24" class="h-4 w-4" viewBox="0 0 24 24" fill="none"
                     xmlns="http://www.w3.org/2000/svg">
                     <path opacity="0.5" fill-rule="evenodd" clip-rule="evenodd"
@@ -84,8 +91,21 @@
         });
     </script>
 
-    <div class="main-container text-black dark:text-white-dark min-h-screen">
-        {{ $slot }}
+    <x-common.theme-customiser />
+
+    <div class="main-container text-black dark:text-white-dark min-h-screen" :class="[$store.app.navbar]">
+
+        <x-common.sidebar />
+
+        <div class="main-content">
+            <x-common.header />
+
+            <div class="p-6 animate__animated" :class="[$store.app.animation]">
+                {{ $slot }}
+
+                <x-common.footer />
+            </div>
+        </div>
     </div>
     <script src="/assets/js/alpine-collaspe.min.js"></script>
     <script src="/assets/js/alpine-persist.min.js"></script>

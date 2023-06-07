@@ -3,7 +3,8 @@
         <div class="relative bg-white flex w-full items-center px-5 py-2.5 dark:bg-[#0e1726]">
             <div class="horizontal-logo flex lg:hidden justify-between items-center ltr:mr-2 rtl:ml-2">
                 <a href="/" class="main-logo flex items-center shrink-0">
-                    <img class="w-8 ltr:-ml-1 rtl:-mr-1 inline" src="/assets/images/logo.svg" alt="image" />
+                    <img class="w-8 ltr:-ml-1 rtl:-mr-1 inline" src="/assets/images/logo.svg"
+                        alt="image" />
                     <span
                         class="text-2xl ltr:ml-1.5 rtl:mr-1.5  font-semibold  align-middle hidden md:inline dark:text-white-light transition-all duration-300">VRISTO</span>
                 </a>
@@ -311,7 +312,8 @@
                                     <div class="grid place-content-center rounded">
                                         <div class="w-12 h-12 relative">
                                             <img class="w-12 h-12 rounded-full object-cover"
-                                                :src="`/assets/images/${notification.profile}`" alt="image" />
+                                                :src="`/assets/images/${notification.profile}`"
+                                                alt="image" />
                                             <span
                                                 class="bg-success w-2 h-2 rounded-full block absolute right-[6px] bottom-0"></span>
                                         </div>
@@ -380,7 +382,8 @@
                             <div class="flex items-center px-4 py-4">
                                 <div class="flex-none">
                                     <img class="rounded-md w-10 h-10 object-cover"
-                                        src="/assets/images/user-profile.jpeg" alt="image" />
+                                        src="/assets/images/user-profile.jpeg"
+                                        alt="image" />
                                 </div>
                                 <div class="ltr:pl-4 rtl:pr-4">
                                     <h4 class="text-base">John Doe<span
