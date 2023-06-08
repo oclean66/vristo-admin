@@ -1,5 +1,5 @@
 <x-app-layout>
-    <h1>Dashboard</h1>
+    <h1>{{ __('Dashboard') }}</h1>
     <div class="grid grid-cols-1 xl:grid-cols-2 gap-4">
         <x-tab />
         <x-vertical-tab />
