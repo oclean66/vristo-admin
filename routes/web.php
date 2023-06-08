@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LocalizationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,3 +21,5 @@ Route::get('/', function () {
 Route::view('/dashboard', 'dashboard')->middleware('auth')->name('dashboard');
 
 Route::view('/home', 'home')->name('home');
+
+Route::get('locale/{lang}', [LocalizationController::class, 'setLang']);
