@@ -1,6 +1,10 @@
 <x-app-layout>
     <h1>{{ __('Dashboard') }}</h1>
-    <div class="grid grid-cols-1 xl:grid-cols-2 gap-4">
+    <div class="panel grid grid-cols-1 xl:grid-cols-2 gap-4 mb-5">
+        @livewire('account-tree')
+        @livewire('account-data')
+    </div>
+    {{-- <div class="grid grid-cols-1 xl:grid-cols-2 gap-4">
         <x-tab />
         <x-vertical-tab />
         <x-accordion />
@@ -51,5 +55,5 @@
             </div>
         </div>
         <x-interface.pagination />
-    </div>
+    </div> --}}
 </x-app-layout>
