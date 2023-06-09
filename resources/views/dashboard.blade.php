@@ -4,7 +4,7 @@
         @livewire('account-tree')
         @livewire('account-data')
     </div>
-    {{-- <div class="grid grid-cols-1 xl:grid-cols-2 gap-4">
+    <div class="grid grid-cols-1 xl:grid-cols-2 gap-4">
         <x-tab />
         <x-vertical-tab />
         <x-accordion />
@@ -54,6 +54,5 @@
                 </svg>
             </div>
         </div>
-        <x-interface.pagination />
-    </div> --}}
+    </div>
 </x-app-layout>

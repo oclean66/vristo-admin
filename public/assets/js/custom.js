@@ -1,37 +1,37 @@
 (function () {
     const $themeConfig = {
-        locale: 'en', // en, da, de, el, es, fr, hu, it, ja, pl, pt, ru, sv, tr, zh
-        theme: 'dark', // light, dark, system
-        menu: 'vertical', // vertical, collapsible-vertical, horizontal
-        layout: 'full', // full, boxed-layout
-        rtlClass: 'ltr', // rtl, ltr
-        animation: '', // animate__fadeIn, animate__fadeInDown, animate__fadeInUp, animate__fadeInLeft, animate__fadeInRight, animate__slideInDown, animate__slideInLeft, animate__slideInRight, animate__zoomIn
-        navbar: 'navbar-sticky', // navbar-sticky, navbar-floating, navbar-static
+        locale: "en", // en, da, de, el, es, fr, hu, it, ja, pl, pt, ru, sv, tr, zh
+        theme: "dark", // light, dark, system
+        menu: "vertical", // vertical, collapsible-vertical, horizontal
+        layout: "full", // full, boxed-layout
+        rtlClass: "ltr", // rtl, ltr
+        animation: "", // animate__fadeIn, animate__fadeInDown, animate__fadeInUp, animate__fadeInLeft, animate__fadeInRight, animate__slideInDown, animate__slideInLeft, animate__slideInRight, animate__zoomIn
+        navbar: "navbar-sticky", // navbar-sticky, navbar-floating, navbar-static
         semidark: false,
     };
-    window.addEventListener('load', function () {
+    window.addEventListener("load", function () {
         // screen loader
-        const screen_loader = document.getElementsByClassName('screen_loader');
+        const screen_loader = document.getElementsByClassName("screen_loader");
         if (screen_loader?.length) {
-            screen_loader[0].classList.add('animate__fadeOut');
+            screen_loader[0].classList.add("animate__fadeOut");
             setTimeout(() => {
                 document.body.removeChild(screen_loader[0]);
             }, 200);
         }
 
         // set rtl layout
-        Alpine.store('app').setRTLLayout();
+        Alpine.store("app").setRTLLayout();
     });
 
     // set current year in footer
-    const yearEle = document.querySelector('#footer-year');
+    const yearEle = document.querySelector("#footer-year");
     if (yearEle) {
         yearEle.innerHTML = new Date().getFullYear();
     }
 
     // perfect scrollbar
     const initPerfectScrollbar = () => {
-        const container = document.querySelectorAll('.perfect-scrollbar');
+        const container = document.querySelectorAll(".perfect-scrollbar");
         for (let i = 0; i < container.length; i++) {
             new PerfectScrollbar(container[i], {
                 wheelPropagation: true,
@@ -41,8 +41,8 @@
     };
     initPerfectScrollbar();
 
-    document.addEventListener('alpine:init', () => {
-        Alpine.data('collapse', () => ({
+    document.addEventListener("alpine:init", () => {
+        Alpine.data("collapse", () => ({
             collapse: false,
 
             collapseSidebar() {
@@ -50,14 +50,14 @@
             },
         }));
 
-        Alpine.data('dropdown', (initialOpenState = false) => ({
+        Alpine.data("dropdown", (initialOpenState = false) => ({
             open: initialOpenState,
 
             toggle() {
                 this.open = !this.open;
             },
         }));
-        Alpine.data('modal', (initialOpenState = false) => ({
+        Alpine.data("modal", (initialOpenState = false) => ({
             open: initialOpenState,
 
             toggle() {
@@ -66,10 +66,10 @@
         }));
 
         // Magic: $tooltip
-        Alpine.magic('tooltip', (el) => (message, placement) => {
+        Alpine.magic("tooltip", (el) => (message, placement) => {
             let instance = tippy(el, {
                 content: message,
-                trigger: 'manual',
+                trigger: "manual",
                 placement: placement || undefined,
                 allowHTML: true,
             });
@@ -77,46 +77,49 @@
             instance.show();
         });
 
-        Alpine.directive('dynamictooltip', (el, { expression }, { evaluate }) => {
-            let string = evaluate(expression);
-            tippy(el, {
-                content: string.charAt(0).toUpperCase() + string.slice(1),
-            });
-        });
+        Alpine.directive(
+            "dynamictooltip",
+            (el, { expression }, { evaluate }) => {
+                let string = evaluate(expression);
+                tippy(el, {
+                    content: string.charAt(0).toUpperCase() + string.slice(1),
+                });
+            }
+        );
 
         // Directive: x-tooltip
-        Alpine.directive('tooltip', (el, { expression }) => {
+        Alpine.directive("tooltip", (el, { expression }) => {
             tippy(el, {
                 content: expression,
-                placement: el.getAttribute('data-placement') || undefined,
+                placement: el.getAttribute("data-placement") || undefined,
                 allowHTML: true,
-                delay: el.getAttribute('data-delay') || 0,
-                animation: el.getAttribute('data-animation') || 'fade',
-                theme: el.getAttribute('data-theme') || '',
+                delay: el.getAttribute("data-delay") || 0,
+                animation: el.getAttribute("data-animation") || "fade",
+                theme: el.getAttribute("data-theme") || "",
             });
         });
 
         // Magic: $popovers
-        Alpine.magic('popovers', (el) => (message, placement) => {
+        Alpine.magic("popovers", (el) => (message, placement) => {
             let instance = tippy(el, {
                 content: message,
                 placement: placement || undefined,
                 interactive: true,
                 allowHTML: true,
                 // hideOnClick: el.getAttribute("data-dismissable") ? true : "toggle",
-                delay: el.getAttribute('data-delay') || 0,
-                animation: el.getAttribute('data-animation') || 'fade',
-                theme: el.getAttribute('data-theme') || '',
-                trigger: el.getAttribute('data-trigger') || 'click',
+                delay: el.getAttribute("data-delay") || 0,
+                animation: el.getAttribute("data-animation") || "fade",
+                theme: el.getAttribute("data-theme") || "",
+                trigger: el.getAttribute("data-trigger") || "click",
             });
 
             instance.show();
         });
 
         // main - custom functions
-        Alpine.data('main', (value) => ({}));
+        Alpine.data("main", (value) => ({}));
 
-        Alpine.store('app', {
+        Alpine.store("app", {
             // theme
             theme: Alpine.$persist($themeConfig.theme),
             toggleTheme(val) {
@@ -159,7 +162,12 @@
             },
 
             setRTLLayout() {
-                document.querySelector('html').setAttribute('dir', this.rtlClass || $themeConfig.rtlClass);
+                document
+                    .querySelector("html")
+                    .setAttribute(
+                        "dir",
+                        this.rtlClass || $themeConfig.rtlClass
+                    );
             },
 
             // animation
@@ -214,35 +222,39 @@
 
 document.addEventListener("alpine:init", () => {
     Alpine.data("countdown", () => ({
-            timer1: null,
-            demo1: {
-                days: null,
-                hours: null,
-                minutes: null,
-                seconds: null,
-            },
+        timer1: null,
+        demo1: {
+            days: null,
+            hours: null,
+            minutes: null,
+            seconds: null,
+        },
 
-            setTimerDemo1() {
-                let date = new Date();
-                date.setDate(date.getDate() + 3);
-                let countDownDate = date.getTime();
+        setTimerDemo1() {
+            let date = new Date();
+            date.setDate(date.getDate() + 3);
+            let countDownDate = date.getTime();
 
-                timer1 = setInterval(() => {
-                    let now = new Date().getTime();
+            timer1 = setInterval(() => {
+                let now = new Date().getTime();
 
-                    let distance = countDownDate - now;
+                let distance = countDownDate - now;
 
-                    this.demo1.days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                    this.demo1.hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (
-                        1000 * 60 * 60));
-                    this.demo1.minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 *
-                        60));
-                    this.demo1.seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                this.demo1.days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                this.demo1.hours = Math.floor(
+                    (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+                );
+                this.demo1.minutes = Math.floor(
+                    (distance % (1000 * 60 * 60)) / (1000 * 60)
+                );
+                this.demo1.seconds = Math.floor(
+                    (distance % (1000 * 60)) / 1000
+                );
 
-                    if (distance < 0) {
-                        clearInterval(this.timer1);
-                    }
-                }, 500);
-            },
-        }));
-    });
+                if (distance < 0) {
+                    clearInterval(this.timer1);
+                }
+            }, 500);
+        },
+    }));
+});

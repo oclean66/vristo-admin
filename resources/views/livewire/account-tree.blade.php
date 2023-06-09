@@ -1,4 +1,4 @@
-<ul class="border-2 rounded-lg p-3 ml-2 mt-2 border-gray-800 dark:border-gray-400 font-semibold">
+<ul class="font-semibold">
     <li x-data="dropdown(true)">
         @foreach ($accounts as $account)
             <button type="button" @click="toggle">
