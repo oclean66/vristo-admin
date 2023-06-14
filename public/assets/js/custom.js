@@ -57,6 +57,7 @@
                 this.open = !this.open;
             },
         }));
+
         Alpine.data("modal", (initialOpenState = false) => ({
             open: initialOpenState,
 

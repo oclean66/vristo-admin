@@ -280,7 +280,7 @@
                                 class="flex items-center px-4 py-2 justify-between font-semibold hover:!bg-transparent">
                                 <h4 class="text-lg">Notification</h4>
                                 <template x-if="notifications.length">
-                                    <span class="badge bg-primary/80" x-text="notifications.length + 'New'"></span>
+                                    <span class="badge bg-primary/80" x-text="notifications.length + ' New'"></span>
                                 </template>
                             </div>
                         </li>
@@ -431,7 +431,7 @@
                                         <path d="M12 15L12 2M12 2L15 5.5M12 2L9 5.5" stroke="currentColor"
                                             stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                     </svg>
-                                    Sign Out
+                                    {{ __('Log Out') }}
                                 </button>
                             </form>
                         </li>

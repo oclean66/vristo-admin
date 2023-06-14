@@ -11,9 +11,9 @@ class AccountData extends Component
 {
     use WithPagination;
     
-    public $data;
+    public $data = null;
 
-    public $accountId;
+    public $accountId = 0;
 
     protected $listeners = ['showAccount'];
 
@@ -22,7 +22,7 @@ class AccountData extends Component
         $accounts = null;
 
         if (isset($this->data->accounts)) {
-            $accounts = Account::where('category_id', $this->accountId)->paginate(10);
+            $accounts = Account::where('category_id', $this->accountId)->orderBy('id', 'asc')->paginate(10);
         }
 
         return view('livewire.account-data', compact('accounts'));
