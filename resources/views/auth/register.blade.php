@@ -2,26 +2,28 @@
     <div
         class="flex justify-center items-center min-h-screen bg-[url('/assets/images/map.svg')] dark:bg-[url('/assets/images/map-dark.svg')] bg-cover bg-center">
         <div class="panel sm:w-[480px] m-6 max-w-lg w-full">
-            <h2 class="font-bold text-2xl mb-3">Sign Up</h2>
+            <h2 class="font-bold text-2xl mb-3">{{ __('Sign Up') }}</h2>
             <p class="mb-7">Enter your email and password to register</p>
             {{ $errors }}
             <form class="space-y-5" action="{{ route('register') }}" method="POST">
                 @csrf
                 <div>
-                    <label for="name">Name</label>
+                    <label for="name">{{ __('Name') }}</label>
                     <input id="name" type="text" name="name" class="form-input" placeholder="Enter Name" />
                 </div>
                 <div>
-                    <label for="email">Email</label>
+                    <label for="email">{{ __('Email') }}</label>
                     <input id="email" type="email" name="email" class="form-input" placeholder="Enter Email" />
                 </div>
                 <div>
-                    <label for="password">Password</label>
-                    <input id="password" type="password" name="password" class="form-input" placeholder="Enter Password" />
+                    <label for="password">{{ __('Password') }}</label>
+                    <input id="password" type="password" name="password" class="form-input"
+                        placeholder="Enter Password" />
                 </div>
                 <div>
-                    <label for="password_confirmation">Confirm Password</label>
-                    <input id="password_confirmation" type="password" name="password_confirmation" class="form-input" placeholder="Confirm Password" />
+                    <label for="password_confirmation">{{ __('Confirm Password') }}</label>
+                    <input id="password_confirmation" type="password" name="password_confirmation" class="form-input"
+                        placeholder="Confirm Password" />
                 </div>
                 <div>
                     <label class="cursor-pointer">
@@ -30,7 +32,7 @@
                                 class="text-primary hover:underline">Terms and Conditions</a></span>
                     </label>
                 </div>
-                <button type="submit" class="btn btn-primary w-full">SIGN UP</button>
+                <button type="submit" class="btn btn-primary w-full uppercase">{{ __('Sign Up') }}</button>
             </form>
             <div
                 class="relative my-7 h-5 text-center before:w-full before:h-[1px] before:absolute before:inset-0 before:m-auto before:bg-[#ebedf2] dark:before:bg-[#253b5c]">
@@ -98,7 +100,7 @@
                 </li>
             </ul>
             <p class="text-center">Already have an account ? <a href="/auth/boxed-signin"
-                    class="text-primary font-bold hover:underline">Sign In</a></p>
+                    class="text-primary font-bold hover:underline">{{ __('Sign In') }}</a></p>
         </div>
     </div>
 </x-blank-layout>

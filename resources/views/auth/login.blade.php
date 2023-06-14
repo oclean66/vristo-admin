@@ -2,27 +2,27 @@
     <div
         class="flex justify-center items-center min-h-screen bg-[url('/assets/images/map.svg')] dark:bg-[url('/assets/images/map-dark.svg')] bg-cover bg-center">
         <div class="panel sm:w-[480px] m-6 max-w-lg w-full">
-            <h2 class="font-bold text-2xl mb-3">Sign In</h2>
+            <h2 class="font-bold text-2xl mb-3">{{ __('Sign In') }}</h2>
             <p class="mb-7">Enter your email and password to login</p>
             {{ $errors }}
             <form class="space-y-5" action="{{ route('login') }}" method="POST">
                 @csrf
                 <div>
-                    <label for="email">Email</label>
+                    <label for="email">{{ __('Email') }}</label>
                     <input id="email" type="email" name="email" class="form-input" placeholder="Enter Email" />
                 </div>
                 <div>
-                    <label for="password">Password</label>
+                    <label for="password">{{ __('Password') }}</label>
                     <input id="password" type="password" name="password" class="form-input"
                         placeholder="Enter Password" />
                 </div>
                 <div>
                     <label class="cursor-pointer">
                         <input type="checkbox" name="remember" class="form-checkbox" />
-                        <span class="text-white-dark">Remember me</span>
+                        <span class="text-white-dark">{{ __('Remember me') }}</span>
                     </label>
                 </div>
-                <button type="submit" class="btn btn-primary w-full">SIGN IN</button>
+                <button type="submit" class="btn btn-primary w-full uppercase">{{ __('Sign In') }}</button>
             </form>
             <div
                 class="relative my-7 h-5 text-center before:w-full before:h-[1px] before:absolute before:inset-0 before:m-auto before:bg-[#ebedf2] dark:before:bg-[#253b5c]">
@@ -90,7 +90,9 @@
                 </li>
             </ul>
             <p class="text-center">Dont't have an account ? <a href="/auth/boxed-signup"
-                    class="text-primary font-bold hover:underline">Sign Up</a></p>
+                    class="text-primary font-bold hover:underline">{{ __('Sign Up') }}</a></p>
+            <p class="text-center"><a href="{{ route('password.email') }}"
+                    class="text-primary font-bold hover:underline">{{ __('Forgot your password?') }}</a></p>
         </div>
     </div>
 </x-blank-layout>
