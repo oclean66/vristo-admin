@@ -1,6 +1,6 @@
 (function () {
     const $themeConfig = {
-        locale: "en", // en, da, de, el, es, fr, hu, it, ja, pl, pt, ru, sv, tr, zh
+        locale: document.querySelector("html").getAttribute("lang"), // en, da, de, el, es, fr, hu, it, ja, pl, pt, ru, sv, tr, zh
         theme: "dark", // light, dark, system
         menu: "vertical", // vertical, collapsible-vertical, horizontal
         layout: "full", // full, boxed-layout

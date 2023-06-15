@@ -37,6 +37,8 @@
 
     <div class="main-container text-black dark:text-white-dark min-h-screen" :class="[$store.app.navbar]">
 
+        {{-- <x-interface.theme-customiser /> --}}
+
         <x-interface.sidebar />
 
         <div class="main-content">

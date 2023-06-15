@@ -1,13 +1,24 @@
 <x-app-layout>
     <div class="panel grid grid-cols-1 xl:grid-cols-2 gap-4 mb-5">
-        @livewire('account-tree')
-        @livewire('account-data')
+        {{-- @livewire('account-tree') --}}
+        <livewire:account-tree />
+        {{-- @livewire('account-data') --}}
+        <livewire:account-data />
     </div>
     <div class="grid grid-cols-1 xl:grid-cols-2 gap-4">
         <x-tab />
         <x-vertical-tab />
         <x-accordion />
-        <x-modal />
+        <x-modal>
+            <x-slot:toggle>
+                <button class="btn btn-danger">ad</button>
+            </x-slot:toggle>
+            <x-slot:dialog>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus qui minus soluta, maxime in neque praesentium? Dolor praesentium laboriosam obcaecati delectus temporibus itaque ab officiis vitae dicta et, voluptatum reiciendis?
+                Obcaecati incidunt porro saepe? Vitae nemo modi optio corrupti velit quod vel temporibus iste asperiores dolorum quibusdam quas voluptates ipsam aspernatur officiis reiciendis suscipit, omnis deleniti ratione ea! Fugit, recusandae!
+                Cumque eos blanditiis fugiat. Perspiciatis perferendis, vero modi non ipsam rerum magni dicta dolore aliquam error ea ab quis labore est eius. Molestias omnis odio laborum iusto! Nesciunt, nemo provident?
+            </x-slot:dialog>
+        </x-modal>
         <x-card-sm />
         <x-card-md />
         <x-card-lg />
@@ -21,7 +32,16 @@
             <button class="btn btn-outline-primary w-full mt-5">button</button>
         </div>
         <div class="panel">
-            <x-dropdown />
+            <x-dropdown>
+                <x-slot:toggle>
+                    <span class="cursor-pointer"><img
+                            class="w-9 h-9 rounded-full object-cover saturate-50 group-hover:saturate-100"
+                            src="/assets/images/user-profile.jpeg" alt="image" /></span>
+                </x-slot:toggle>
+                <li><a href="">hola1</a></li>
+                <li><a href="">hola2</a></li>
+                <li><a href="">hola3</a></li>
+            </x-dropdown>
         </div>
         <x-info-box />
         <x-info-box-2 />

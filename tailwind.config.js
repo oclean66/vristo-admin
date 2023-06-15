@@ -86,6 +86,6 @@ export default {
             strategy: "base", // only generate global styles
         }),
         require("@tailwindcss/typography"),
-        require("@tailwindcss/line-clamp"),
+        // require("@tailwindcss/line-clamp"),
     ],
 };

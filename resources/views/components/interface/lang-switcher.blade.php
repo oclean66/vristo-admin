@@ -21,22 +21,22 @@
             </template>
         </ul>
     </div>
-</div>
 
-<script>
-    document.addEventListener("alpine:init", () => {
-        Alpine.data("locale", () => ({
-            languages: [{
-                    id: 1,
-                    key: 'English',
-                    value: 'en',
-                },
-                {
-                    id: 2,
-                    key: 'Spanish',
-                    value: 'es',
-                }
-            ],
-        }));
-    });
-</script>
+    <script>
+        document.addEventListener("alpine:init", () => {
+            Alpine.data("locale", () => ({
+                languages: [{
+                        id: 1,
+                        key: 'English',
+                        value: 'en',
+                    },
+                    {
+                        id: 2,
+                        key: 'Spanish',
+                        value: 'es',
+                    }
+                ],
+            }));
+        });
+    </script>
+</div>

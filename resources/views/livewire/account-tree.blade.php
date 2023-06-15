@@ -23,7 +23,8 @@
             </button>
             <ul class="ltr:pl-4 rtl:pr-4" x-show="open">
                 @foreach ($account->children as $parent)
-                    @livewire('account-recursive', ['parent' => $parent], key($parent->id)) {{-- ! The key must be declared --}}
+                    {{-- @livewire('account-recursive', ['parent' => $parent], key($parent->id)) The key must be declared --}}
+                    <livewire:account-recursive :parent="$parent" :key="$parent->id" />
                 @endforeach
             </ul>
         @endforeach
