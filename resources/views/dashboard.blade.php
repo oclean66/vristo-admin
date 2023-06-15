@@ -14,9 +14,9 @@
                 <button class="btn btn-danger">ad</button>
             </x-slot:toggle>
             <x-slot:dialog>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus qui minus soluta, maxime in neque praesentium? Dolor praesentium laboriosam obcaecati delectus temporibus itaque ab officiis vitae dicta et, voluptatum reiciendis?
-                Obcaecati incidunt porro saepe? Vitae nemo modi optio corrupti velit quod vel temporibus iste asperiores dolorum quibusdam quas voluptates ipsam aspernatur officiis reiciendis suscipit, omnis deleniti ratione ea! Fugit, recusandae!
-                Cumque eos blanditiis fugiat. Perspiciatis perferendis, vero modi non ipsam rerum magni dicta dolore aliquam error ea ab quis labore est eius. Molestias omnis odio laborum iusto! Nesciunt, nemo provident?
+                <div class="panel border-0 p-5 rounded-lg overflow-hidden mt-20 max-w-lg">
+                    Dialog
+                </div>
             </x-slot:dialog>
         </x-modal>
         <x-card-sm />

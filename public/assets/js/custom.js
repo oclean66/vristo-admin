@@ -66,6 +66,16 @@
             },
         }));
 
+        Alpine.data("hiddenPass", (hidePassword = true) => ({
+            hide: hidePassword,
+            type: 'password',
+
+            toggleVisibility() {
+                this.hide = !this.hide;
+                this.hide ? this.type = 'password' : this.type = 'text';
+            }
+        }));
+
         // Magic: $tooltip
         Alpine.magic("tooltip", (el) => (message, placement) => {
             let instance = tippy(el, {

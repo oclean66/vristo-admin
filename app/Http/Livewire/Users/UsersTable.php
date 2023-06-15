@@ -10,15 +10,13 @@ use Livewire\WithPagination;
 class UsersTable extends Component
 {
     use WithPagination;
-    
-    public $message;
-    
+
     protected $listeners = ['delete'];
-    
+
     public function render(): View
     {
         $users = User::paginate(20);
-        
+
         return view('livewire.users.users-table', compact('users'))->layout('layout.app');
     }
 

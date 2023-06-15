@@ -20,12 +20,16 @@ Route::get('/', function () {
     return redirect()->route('home');
 });
 
-Route::view('/dashboard', 'dashboard')->middleware('auth')->name('dashboard');
-
 Route::view('/home', 'home')->name('home');
 
-Route::get('locale/{lang}', [LocalizationController::class, 'setLang']);
+Route::middleware('auth')->group(function () {
+    Route::view('/dashboard', 'dashboard')->name('dashboard');
 
-Route::prefix('users')->controller(UserController::class)->group(function () {
-    Route::get('/', UsersTable::class)->name('users.index');
+    Route::prefix('users')->group(function () {
+        Route::get('/', UsersTable::class)->name('users.index');
+        Route::get('/create', [UserController::class, 'create'])->name('users.create');
+        Route::post('/', [UserController::class, 'store'])->name('users.store');
+    });
 });
+
+Route::get('locale/{lang}', LocalizationController::class);
