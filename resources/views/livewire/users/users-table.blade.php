@@ -1,5 +1,5 @@
 <div class="panel">
-    <div class="mb-5">
+    <div class="mb-5 max-w-fit">
         <a href="{{ route('users.create') }}">
             <button class="btn btn-primary">Create User</button>
         </a>
@@ -59,8 +59,7 @@
                                                     stroke-linecap="round" />
                                                 <path
                                                     d="M18.8334 8.5L18.3735 15.3991C18.1965 18.054 18.108 19.3815 17.243 20.1907C16.378 21 15.0476 21 12.3868 21H11.6134C8.9526 21 7.6222 21 6.75719 20.1907C5.89218 19.3815 5.80368 18.054 5.62669 15.3991L5.16675 8.5"
-                                                    stroke="currentColor" stroke-width="1.5"
-                                                    stroke-linecap="round" />
+                                                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
                                                 <path opacity="0.5" d="M9.5 11L10 16" stroke="currentColor"
                                                     stroke-width="1.5" stroke-linecap="round" />
                                                 <path opacity="0.5" d="M14.5 11L14 16" stroke="currentColor"
@@ -96,48 +95,40 @@
             </tbody>
         </table>
     </div>
-
-    {{ $users->links('components.interface.pagination') }}
+    <div class="mt-6">
+        {{ $users->links('components.interface.pagination') }}
+    </div>
 
     <script>
         document.addEventListener("livewire:load", () => {
             Livewire.on("deleteUser", user => {
-                const deleteAlert = window.Swal.mixin({
-                    customClass: {
-                        popup: "sweet-alerts",
-                        confirmButton: "btn btn-secondary",
-                        cancelButton: "btn btn-dark ltr:mr-3 rtl:ml-3",
-                    },
-                    buttonsStyling: false,
-                });
+                new window.Swal({
+                    icon: "warning",
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this!",
+                    showCancelButton: true,
+                    confirmButtonText: "Delete",
+                    padding: "2em",
+                    customClass: "sweet-alerts"
+                }).then((result) => {
+                    if (result.value) {
+                        new window.Swal({
+                            title: "Please writte your email for continue",
+                            input: "email",
+                            inputLabel: "Your email address",
+                            inputPlaceholder: "Enter your email address"
+                        }).then((email) => {
+                            if (email.value == "{{ auth()->user()->email }}") {
+                                Livewire.emit("delete", user)
 
-                deleteAlert
-                    .fire({
-                        title: "Are you sure?",
-                        text: "You won't be able to revert this!",
-                        icon: "warning",
-                        showCancelButton: true,
-                        confirmButtonText: "Yes, delete it!",
-                        cancelButtonText: "No, cancel!",
-                        reverseButtons: true,
-                        padding: "2em",
-                    })
-                    .then((result) => {
-                        if (result.value) {
-                            deleteAlert.fire(
-                                "Deleted!",
-                                "Your file has been deleted.",
-                                "success"
-                            );
-                            Livewire.emit('delete', user);
-                        } else if (result.dismiss === window.Swal.DismissReason.cancel) {
-                            deleteAlert.fire(
-                                "Cancelled",
-                                "The user won't be deleted.",
-                                "error"
-                            );
-                        }
-                    });
+                                new window.Swal({
+                                    icon: "success",
+                                    title: "Userd deleted successfully"
+                                });
+                            }
+                        });
+                    }
+                });
             });
         });
     </script>

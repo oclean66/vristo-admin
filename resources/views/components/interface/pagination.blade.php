@@ -3,7 +3,7 @@
         @php(isset($this->numberOfPaginatorsRendered[$paginator->getPageName()]) ? $this->numberOfPaginatorsRendered[$paginator->getPageName()]++ : ($this->numberOfPaginatorsRendered[$paginator->getPageName()] = 1))
 
         <nav role="navigation" aria-label="Pagination Navigation" class="flex items-center justify-center">
-            <div class="flex justify-evenly flex-1 md:hidden">
+            <div class="flex justify-between flex-1 md:hidden">
                 <span>
                     @if ($paginator->onFirstPage())
                         <span
@@ -28,6 +28,11 @@
                             {!! __('Previous') !!}
                         </button>
                     @endif
+                </span>
+
+                <span aria-current="page">
+                    <span
+                        class="flex justify-center font-semibold px-3.5 py-2 rounded transition bg-primary text-white dark:text-white-light dark:bg-primary">{{ $paginator->currentPage() }}</span>
                 </span>
 
                 <span>

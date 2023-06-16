@@ -25,4 +25,8 @@
         </div>
     @endif
     <h1>Blank page</h1>
+
+    <div class="grid place-content-center mt-20">
+        <h1 class="text-xl">User: test@example.com | Password: password</h1>
+    </div>
 </x-blank-layout>
