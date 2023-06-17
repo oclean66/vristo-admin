@@ -38,9 +38,9 @@
                             class="w-9 h-9 rounded-full object-cover saturate-50 group-hover:saturate-100"
                             src="/assets/images/user-profile.jpeg" alt="image" /></span>
                 </x-slot:toggle>
-                <li><a href="">hola1</a></li>
-                <li><a href="">hola2</a></li>
-                <li><a href="">hola3</a></li>
+                <li><a href="#">hola1</a></li>
+                <li><a href="#">hola2</a></li>
+                <li><a href="#">hola3</a></li>
             </x-dropdown>
         </div>
         <x-info-box />

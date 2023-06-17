@@ -13,17 +13,38 @@ class AccountSeeder extends Seeder
      */
     public function run(): void
     {
-        Account::factory(10)->create([
-            'category_id' => 3
-        ]);
+        Account::factory()->create(['title' => 'Company']);
 
-        Account::factory(100)->create([
-            'parent_id' => Account::all()->random()->id,
-            'category_id' => 4
-        ]);
+        $company = Account::all()->where('title', 'Company')->first();
+        $companyId = $company->id;
 
-        Account::factory(8000)->create([
-            'category_id' => 5
-        ]);
+        for ($i = 0; $i < 10; $i++) {
+            Account::factory()->create([
+                'title' => fake()->company(),
+                'parent_id' => $companyId,
+            ]);
+        }
+
+        $accounts1 = Account::all()->where('title', '!=', 'Company');
+
+        foreach ($accounts1 as $account1) {
+            for ($i = 0; $i < rand(1, 5); $i++) {
+                Account::factory()->create([
+                    'title' => fake()->name(),
+                    'parent_id' => $account1->id,
+                ]);
+            }
+        }
+
+        $accounts2 = Account::all()->where('id', '>', 11);
+
+        foreach ($accounts2 as $account2) {
+            for ($i = 0; $i < rand(1, 20); $i++) { 
+                Account::factory()->create([
+                    'title' => fake()->firstName() . fake()->lastName(),
+                    'parent_id' => $account2->id,
+                ]);
+            }
+        }
     }
 }

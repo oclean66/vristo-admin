@@ -6,6 +6,7 @@ namespace Database\Seeders;
 
 use App\Models\Currency;
 use App\Models\Level;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -15,12 +16,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\User::factory(100)->create();
+        User::factory(100)->create();
 
-        \App\Models\User::factory()->create([
+        User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
-            'password' => 'password',
         ]);
 
         Level::factory(2)->create();
