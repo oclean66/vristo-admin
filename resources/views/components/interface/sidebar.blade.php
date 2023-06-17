@@ -44,7 +44,7 @@
                 </li>
 
                 <li class="menu nav-item">
-                    <a href="{{ route('users.index') }}" type="button" class="group"
+                    <a href="{{ route('users.table') }}" type="button" class="group"
                         :class="{ 'active': activeDropdown === 'users' }">
                         <div class="flex items-center">
                             <svg class="group-hover:!text-primary" width="20" height="20" viewBox="0 0 24 24"

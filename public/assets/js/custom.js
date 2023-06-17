@@ -66,8 +66,8 @@
             },
         }));
 
-        Alpine.data("hiddenPass", (hidePassword = true) => ({
-            hide: hidePassword,
+        Alpine.data("hiddenPass", (initialVisibilityState = true) => ({
+            hide: initialVisibilityState,
             type: 'password',
 
             toggleVisibility() {

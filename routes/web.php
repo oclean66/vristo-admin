@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\LocalizationController;
 use App\Http\Controllers\UserController;
+use App\Http\Livewire\Users\UserProfile;
+use App\Http\Livewire\Users\UsersData;
 use App\Http\Livewire\Users\UsersTable;
 use Illuminate\Support\Facades\Route;
 
@@ -26,9 +28,10 @@ Route::middleware('auth')->group(function () {
     Route::view('/dashboard', 'dashboard')->name('dashboard');
 
     Route::prefix('users')->group(function () {
-        Route::get('/', UsersTable::class)->name('users.index');
+        Route::get('/', UsersTable::class)->name('users.table');
         Route::get('/create', [UserController::class, 'create'])->name('users.create');
         Route::post('/', [UserController::class, 'store'])->name('users.store');
+        Route::get('/{user}', UsersData::class)->name('users.data');
     });
 });
 

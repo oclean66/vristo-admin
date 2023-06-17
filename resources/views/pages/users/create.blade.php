@@ -73,7 +73,7 @@
             </div>
             <div class="flex mt-5 justify-start gap-4">
                 <button type="submit" class="btn btn-primary" @click="$wire.create()">{{ __('Create') }}</button>
-                <a href="{{ route('users.index') }}" class="btn btn-dark">{{ __('Cancel') }}</a>
+                <a href="{{ route('users.table') }}" class="btn btn-dark">{{ __('Cancel') }}</a>
             </div>
         </form>
     </div>

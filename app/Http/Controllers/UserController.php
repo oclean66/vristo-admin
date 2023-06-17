@@ -16,7 +16,7 @@ class UserController extends Controller
     {
         $users = User::paginate();
 
-        return view('pages.users.index', compact('users'));
+        return view('pages.users.table', compact('users'));
     }
 
     /**
@@ -40,7 +40,7 @@ class UserController extends Controller
 
         $user->save();
 
-        return to_route('users.index');
+        return to_route('users.table');
     }
 
     /**

@@ -23,7 +23,7 @@
                         <td class="text-center">
                             <ul class="flex items-center justify-center gap-2">
                                 <li>
-                                    <a href="javascript:;" x-tooltip="Details">
+                                    <a href="{{ route('users.data', $user->id) }}" x-tooltip="Details">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                             stroke-width="1.5" stroke="currentColor" class="w-6 h-6 hover:text-primary transition hover:scale-y-125">
                                             <path stroke-linecap="round" stroke-linejoin="round"

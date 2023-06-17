@@ -27,6 +27,8 @@ class UserFactory extends Factory
         return [
             'name' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
+            'phone' => $this->faker->phoneNumber(),
+            'mobile' => $this->faker->e164PhoneNumber(),
             // 'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'two_factor_secret' => null,
@@ -52,21 +54,21 @@ class UserFactory extends Factory
     /**
      * Indicate that the user should have a personal team.
      */
-    public function withPersonalTeam(callable $callback = null): static
-    {
-        if (! Features::hasTeamFeatures()) {
-            return $this->state([]);
-        }
+    // public function withPersonalTeam(callable $callback = null): static
+    // {
+    //     if (!Features::hasTeamFeatures()) {
+    //         return $this->state([]);
+    //     }
 
-        return $this->has(
-            Team::factory()
-                ->state(fn (array $attributes, User $user) => [
-                    'name' => $user->name.'\'s Team',
-                    'user_id' => $user->id,
-                    'personal_team' => true,
-                ])
-                ->when(is_callable($callback), $callback),
-            'ownedTeams'
-        );
-    }
+    //     return $this->has(
+    //         Team::factory()
+    //             ->state(fn (array $attributes, User $user) => [
+    //                 'name' => $user->name . '\'s Team',
+    //                 'user_id' => $user->id,
+    //                 'personal_team' => true,
+    //             ])
+    //             ->when(is_callable($callback), $callback),
+    //         'ownedTeams'
+    //     );
+    // }
 }
