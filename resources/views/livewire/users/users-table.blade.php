@@ -11,7 +11,7 @@
                     <th>ID</th>
                     <th>Name</th>
                     <th>Email</th>
-                    <th class="!text-center">Actions</th>
+                    <th class="!text-center">Details</th>
                 </tr>
             </thead>
             <tbody>
