@@ -11,14 +11,6 @@ use Illuminate\View\View;
 class UserController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     */
-    public function index(): void
-    {
-        //
-    }
-
-    /**
      * Show the form for creating a new resource.
      */
     public function create()
@@ -40,22 +32,6 @@ class UserController extends Controller
         $user->save();
 
         return to_route('users.table');
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(User $user)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(User $user)
-    {
-        //
     }
 
     /**

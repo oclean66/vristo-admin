@@ -21,6 +21,18 @@ class UsersData extends Component
     public $phone;
     public $password;
 
+    public $editable = false;
+
+    public function updated($field): void
+    {
+        $this->validateOnly($field, [
+            'username' => ['string', 'max:45'],
+            'name' => ['required', 'string', 'max:45'],
+            'email' => ['required', 'email', 'max:45'],
+            'password' => ['required', 'string', 'min:8', 'max:255'],
+        ]);
+    }
+
     public function render(): View
     {
         return view('livewire.users.users-data')->layout('layout.app');
@@ -30,13 +42,20 @@ class UsersData extends Component
     {
         $this->user = $user;
 
-        $this->username = $user->username;
-        $this->name = $user->name;
-        $this->email = $user->email;
-        $this->gender = $user->gender;
-        $this->state = $user->state;
-        $this->mobile = $user->mobile;
-        $this->phone = $user->phone;
-        $this->password = $user->password;
+        $this->fill([
+            'username' => $user->username,
+            'name' => $user->name,
+            'email' => $user->email,
+            'gender' => $user->gender,
+            'state' => $user->state,
+            'mobile' => $user->mobile,
+            'phone' => $user->phone,
+            'password' => $user->password,
+        ]);
+    }
+    
+    public function activateEdition() : void
+    {
+        $this->editable = true;
     }
 }

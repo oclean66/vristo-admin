@@ -2,12 +2,11 @@
     <div class="flex items-center justify-between mb-5">
         <h5 class="font-semibold text-lg dark:text-white-light">{{ __('Data') }}</h5>
     </div>
-    <div x-data="{ editable: false }">
+    <div>
         <form class="border border-[#ebedf2] dark:border-[#191e3a] rounded-md p-4 mb-5 bg-white dark:bg-[#0e1726]"
             action="{{ route('users.update', $user) }}" method="post">
             @csrf
             @method('put')
-            {{ $errors }}
             <h6 class="text-lg font-bold mb-5">{{ __('General Information') }}</h6>
             <div class="flex flex-col sm:flex-row">
                 <div class="ltr:sm:mr-4 rtl:sm:ml-4 w-full sm:w-2/12 mb-5">
@@ -17,65 +16,83 @@
                 <div class="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-5">
                     <div>
                         <label>{{ __('Username') }}</label>
-                        <input name="username" type="text" class="form-input" wire:model.defer="username"
-                            value="{{ $user->username }}" :disabled="!editable">
+                        <input name="username" type="text" class="form-input" wire:model="username"
+                            value="{{ $user->username }}" @disabled(!$editable)>
+                        @error('username')
+                            <span>{{ $message }}</span>
+                        @enderror
                     </div>
                     <div>
                         <label>{{ __('Name') }}</label>
-                        <input name="name" type="text" class="form-input" wire:model.defer="name"
-                            value="{{ $user->name }}" :disabled="!editable">
+                        <input name="name" type="text" class="form-input" wire:model="name"
+                            value="{{ $user->name }}" @disabled(!$editable)>
+                        @error('name')
+                            <span>{{ $message }}</span>
+                        @enderror
                     </div>
                     <div>
                         <label>{{ __('Email') }}</label>
-                        <input name="email" type="email" class="form-input" wire:model.defer="email"
-                            value="{{ $user->email }}" :disabled="!editable">
+                        <input name="email" type="email" class="form-input" wire:model="email"
+                            value="{{ $user->email }}" @disabled(!$editable)>
+                        @error('email')
+                            <span class="text-sm text-danger list-item ml-5">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div>
                         <label>{{ __('Gender') }}</label>
-                        <template x-if="!editable">
-                            <input name="gender" type="text" class="form-input" value="{{ $user->gender }}"
-                                disabled>
-                        </template>
-                        <template x-if="editable">
-                            <select class="form-select" name="gender" wire:model.defer="gender">
+                        @if ($editable)
+                            <select class="form-select" name="gender" wire:model="gender">
                                 <option value="0">-- N/A --</option>
                                 <option value="1" {{ $user->gender == 1 ? 'selected' : '' }}>
                                     {{ __('Male') }}</option>
                                 <option value="2" {{ $user->gender == 2 ? 'selected' : '' }}>
                                     {{ __('Female') }}</option>
                             </select>
-                        </template>
+                        @else
+                            <input name="gender" type="text" class="form-input" value="{{ $user->gender }}"
+                                disabled>
+                        @endif
+                        @error('gender')
+                            <span class="text-sm text-danger list-item ml-5">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div>
                         <label>{{ __('State') }}</label>
-                        <template x-if="!editable">
-                            <input name="state" type="text" class="form-input" disabled>
-                        </template>
-                        <template x-if="editable">
-                            <select name="state" class="form-select" wire:model.defer="state">
+                        @if ($editable)
+                            <select name="state" class="form-select" wire:model="state">
                                 <option value="0" {{ $user->state == 0 ? 'selected' : '' }}>state 0
                                 </option>
                                 <option value="1" {{ $user->state == 1 ? 'selected' : '' }}>state 1
                                 </option>
                             </select>
-                        </template>
+                        @else
+                            <input name="state" type="text" class="form-input" disabled>
+                        @endif
+                        @error('state')
+                            <span class="text-sm text-danger list-item ml-5">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div>
                         <label>{{ __('Mobile') }}</label>
-                        <input name="mobile" type="text" class="form-input" x-mask="+99 999 9999999"
-                            wire:model.defer="mobile" :disabled="!editable">
-                        {{ $this->mobile }}
+                        <input name="mobile" type="text" class="form-input" x-mask="+999999999999"
+                            wire:model="mobile" @disabled(!$editable)>
+                        @error('mobile')
+                            <span class="text-sm text-danger list-item ml-5">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div>
                         <label>{{ __('Phone') }}</label>
                         <input name="phone" type="text" class="form-input" x-mask="9999999999999999"
-                            wire:model.defer="phone" value="{{ $user->phone }}" :disabled="!editable">
+                            wire:model="phone" value="{{ $user->phone }}" @disabled(!$editable)>
+                        @error('phone')
+                            <span class="text-sm text-danger list-item ml-5">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div x-data="hiddenPass">
                         <label for="web">{{ __('Password') }}</label>
                         <div class="flex">
                             <input name="password" :type="type" class="form-input"
-                                value="{{ $user->password }}" :disabled="!editable">
+                                value="{{ $user->password }}" @disabled(!$editable)>
                             <div class="bg-[#eee] flex justify-center items-center ltr:rounded-r-md rtl:rounded-l-md px-3 font-semibold border ltr:border-l-0 rtl:border-r-0 border-[#e0e6ed] dark:border-[#17263c] dark:bg-[#1b2e4b]"
                                 @click="toggleVisibility">
                                 <template x-if="hide">
@@ -98,18 +115,20 @@
                                 </template>
                             </div>
                         </div>
+                        @error('password')
+                            <span class="text-sm text-danger list-item ml-5">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div class="mt-3">
-                        <template x-if="!editable">
-                            <button type="button" class="btn btn-primary"
-                                @click="editable = true">{{ __('Edit') }}</button>
-                        </template>
-                        <template x-if="editable">
+                        @if ($editable)
                             <div class="flex items-start gap-3">
                                 <button type="submit" class="btn btn-primary">{{ __('Save') }}</button>
                                 <a href="" class="btn btn-dark">Cancel</a>
                             </div>
-                        </template>
+                        @else
+                            <button type="button" class="btn btn-primary"
+                                wire:click="activateEdition">{{ __('Edit') }}</button>
+                        @endif
                     </div>
                 </div>
             </div>

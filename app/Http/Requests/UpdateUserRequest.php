@@ -3,10 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules\Password;
 
-class StoreUserRequest extends FormRequest
+class UpdateUserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,8 +24,8 @@ class StoreUserRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:45'],
-            'email' => ['required', 'email', 'unique:users', 'max:45'],
-            'password' => ['required', 'confirmed', Password::default(), 'max:255'],
+            'email' => ['required', 'email', 'max:45'],
+            'password' => ['required', Password::default(), 'max:255'],
         ];
     }
 }
