@@ -2,14 +2,14 @@
 Admin interface for KDeportes.
 
 # Built With
-[![Laravel Badge](https://img.shields.io/badge/Tailwind_Css-3.1-empty?style=for-the-badge&logo=tailwindcss&logoColor=FFFFFF&color=0e1726&labelColor=06B6D4)](#)
-[![Laravel Badge](https://img.shields.io/badge/Alpinejs-3.0-empty?style=for-the-badge&logo=alpinedotjs&logoColor=FFFFFF&color=0e1726&labelColor=8BC0D0)](#)
-[![Laravel Badge](https://img.shields.io/badge/Laravel-10.8-empty?style=for-the-badge&logo=Laravel&logoColor=FFFFFF&color=0e1726&labelColor=FF2D20)](#)
+[![Laravel Badge](https://img.shields.io/badge/Tailwind_Css-3.3-empty?style=for-the-badge&logo=tailwindcss&logoColor=FFFFFF&color=0e1726&labelColor=06B6D4)](#)
+[![Laravel Badge](https://img.shields.io/badge/Alpinejs-3.12-empty?style=for-the-badge&logo=alpinedotjs&logoColor=FFFFFF&color=0e1726&labelColor=8BC0D0)](#)
+[![Laravel Badge](https://img.shields.io/badge/Laravel-10.10-empty?style=for-the-badge&logo=Laravel&logoColor=FFFFFF&color=0e1726&labelColor=FF2D20)](#)
 [![Laravel Badge](https://img.shields.io/badge/Livewire-2.12-empty?style=for-the-badge&logo=livewire&logoColor=FFFFFF&color=0e1726&labelColor=4E56A6)](#)
 
 ## Dependecies
 * __PHP__
-    * `laravel/framwork 10.8`
+    * `laravel/framwork 10.10`
     * `laravel/sanctum 3.2`
     * `laravel/fortify 1.17`
     * `laravel/livewire 2.12`
@@ -17,9 +17,6 @@ Admin interface for KDeportes.
 
     _Dev Dependecies_
     * `barryvdh/laravel-debugbar 3.8`
-    * `fakerphp/faker`
-    * `phpunit/phpunit`
-    * `spatie/laravel-ignition`
 
 ---
 
@@ -27,12 +24,11 @@ Admin interface for KDeportes.
     * `flag-icons 6.6.6`
     
     _Dev Dependencies_
-    * `alpinejs 3.0.6`
-    * `tailwindcss 3.1.0`
-    * `vite 4.9.0`
-    * `autoprefixer 10.4.7`
-    * `postcss 8.4.14`
-    * `lodash 4.17.19`
+    * `alpinejs 3.12.2`
+    * `tailwindcss 3.3.2`
+    * `vite 4.0.0`
+    * `autoprefixer 10.4.14`
+    * `postcss 8.4.24`
 
 # Getting Started
 ## Requirements
