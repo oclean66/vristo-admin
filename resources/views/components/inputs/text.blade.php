@@ -1,4 +1,4 @@
-@props(['label' => 'Text', 'id' => null, 'name' => 'text', 'disabled' => false])
+@props(['label' => 'Text', 'id' => null, 'disabled' => false])
 
 <label {{ $id ? "for=$id" : '' }}>{{ $label }}</label>
-<input name="{{ $name }}" {{ $id ? "id=$id" : '' }} type="text" {{ $attributes->merge(['class' => 'form-input']) }} @disabled($disabled)>
+<input {{ $id ? "id=$id" : '' }} type="text" {{ $attributes->merge(['class' => 'form-input']) }} @disabled($disabled)>

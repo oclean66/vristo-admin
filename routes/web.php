@@ -37,3 +37,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('locale/{lang}', LocalizationController::class);
+
+Route::get('/test', function () {
+    return 'hola';
+})->name('test');

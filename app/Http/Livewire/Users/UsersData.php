@@ -25,16 +25,6 @@ class UsersData extends Component
 
     protected $listeners = ['deleteUsers'];
 
-    public function updated($field): void
-    {
-        $this->validateOnly($field, [
-            'username' => ['string', 'max:45'],
-            'name' => ['required', 'string', 'max:45'],
-            'email' => ['required', 'email', 'max:45'],
-            'password' => ['required', 'string', 'min:8', 'max:255'],
-        ]);
-    }
-
     public function render(): View
     {
         return view('livewire.users.users-data')->layout('layout.app');
@@ -53,6 +43,16 @@ class UsersData extends Component
             'mobile' => $user->mobile,
             'phone' => $user->phone,
             'password' => $user->password,
+        ]);
+    }
+
+    public function updated($field): void
+    {
+        $this->validateOnly($field, [
+            'username' => ['string', 'max:45'],
+            'name' => ['required', 'string', 'max:45'],
+            'email' => ['required', 'email', 'max:45'],
+            'password' => ['required', 'string', 'min:8', 'max:255'],
         ]);
     }
 
