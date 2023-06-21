@@ -3,7 +3,7 @@
 namespace App\Http\Livewire\Users;
 
 use App\Models\User;
-use Illuminate\Validation\Rules\Password;
+use Illuminate\Support\Facades\Date;
 use Illuminate\View\View;
 use Livewire\Component;
 
@@ -22,6 +22,8 @@ class UsersData extends Component
     public $password;
 
     public $editable = false;
+
+    protected $listeners = ['deleteUsers'];
 
     public function updated($field): void
     {
@@ -53,9 +55,17 @@ class UsersData extends Component
             'password' => $user->password,
         ]);
     }
-    
-    public function activateEdition() : void
+
+    public function activateEdition(): void
     {
         $this->editable = true;
+    }
+
+    public function deleteUser(): void
+    {
+        $this->user->deleted_at = Date::now();
+        $this->user->save();
+
+        to_route('users.table');
     }
 }

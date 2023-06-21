@@ -4,13 +4,12 @@
         <div class="panel sm:w-[480px] m-6 max-w-lg w-full">
             <h2 class="font-bold text-2xl mb-3">{{ __('Sign In') }}</h2>
             <p class="mb-7">Enter your email and password to login</p>
-            {{ $errors }}
-            {{ session('status') }}
             <form class="space-y-5" action="{{ route('password.request') }}" method="POST">
                 @csrf
                 <div>
-                    <label for="email">{{ __('Email') }}</label>
-                    <input id="email" type="email" name="email" class="form-input" placeholder="Enter Email" />
+                    <x-inputs.email label="{{ __('Email') }}" name="email" />
+                    <x-inputs.validate-error field="email" />
+                    {{ session('status') }}
                 </div>
                 <button type="submit" class="btn btn-primary w-full uppercase">{{ __('Send') }}</button>
             </form>

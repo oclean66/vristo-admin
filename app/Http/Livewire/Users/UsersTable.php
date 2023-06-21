@@ -16,7 +16,7 @@ class UsersTable extends Component
 
     public function render(): View
     {
-        $users = User::paginate();
+        $users = User::whereNull('deleted_at')->paginate();
 
         return view('livewire.users.users-table', compact('users'))->layout('layout.app');
     }

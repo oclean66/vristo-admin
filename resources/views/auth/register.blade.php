@@ -4,33 +4,28 @@
         <div class="panel sm:w-[480px] m-6 max-w-lg w-full">
             <h2 class="font-bold text-2xl mb-3">{{ __('Sign Up') }}</h2>
             <p class="mb-7">Enter your email and password to register</p>
-            {{ $errors }}
             <form class="space-y-5" action="{{ route('register') }}" method="POST">
                 @csrf
                 <div>
-                    <label for="name">{{ __('Name') }}</label>
-                    <input id="name" type="text" name="name" class="form-input" placeholder="Enter Name" />
+                    <x-inputs.text label="{{ __('Name') }}" name="name" />
+                    <x-inputs.validate-error field="name" />
                 </div>
                 <div>
-                    <label for="email">{{ __('Email') }}</label>
-                    <input id="email" type="email" name="email" class="form-input" placeholder="Enter Email" />
+                    <x-inputs.email label="{{ __('Email') }}" name="email" />
+                    <x-inputs.validate-error field="email" />
                 </div>
                 <div>
-                    <label for="password">{{ __('Password') }}</label>
-                    <input id="password" type="password" name="password" class="form-input"
-                        placeholder="Enter Password" />
+                    <x-inputs.password label="{{ __('Password') }}" name="password" />
+                    <x-inputs.validate-error field="password" />
                 </div>
                 <div>
-                    <label for="password_confirmation">{{ __('Confirm Password') }}</label>
-                    <input id="password_confirmation" type="password" name="password_confirmation" class="form-input"
-                        placeholder="Confirm Password" />
+                    <x-inputs.password label="{{ __('Confirm Password') }}" name="password_confirmation" />
+                    <x-inputs.validate-error field="password_confirmation" />
                 </div>
                 <div>
-                    <label class="cursor-pointer">
-                        <input type="checkbox" class="form-checkbox" />
-                        <span for="custom_checkbox" class="text-white-dark">I agree the <a href="javascript:;"
-                                class="text-primary hover:underline">Terms and Conditions</a></span>
-                    </label>
+                    <x-inputs.check>
+                        I agree the <a href="javascript:;" class="text-primary hover:underline">Terms and Conditions</a>
+                    </x-inputs.check>
                 </div>
                 <button type="submit" class="btn btn-primary w-full uppercase">{{ __('Sign Up') }}</button>
             </form>
