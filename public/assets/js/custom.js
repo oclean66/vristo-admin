@@ -68,12 +68,20 @@
 
         Alpine.data("hiddenPass", (initialVisibilityState = true) => ({
             hide: initialVisibilityState,
-            type: 'password',
+            type: "password",
 
             toggleVisibility() {
                 this.hide = !this.hide;
-                this.hide ? this.type = 'password' : this.type = 'text';
-            }
+                this.hide ? (this.type = "password") : (this.type = "text");
+            },
+        }));
+
+        Alpine.data("alert", (initialOpenState = true) => ({
+            open: initialOpenState,
+
+            close() {
+                this.open = false;
+            },
         }));
 
         // Magic: $tooltip

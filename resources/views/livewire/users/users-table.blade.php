@@ -1,9 +1,8 @@
 <div class="panel">
-    {{ $errors }}
     <div class="mb-5 max-w-fit">
         <x-modal>
             <x-slot:toggle>
-                <button class="btn btn-primary">Create User</button>
+                <button class="btn btn-primary">{{ __('New') . ' ' . __('User') }}</button>
             </x-slot:toggle>
             <x-slot:dialog>
                 <div class="panel w-[512px] lg:w-[768px] xl:w-[1024px]">
@@ -12,21 +11,25 @@
                         @csrf
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div>
-                                <x-inputs.text wire:model.debounce="name" label="{{ __('Name') }}" name="name" required />
+                                <x-inputs.text wire:model.debounce="name" label="{{ __('Name') }}" name="name"
+                                    required />
                                 <x-inputs.validate-error field="name" />
                             </div>
                             <div>
-                                <x-inputs.text wire:model.debounce="username" label="{{ __('Username') }}" name="username" />
+                                <x-inputs.text wire:model.debounce="username" label="{{ __('Username') }}"
+                                    name="username" />
                                 <x-inputs.validate-error field="username" />
                             </div>
                         </div>
                         <div>
-                            <x-inputs.text wire:model.debounce="email" label="{{ __('Email') }}" name="email" required />
+                            <x-inputs.text wire:model.debounce="email" label="{{ __('Email') }}" name="email"
+                                required />
                             <x-inputs.validate-error field="email" />
                         </div>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div>
-                                <x-inputs.select wire:model.debounce="gender" label="{{ __('Gender') }}" name="gender">
+                                <x-inputs.select wire:model.debounce="gender" label="{{ __('Gender') }}"
+                                    name="gender">
                                     <option value="0">-- N/A --</option>
                                     <option value="1">{{ __('Male') }}</option>
                                     <option value="2">{{ __('Female') }}</option>
@@ -55,8 +58,8 @@
                         </div>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div>
-                                <x-inputs.password wire:model.debounce="password" label="{{ __('Password') }}" name="password"
-                                    required />
+                                <x-inputs.password wire:model.debounce="password" label="{{ __('Password') }}"
+                                    name="password" required />
                                 <x-inputs.validate-error field="password" />
                             </div>
                             <div>
@@ -67,7 +70,8 @@
                         </div>
                         <div class="flex mt-5 justify-start gap-4">
                             <button type="submit" class="btn btn-primary">{{ __('Create') }}</button>
-                            <button type="button" class="btn btn-dark" wire:click="resetFields">{{ __('Cancel') }}</button>
+                            <button type="button" class="btn btn-dark"
+                                wire:click="resetFields">{{ __('Cancel') }}</button>
                         </div>
                     </form>
                 </div>

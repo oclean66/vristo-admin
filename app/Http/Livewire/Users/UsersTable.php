@@ -44,6 +44,16 @@ class UsersTable extends Component
 
     public function resetFields(): void
     {
-        $this->reset('name', 'username', 'email', 'gender', 'state', 'mobile', 'phone', 'password', 'password_confirmation');
+        $this->reset([
+            'name',
+            'username',
+            'email',
+            'gender',
+            'state',
+            'mobile',
+            'phone',
+            'password',
+            'password_confirmation',
+        ]);
     }
 }
