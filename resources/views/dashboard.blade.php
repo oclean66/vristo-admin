@@ -4,10 +4,14 @@
         <livewire:account-data />
     </div> --}}
     <div class="grid grid-cols-1 xl:grid-cols-2 gap-4">
+        {{-- tabs --}}
         <x-tab />
         <x-vertical-tab />
+
+        {{-- accordions --}}
         <x-accordion />
 
+        {{-- cards --}}
         <x-cards.sm>
             <x-slot:title>
                 Title
@@ -15,6 +19,7 @@
 
             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Assumenda, dignissimos.</p>
         </x-cards.sm>
+
         <x-cards.md>
             <x-slot:heading class="rounded-full overflow-hidden h-20 w-20">
                 <img src="/assets/images/profile-34.jpeg" alt="image" class="w-full h-full object-cover">
@@ -27,6 +32,7 @@
                 condimentum rhoncus dignissim egestas orci. Integer blandit porta placerat.
                 Vestibulum in ultricies.</p>
         </x-cards.md>
+
         <x-cards.lg>
             <x-slot:heading>
                 <div class="h-[215px] overflow-hidden">
@@ -39,6 +45,7 @@
                 nec risus malesuada.</p>
             <button type="button" class="btn btn-primary mt-6">Explore More</button>
         </x-cards.lg>
+
         <x-cards.xl>
             <x-slot:heading>
                 <div class="h-[260px] overflow-hidden">
@@ -90,9 +97,90 @@
             </x-slot:footer>
         </x-cards.xl>
 
-        <x-info-box />
-        <x-info-box-2 />
-        <x-info-box-3 />
+        {{-- infobox --}}
+        <x-infobox.simple>
+            <x-slot:heading class="text-primary">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                    class="w-12 h-12">
+                    <path
+                        d="M15.5777 3.38197L17.5777 4.43152C19.7294 5.56066 20.8052 6.12523 21.4026 7.13974C22 8.15425 22 9.41667 22 11.9415V12.0585C22 14.5833 22 15.8458 21.4026 16.8603C20.8052 17.8748 19.7294 18.4393 17.5777 19.5685L15.5777 20.618C13.8221 21.5393 12.9443 22 12 22C11.0557 22 10.1779 21.5393 8.42229 20.618L6.42229 19.5685C4.27063 18.4393 3.19479 17.8748 2.5974 16.8603C2 15.8458 2 14.5833 2 12.0585V11.9415C2 9.41667 2 8.15425 2.5974 7.13974C3.19479 6.12523 4.27063 5.56066 6.42229 4.43152L8.42229 3.38197C10.1779 2.46066 11.0557 2 12 2C12.9443 2 13.8221 2.46066 15.5777 3.38197Z"
+                        stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                    <path opacity="0.5" d="M21 7.5L12 12M12 12L3 7.5M12 12V21.5" stroke="currentColor"
+                        stroke-width="1.5" stroke-linecap="round" />
+                </svg>
+            </x-slot:heading>
+            <x-slot:title>Title</x-slot:title>
+
+            <p class="text-white-dark text-[15px]  mb-3.5">Lorem ipsum dolor sit amet, labore et dolore
+                magna aliqua.</p>
+
+            <x-slot:link>
+                Discover
+
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                    class="w-4 h-4 ltr:ml-1 rtl:mr-1 inline-block relative transition-all duration-300 group-hover:translate-x-2 rtl:group-hover:-translate-x-2 rtl:rotate-180">
+                    <path d="M4 12H20M20 12L14 6M20 12L14 18" stroke="currentColor" stroke-width="1.5"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+            </x-slot:link>
+        </x-infobox.simple>
+
+        <x-infobox.solid>
+            <x-slot:heading class="text-white-light bg1-white-dark w-20 h-20 rounded-full">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                    class="w-12 h-12">
+                    <path
+                        d="M15.5777 3.38197L17.5777 4.43152C19.7294 5.56066 20.8052 6.12523 21.4026 7.13974C22 8.15425 22 9.41667 22 11.9415V12.0585C22 14.5833 22 15.8458 21.4026 16.8603C20.8052 17.8748 19.7294 18.4393 17.5777 19.5685L15.5777 20.618C13.8221 21.5393 12.9443 22 12 22C11.0557 22 10.1779 21.5393 8.42229 20.618L6.42229 19.5685C4.27063 18.4393 3.19479 17.8748 2.5974 16.8603C2 15.8458 2 14.5833 2 12.0585V11.9415C2 9.41667 2 8.15425 2.5974 7.13974C3.19479 6.12523 4.27063 5.56066 6.42229 4.43152L8.42229 3.38197C10.1779 2.46066 11.0557 2 12 2C12.9443 2 13.8221 2.46066 15.5777 3.38197Z"
+                        stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                    <path opacity="0.5" d="M21 7.5L12 12M12 12L3 7.5M12 12V21.5" stroke="currentColor"
+                        stroke-width="1.5" stroke-linecap="round" />
+                </svg>
+            </x-slot:heading>
+            <x-slot:title>Title</x-slot:title>
+
+            <p class="text-white-light text-[15px]  mb-3.5">Lorem ipsum dolor sit amet, labore et
+                dolore magna aliqua.</p>
+
+            <x-slot:link>
+                Discover
+
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="w-4 h-4 ltr:ml-1 rtl:mr-1 inline-block relative transition-all duration-300 group-hover:translate-x-2 rtl:group-hover:-translate-x-2 rtl:rotate-180">
+                    <path d="M4 12H20M20 12L14 6M20 12L14 18" stroke="currentColor" stroke-width="1.5"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+            </x-slot:link>
+        </x-infobox.solid>
+
+        <x-infobox.icon>
+            <x-slot:icon color="primary">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    xmlns="http://www.w3.org/2000/svg" class="w-12 h-12">
+                    <path
+                        d="M15.5777 3.38197L17.5777 4.43152C19.7294 5.56066 20.8052 6.12523 21.4026 7.13974C22 8.15425 22 9.41667 22 11.9415V12.0585C22 14.5833 22 15.8458 21.4026 16.8603C20.8052 17.8748 19.7294 18.4393 17.5777 19.5685L15.5777 20.618C13.8221 21.5393 12.9443 22 12 22C11.0557 22 10.1779 21.5393 8.42229 20.618L6.42229 19.5685C4.27063 18.4393 3.19479 17.8748 2.5974 16.8603C2 15.8458 2 14.5833 2 12.0585V11.9415C2 9.41667 2 8.15425 2.5974 7.13974C3.19479 6.12523 4.27063 5.56066 6.42229 4.43152L8.42229 3.38197C10.1779 2.46066 11.0557 2 12 2C12.9443 2 13.8221 2.46066 15.5777 3.38197Z"
+                        stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                    <path opacity="0.5" d="M21 7.5L12 12M12 12L3 7.5M12 12V21.5" stroke="currentColor"
+                        stroke-width="1.5" stroke-linecap="round" />
+                </svg>
+            </x-slot:icon>
+            <x-slot:title>Title</x-slot:title>
+
+            <p class="text-white-dark text-[15px]  mb-3.5">Lorem ipsum dolor sit amet, labore et dolore
+                magna aliqua.</p>
+
+            <x-slot:link>
+                Discover
+
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="w-4 h-4 ltr:ml-1 rtl:mr-1 inline-block relative transition-all duration-300 group-hover:translate-x-2 rtl:group-hover:-translate-x-2 rtl:rotate-180">
+                    <path d="M4 12H20M20 12L14 6M20 12L14 18" stroke="currentColor" stroke-width="1.5"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+            </x-slot:link>
+        </x-infobox.icon>
+
         <div class="panel grid grid-cols-3">
             <div>
                 <span
