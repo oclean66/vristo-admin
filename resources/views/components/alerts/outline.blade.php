@@ -1,7 +1,7 @@
 @props([
     'title' => 'Alert!',
     'description' => '',
-    'color' => 'primary', // primary | succcess | danger | secondary | warning | info
+    'color' => 'primary', // primary, succcess, danger, secondary, warning, info
 ])
 
 <div x-data="alert" x-show="open">

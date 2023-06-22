@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\LocalizationController;
 use App\Http\Controllers\UserController;
-use App\Http\Livewire\Users\UserProfile;
 use App\Http\Livewire\Users\UsersData;
 use App\Http\Livewire\Users\UsersTable;
 use Illuminate\Support\Facades\Route;
@@ -37,7 +36,3 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('locale/{lang}', LocalizationController::class);
-
-Route::get('/test', function () {
-    return 'hola';
-})->name('test');

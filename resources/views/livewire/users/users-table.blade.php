@@ -114,6 +114,6 @@
         </table>
     </div>
     <div class="mt-6">
-        {{ $users->links('components.interface.pagination') }}
+        {{ $users->links('components.interface.live-pagination') }}
     </div>
 </div>
