@@ -3,21 +3,23 @@
 namespace App\Http\Livewire;
 
 use App\Models\Account;
-use App\Models\Category;
+use Illuminate\Contracts\View\View;
 use Livewire\Component;
 
 class AccountTree extends Component
 {
+    /**
+     * @var \App\Models\Account
+     */
     public $accounts;
 
-    public function mount()
+    public function mount(): void
     {
-        // $this->accounts = Category::whereNull('parent_id')->with('children')->get();
-
+        // @phpstan-ignore-next-line
         $this->accounts = Account::whereNull('parent_id')->with('children')->get();
     }
-    
-    public function render()
+
+    public function render(): View
     {
         return view('livewire.account-tree');
     }

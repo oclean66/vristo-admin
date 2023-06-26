@@ -12,7 +12,7 @@ class AccountData extends Component
     use WithPagination;
 
     /**
-     * @var App\Models\Account|null
+     * @var \App\Models\Account|null
      */
     public $account;
 
