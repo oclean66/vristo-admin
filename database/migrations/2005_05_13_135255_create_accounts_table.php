@@ -25,19 +25,18 @@ return new class extends Migration
             $table->tinyInteger('state');
             $table->string('phone', 45)->nullable();
             $table->string('mobile', 45)->nullable();
-            $table->timestamps(); // created_at/updated_at
+            $table->timestamps(); // created_at / updated_at
             $table->timestamp('deleted_at')->nullable();
-            $table->string('accountType', 5)->nullable();
             $table->string('balanceType', 5)->nullable();
             $table->tinyInteger('emailState')->nullable();
             $table->tinyInteger('phoneState')->nullable();
             $table->string('reference', 45)->nullable();
             $table->foreignId('currencies_id');
-            $table->foreign('currencies_id')->references('id')->on('currencies')->onDelete('cascade'); //? what should do on delete?
+            $table->foreign('currencies_id')->references('id')->on('currencies')->cascadeOnDelete();
             $table->foreignId('levels_id');
-            $table->foreign('levels_id')->references('id')->on('levels')->onDelete('cascade'); //? what should do on delete?
+            $table->foreign('levels_id')->references('id')->on('levels')->cascadeOnDelete();
             $table->foreignId('category_id')->nullable();
-            $table->foreign('category_id')->references('id')->on('categories')->onDelete('set null');
+            $table->foreign('category_id')->references('id')->on('categories')->nullOnDelete();
         });
     }
 

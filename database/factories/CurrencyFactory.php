@@ -17,8 +17,9 @@ class CurrencyFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->word(),
-            'code' => fake()->randomNumber(3, true),
+            'name' => fake()->countryISOAlpha3(),
+            'code' => fake()->countryISOAlpha3(),
+            'price' => 1,
         ];
     }
 }
