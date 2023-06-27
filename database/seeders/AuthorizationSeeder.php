@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
@@ -69,5 +70,14 @@ class AuthorizationSeeder extends Seeder
             $seeClients,
             $seeCategories,
         ]);
+
+        // Giving roles to users
+        // @phpstan-ignore-next-line
+        $adminUser = User::find(2);
+        $adminUser->assignRole($admin);
+
+        // @phpstan-ignore-next-line
+        $receptorUser = User::find(3);
+        $receptorUser->assingRole($receptor);
     }
 }
