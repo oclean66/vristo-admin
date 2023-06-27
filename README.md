@@ -17,6 +17,7 @@ Admin interface for KDeportes.
 
     _Dev Dependecies_
     * `barryvdh/laravel-debugbar 3.8`
+    * `phpstan/phpstan 1.10`
 
 ---
 
@@ -81,3 +82,5 @@ php artisan serve
 ```shell
 npm run dev
 ```
+
+> When you write code please execute `composer analyse` for analyse your code for searching bugs and issues.
