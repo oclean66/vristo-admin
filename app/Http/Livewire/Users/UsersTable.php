@@ -12,27 +12,86 @@ class UsersTable extends Component
 {
     use WithPagination;
 
-    public $name;
+    /**
+     * Form username field
+     *
+     * @var string
+     */
     public $username;
+
+    /**
+     * Form name field
+     *
+     * @var string
+     */
+    public $name;
+
+    /**
+     * Form email field
+     *
+     * @var string
+     */
     public $email;
+
+    /**
+     * Form gender field
+     *
+     * @var int
+     */
     public $gender;
+
+    /**
+     * Form state field
+     *
+     * @var int
+     */
     public $state;
+
+    /**
+     * Form mobile field
+     *
+     * @var string
+     */
     public $mobile;
+
+    /**
+     * Form phone field
+     *
+     * @var string
+     */
     public $phone;
+
+    /**
+     * Form password field
+     *
+     * @var string
+     */
     public $password;
+
+    /**
+     * Form password confirmation field
+     *
+     * @var string
+     */
     public $password_confirmation;
 
+    /**
+     * Trapped events
+     *
+     * @var array<string>
+     */
     protected $listeners = ['delete'];
-
 
     public function render(): View
     {
+        // @phpstan-ignore-next-line
         $users = User::whereNull('deleted_at')->paginate();
 
+        // @phpstan-ignore-next-line
         return view('livewire.users.users-table', compact('users'))->layout('layout.app');
     }
 
-    public function updated($field): void
+    public function updated(mixed $field): void
     {
         $this->validateOnly($field, [
             'username' => ['string', 'max:45'],

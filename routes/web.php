@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\LocalizationController;
 use App\Http\Controllers\UserController;
+use App\Http\Livewire\Authorization\Permissions as AuthorizationPermissions;
+use App\Http\Livewire\Authorization\Roles as AuthorizationRoles;
 use App\Http\Livewire\Users\UsersData;
 use App\Http\Livewire\Users\UsersTable;
 use Illuminate\Support\Facades\Route;
@@ -32,6 +34,11 @@ Route::middleware('auth')->group(function () {
         Route::post('/', [UserController::class, 'store'])->name('users.store');
         Route::get('/{user}', UsersData::class)->name('users.data');
         Route::put('/{user}', [UserController::class, 'update'])->name('users.update');
+    });
+
+    Route::prefix('authorization')->group(function () {
+        Route::get('/roles', AuthorizationRoles::class)->name('authorization.roles');
+        Route::get('/permissions', AuthorizationPermissions::class)->name('authorization.permissions');
     });
 });
 

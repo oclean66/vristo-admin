@@ -31,8 +31,8 @@ class AccountFactory extends Factory
             'state' => fake()->randomElement([0, 1]),
             'phone' => fake()->phoneNumber(),
             'mobile' => fake()->e164PhoneNumber(),
-            'currencies_id' => Currency::all()->random()->id,
-            'levels_id' => Level::all()->random()->id,
+            'currencies_id' => Currency::all()->random()->getAttribute('id'),
+            'levels_id' => Level::all()->random()->getAttribute('id'),
             'category_id' => null
         ];
     }

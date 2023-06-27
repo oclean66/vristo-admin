@@ -3,25 +3,34 @@
 namespace App\Http\Livewire;
 
 use App\Models\Account;
-use App\Models\Category;
+use Illuminate\Contracts\View\View;
 use Livewire\Component;
 use Livewire\WithPagination;
 
 class AccountData extends Component
 {
     use WithPagination;
-    
-    public $account = null;
 
+    /**
+     * @var \App\Models\Account|null
+     */
+    public $account;
+
+    /**
+     * Trapped events
+     *
+     * @var array<string>
+     */
     protected $listeners = ['showAccount'];
 
-    public function render()
+    public function render(): View
     {
         return view('livewire.account-data');
     }
 
-    public function showAccount($id)
+    public function showAccount(int $id): void
     {
+        // @phpstan-ignore-next-line
         $this->account = Account::find($id);
     }
 }

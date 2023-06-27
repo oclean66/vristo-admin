@@ -12,18 +12,12 @@ class Category extends Model
 
     protected $fillable = ['name', 'description', 'parent_id'];
 
-    public function accounts()
+    /**
+     * Get all of the accounts for the Category
+     *
+     */
+    public function accounts(): HasMany
     {
         return $this->hasMany(Account::class, 'category_id');
-    }
-    
-    public function parents(): HasMany
-    {
-        return $this->hasMany(Category::class, 'parent_id');
-    }
-
-    public function children(): HasMany
-    {
-        return $this->hasMany(Category::class, 'parent_id')->with('parents');
     }
 }

@@ -17,9 +17,9 @@ return new class extends Migration
             $table->string('name', 45);
             $table->string('email', 45)->unique();
             $table->timestamp('email_verified_at')->nullable();
-            // $table->text('two_factor_secret');                          //? jetstream implement your own recovery codes
-            // $table->text('two_factor_recovery_codes')->nullable();      //?
-            // $table->timestamp('two_factor_confirmed_at')->nullable();   //? jetstream use your own two factor confirmed
+            // $table->text('two_factor_secret');
+            // $table->text('two_factor_recovery_codes')->nullable();
+            // $table->timestamp('two_factor_confirmed_at')->nullable();
             $table->string('password', 255);
             $table->rememberToken(); // VARCHAR(100)
             $table->tinyInteger('state')->nullable();
@@ -27,9 +27,9 @@ return new class extends Migration
             $table->string('mobile', 45)->unique()->nullable();
             $table->tinyInteger('gender')->nullable();
             $table->timestamp('deleted_at')->nullable();
-            $table->timestamps(); // created_at/updated_at
+            $table->timestamps(); // created_at / updated_at
             $table->foreignId('accounts_id')->nullable();
-            $table->foreign('accounts_id')->references('id')->on('accounts')->onDelete('cascade'); //? what should do on delete
+            $table->foreign('accounts_id')->references('id')->on('accounts')->cascadeOnDelete();
         });
     }
 

@@ -9,24 +9,84 @@ use Livewire\Component;
 
 class UsersData extends Component
 {
+    /**
+     * @var \App\Models\User
+     */
     public $user;
 
-    // Form inputs
+    /**
+     * Form username field
+     *
+     * @var string
+     */
     public $username;
+
+    /**
+     * Form name field
+     *
+     * @var string
+     */
     public $name;
+
+    /**
+     * Form email field
+     *
+     * @var string
+     */
     public $email;
+
+    /**
+     * Form gender field
+     *
+     * @var int
+     */
     public $gender;
+
+    /**
+     * Form state field
+     *
+     * @var int
+     */
     public $state;
+
+    /**
+     * Form mobile field
+     *
+     * @var string
+     */
     public $mobile;
+
+    /**
+     * Form phone field
+     *
+     * @var string
+     */
     public $phone;
+
+    /**
+     * Form password field
+     *
+     * @var string
+     */
     public $password;
 
+    /**
+     * Indicate whether the data can be edited
+     *
+     * @var bool
+     */
     public $editable = false;
 
+    /**
+     * Trapped events
+     *
+     * @var array<string>
+     */
     protected $listeners = ['deleteUsers'];
 
     public function render(): View
     {
+        // @phpstan-ignore-next-line
         return view('livewire.users.users-data')->layout('layout.app');
     }
 
@@ -35,18 +95,18 @@ class UsersData extends Component
         $this->user = $user;
 
         $this->fill([
-            'username' => $user->username,
-            'name' => $user->name,
-            'email' => $user->email,
-            'gender' => $user->gender,
-            'state' => $user->state,
-            'mobile' => $user->mobile,
-            'phone' => $user->phone,
-            'password' => $user->password,
+            'username' => $user->getAttribute('username'),
+            'name' => $user->getAttribute('name'),
+            'email' => $user->getAttribute('email'),
+            'gender' => $user->getAttribute('gender'),
+            'state' => $user->getAttribute('state'),
+            'mobile' => $user->getAttribute('mobile'),
+            'phone' => $user->getAttribute('phone'),
+            'password' => $user->getAttribute('password'),
         ]);
     }
 
-    public function updated($field): void
+    public function updated(mixed $field): void
     {
         $this->validateOnly($field, [
             'username' => ['string', 'max:45'],
@@ -63,7 +123,7 @@ class UsersData extends Component
 
     public function deleteUser(): void
     {
-        $this->user->deleted_at = Date::now();
+        $this->user->setAttribute('deleted_at', Date::now());
         $this->user->save();
 
         to_route('users.table');

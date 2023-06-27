@@ -14,7 +14,7 @@ class Account extends Model
 
     /**
      * The attributes that are mass assignable
-     * 
+     *
      * @var array<int, string>
      */
     protected $fillable = [
@@ -91,6 +91,7 @@ class Account extends Model
 
     public function children(): HasMany
     {
+        // @phpstan-ignore-next-line
         return $this->hasMany(Account::class, 'parent_id')->with('parents');
     }
 }
