@@ -117,8 +117,6 @@
                     </button>
                 </div>
 
-                {{ auth()->user()->getRoleNames() }}
-
                 <x-interface.theme-button />
 
                 <x-interface.lang-switcher />

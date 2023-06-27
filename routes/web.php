@@ -28,7 +28,7 @@ Route::view('/home', 'home')->name('home');
 Route::middleware('auth')->group(function () {
     Route::view('/dashboard', 'dashboard')->name('dashboard');
 
-    Route::prefix('users')->group(function () {
+    Route::prefix('users')->middleware('role:super-admin')->group(function () {
         Route::get('/', UsersTable::class)->name('users.table');
         Route::get('/create', [UserController::class, 'create'])->name('users.create');
         Route::post('/', [UserController::class, 'store'])->name('users.store');
