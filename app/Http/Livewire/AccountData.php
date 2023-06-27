@@ -32,6 +32,5 @@ class AccountData extends Component
     {
         // @phpstan-ignore-next-line
         $this->account = Account::find($id);
-        dd($this->account);
     }
 }

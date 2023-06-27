@@ -95,7 +95,7 @@ class UsersData extends Component
         $this->user = $user;
 
         $this->fill([
-        'username' => $user->getAttribute('username'),
+            'username' => $user->getAttribute('username'),
             'name' => $user->getAttribute('name'),
             'email' => $user->getAttribute('email'),
             'gender' => $user->getAttribute('gender'),

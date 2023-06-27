@@ -21,9 +21,9 @@ class DatabaseSeeder extends Seeder
         User::factory(100)->create();
 
         User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-            'password' => Hash::make('password'),
+            'name' => 'Terrakion',
+            'email' => 'admin@terrakion.com',
+            'password' => Hash::make('KingTerrakion44'),
         ]);
 
         Level::factory()->create(['name' => 'rookie']);
@@ -53,5 +53,6 @@ class DatabaseSeeder extends Seeder
         Category::factory()->create(['name' => 'accounts']);
 
         $this->call(AccountSeeder::class);
+        $this->call(AuthorizationSeeder::class);
     }
 }

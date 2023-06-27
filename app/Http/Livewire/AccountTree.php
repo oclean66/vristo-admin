@@ -9,7 +9,7 @@ use Livewire\Component;
 class AccountTree extends Component
 {
     /**
-     * @var \App\Models\Account
+     * @var \Illuminate\Database\Eloquent\Collection<int, \App\Models\Account>
      */
     public $accounts;
 
