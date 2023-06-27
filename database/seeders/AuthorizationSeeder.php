@@ -66,6 +66,7 @@ class AuthorizationSeeder extends Seeder
         ]);
 
         $receptor->syncPermissions([
+            $seeUsers,
             $seeAccounts,
             $seeClients,
             $seeCategories,
