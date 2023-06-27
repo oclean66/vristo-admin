@@ -63,7 +63,8 @@
                 </li>
 
                 <li class="menu nav-item" x-data="{ activeDropdown: null }">
-                    <button type="button" class="nav-link group" :class="{ 'active': activeDropdown === 'authorization' }"
+                    <button type="button" class="nav-link group"
+                        :class="{ 'active': activeDropdown === 'authorization' }"
                         @click="activeDropdown === 'authorization' ? activeDropdown = null : activeDropdown = 'authorization'">
                         <div class="flex items-center">
 
@@ -77,7 +78,7 @@
                                     fill="currentColor" />
                             </svg>
                             <span
-                                class="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">Authorization</span>
+                                class="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">{{ __('Authorization') }}</span>
                         </div>
                         <div class="rtl:rotate-180" :class="{ '!rotate-90': activeDropdown === 'authorization' }">
 
@@ -88,13 +89,13 @@
                             </svg>
                         </div>
                     </button>
-                    <ul class="sub-menu text-gray-500" x-show="activeDropdown === 'authorization'" x-collapse x-transition
-                        x-cloak>
+                    <ul class="sub-menu text-gray-500" x-show="activeDropdown === 'authorization'" x-collapse
+                        x-transition x-cloak>
                         <li>
-                            <a href="{{ route('authorization.roles') }}">Roles</a>
+                            <a href="{{ route('authorization.roles') }}">{{ __('Roles') }}</a>
                         </li>
                         <li>
-                            <a href="{{ route('authorization.permissions') }}">Permissions</a>
+                            <a href="{{ route('authorization.permissions') }}">{{ __('Permissions') }}</a>
                         </li>
                     </ul>
                 </li>

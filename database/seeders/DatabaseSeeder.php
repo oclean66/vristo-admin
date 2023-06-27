@@ -18,13 +18,31 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory(100)->create();
-
         User::factory()->create([
             'name' => 'Terrakion',
-            'email' => 'admin@terrakion.com',
+            'email' => 'terrakion@terrakion.com',
             'password' => Hash::make('KingTerrakion44'),
         ]);
+
+        User::factory()->create([
+            'name' => 'Admin',
+            'email' => 'admin@terrakion.com',
+            'password' => Hash::make('KingAdmin33'),
+        ]);
+
+        User::factory()->create([
+            'name' => 'Receptor',
+            'email' => 'receptor@terrakion.com',
+            'password' => Hash::make('KingReceptor22'),
+        ]);
+
+        User::factory()->create([
+            'name' => 'Guest',
+            'email' => 'guest@terrakion.com',
+            'password' => Hash::make('KinGuest11'),
+        ]);
+
+        User::factory(100)->create();
 
         Level::factory()->create(['name' => 'rookie']);
         Level::factory()->create(['name' => 'regular']);
