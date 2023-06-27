@@ -39,7 +39,7 @@ class DatabaseSeeder extends Seeder
         User::factory()->create([
             'name' => 'Guest',
             'email' => 'guest@terrakion.com',
-            'password' => Hash::make('KinGuest11'),
+            'password' => Hash::make('KingGuest11'),
         ]);
 
         User::factory(100)->create();
