@@ -22,6 +22,7 @@ class AccountSeeder extends Seeder
             Account::factory()->create([
                 'title' => fake()->company(),
                 'parent_id' => $companyId,
+                'category_id' => 1,
             ]);
         }
 
@@ -32,6 +33,7 @@ class AccountSeeder extends Seeder
                 Account::factory()->create([
                     'title' => fake()->name(),
                     'parent_id' => $account1->getAttribute('id'),
+                    'category_id' => 2,
                 ]);
             }
         }
@@ -43,6 +45,7 @@ class AccountSeeder extends Seeder
                 Account::factory()->create([
                     'title' => fake()->firstName() . fake()->lastName(),
                     'parent_id' => $account2->getAttribute('id'),
+                    'category_id' => 3,
                 ]);
             }
         }
