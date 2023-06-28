@@ -48,12 +48,12 @@ Admin interface for KDeportes.
 ### 1. Clone the repository.
 
 ```shell
-git clone git@github.com:oclean66/vristo-admin.git
+git clone git@github.com:oclean66/terrakion-admin.git
 ```
 
 ### 2. Go into the folder and create a `.env` file, inside the file you must add your globals for the enviroment, database, port, password, etc.
 
-> You need to generate an app key, for generate a key you must run `php artisan key:generate`
+> You need to generate an app key, for generate a key you must run `php artisan key:generate`, it'll automatic add the key on the variable.
 
 ```
 APP_NAME=<YOUR APP NAME>
@@ -98,4 +98,25 @@ php artisan serve
 npm run dev
 ```
 
-> When you write code please execute `composer analyse` for analyse your code for searching bugs and issues.
+---
+
+## Development
+
+While you are coding you must follow the **Best PHP Practice** from [PHP-FIG](https://www.php-fig.org/), this proyect use the [PSR-12](https://www.php-fig.org/psr/psr-12/) code style.
+
+### Formatter and Linter
+
+We uses [PHPStan](https://phpstan.org/) for find bugs and format code. PHPstan is a Static Code Analyser, It's already configured you should't change any, but if you are authorized and really need change some rule or modify the package's behavior edit the `phpstan.neon` file.
+
+Files with .neon extensions similar to yaml files, It uses the same syntax to indent the code.
+
+```yaml
+parameters:
+	level: 6    # min 0 max 9
+	paths:      # folders to scan
+		- app
+		- database
+		- tests
+```
+
+For more information see [https://phpstan.org/config-reference](https://phpstan.org/config-reference).

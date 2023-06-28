@@ -37,6 +37,8 @@ class Account extends Model
 
     /**
      * Get all of the users for the Account
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\User>
      */
     public function users(): HasMany
     {
@@ -45,6 +47,8 @@ class Account extends Model
 
     /**
      * Get the currency that owns the Account
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Currency, \App\Models\Account>
      */
     public function currency(): BelongsTo
     {
@@ -53,6 +57,8 @@ class Account extends Model
 
     /**
      * Get the level that owns the Account
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Level, \App\Models\Account>
      */
     public function level(): BelongsTo
     {
@@ -61,6 +67,8 @@ class Account extends Model
 
     /**
      * Get all of the clients for the Account
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Client>
      */
     public function clients(): HasMany
     {
@@ -69,6 +77,8 @@ class Account extends Model
 
     /**
      * The operations that belong to the Account
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<\App\Models\PaymentMethod>
      */
     public function operations(): BelongsToMany
     {
@@ -77,6 +87,8 @@ class Account extends Model
 
     /**
      * Get the category that owns the Account
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Category, \App\Models\Account>
      */
     public function category(): BelongsTo
     {
@@ -84,14 +96,19 @@ class Account extends Model
     }
 
     // recursive queries
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Account>
+     */
     public function parents(): HasMany
     {
         return $this->hasMany(Account::class, 'parent_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Account>
+     */
     public function children(): HasMany
     {
-        // @phpstan-ignore-next-line
         return $this->hasMany(Account::class, 'parent_id')->with('parents');
     }
 }

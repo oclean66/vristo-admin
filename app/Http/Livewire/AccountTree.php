@@ -8,14 +8,11 @@ use Livewire\Component;
 
 class AccountTree extends Component
 {
-    /**
-     * @var \Illuminate\Database\Eloquent\Collection<int, \App\Models\Account>
-     */
+    /** @var \Illuminate\Database\Eloquent\Collection<int, \App\Models\Account> */
     public $accounts;
 
     public function mount(): void
     {
-        // @phpstan-ignore-next-line
         $this->accounts = Account::whereNull('parent_id')->with('children')->get();
     }
 

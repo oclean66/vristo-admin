@@ -9,9 +9,7 @@ use Spatie\Permission\Models\Role;
 
 class Permissions extends Component
 {
-    /**
-     * @var \Illuminate\Database\Eloquent\Collection<int, \Spatie\Permission\Models\Permission>
-     */
+    /** @var \Illuminate\Database\Eloquent\Collection<int, \Spatie\Permission\Models\Permission> */
     public $permissions;
 
     public mixed $roles;
@@ -33,7 +31,6 @@ class Permissions extends Component
         $this->permissions = Permission::all();
         $this->roles = Role::all();
 
-        // @phpstan-ignore-next-line
         return view('livewire.authorization.permissions')->layout('layout.app');
     }
 

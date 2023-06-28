@@ -84,10 +84,8 @@ class UsersTable extends Component
 
     public function render(): View
     {
-        // @phpstan-ignore-next-line
         $users = User::whereNull('deleted_at')->paginate();
 
-        // @phpstan-ignore-next-line
         return view('livewire.users.users-table', compact('users'))->layout('layout.app');
     }
 

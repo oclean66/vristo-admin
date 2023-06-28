@@ -73,11 +73,9 @@ class AuthorizationSeeder extends Seeder
         ]);
 
         // Giving roles to users
-        // @phpstan-ignore-next-line
         $adminUser = User::find(2);
         $adminUser->assignRole($admin);
 
-        // @phpstan-ignore-next-line
         $receptorUser = User::find(3);
         $receptorUser->assignRole($receptor);
     }
