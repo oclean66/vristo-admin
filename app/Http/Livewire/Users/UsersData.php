@@ -9,9 +9,7 @@ use Livewire\Component;
 
 class UsersData extends Component
 {
-    /**
-     * @var \App\Models\User
-     */
+    /** @var \App\Models\User */
     public $user;
 
     /**
@@ -71,7 +69,7 @@ class UsersData extends Component
     public $password;
 
     /**
-     * Indicate whether the data can be edited
+     * Indicate whether the data can be editable
      *
      * @var bool
      */
@@ -80,7 +78,7 @@ class UsersData extends Component
     /**
      * Trapped events
      *
-     * @var array<string>
+     * @var array<int, string>
      */
     protected $listeners = ['deleteUsers'];
 

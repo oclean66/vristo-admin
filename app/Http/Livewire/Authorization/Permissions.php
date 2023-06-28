@@ -14,16 +14,10 @@ class Permissions extends Component
 
     public mixed $roles;
 
-    /**
-     * @var string|null
-     */
+    /** @var string|null */
     public $roleName;
 
-    /**
-     * New permission's name
-     *
-     * @var array<null|int, string>
-     */
+    /** @var array<null|int, string> */
     public $permissionsNames = [];
 
     public function render(): View

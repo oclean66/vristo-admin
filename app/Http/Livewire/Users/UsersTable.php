@@ -78,7 +78,7 @@ class UsersTable extends Component
     /**
      * Trapped events
      *
-     * @var array<string>
+     * @var array<int, string>
      */
     protected $listeners = ['delete'];
 
