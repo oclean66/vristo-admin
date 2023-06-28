@@ -28,7 +28,9 @@ Admin interface for KDeportes.
 
 -   **Javascript**
     -   `flag-icons 6.6.6`
-        _Dev Dependencies_
+
+    _Dev Dependencies_
+
     -   `alpinejs 3.12.2`
     -   `tailwindcss 3.3.2`
     -   `vite 4.0.0`
