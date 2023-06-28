@@ -100,8 +100,6 @@ php artisan serve
 npm run dev
 ```
 
----
-
 ## Development
 
 While you are coding you must follow the **Best PHP Practice** from [PHP-FIG](https://www.php-fig.org/), this proyect use the [PSR-12](https://www.php-fig.org/psr/psr-12/) code style.
@@ -110,7 +108,7 @@ While you are coding you must follow the **Best PHP Practice** from [PHP-FIG](ht
 
 We uses [PHPStan](https://phpstan.org/) for find bugs and format code. PHPstan is a Static Code Analyser, It's already configured you should't change any, but if you are authorized and really need change some rule or modify the package's behavior edit the `phpstan.neon` file.
 
-Files with .neon extensions similar to yaml files, It uses the same syntax to indent the code.
+Files with .neon extensions are similar to yaml files, It uses the same syntax to indent the code.
 
 ```yaml
 parameters:
