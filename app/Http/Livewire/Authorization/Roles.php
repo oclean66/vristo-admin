@@ -9,9 +9,7 @@ use Spatie\Permission\Models\Role;
 
 class Roles extends Component
 {
-    /**
-     * @var \Illuminate\Database\Eloquent\Collection<int, \Spatie\Permission\Models\Role>
-     */
+    /** @var \Illuminate\Database\Eloquent\Collection<int, \Spatie\Permission\Models\Role> */
     public $roles;
 
     /**
@@ -25,7 +23,6 @@ class Roles extends Component
     {
         $this->roles = Role::all();
 
-        // @phpstan-ignore-next-line
         return view('livewire.authorization.roles')->layout('layout.app');
     }
 

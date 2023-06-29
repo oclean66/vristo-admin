@@ -7,9 +7,7 @@ use Livewire\Component;
 
 class AccountRecursive extends Component
 {
-    /**
-     * @var \App\Models\Account
-     */
+    /** @var \App\Models\Account */
     public $parent;
 
     public function render(): View

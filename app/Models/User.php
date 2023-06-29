@@ -49,6 +49,8 @@ class User extends Authenticatable
 
     /**
      * Get the user that owns the User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Account, \App\Models\User>
      */
     public function account(): BelongsTo
     {

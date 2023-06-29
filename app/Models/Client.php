@@ -10,6 +10,11 @@ class Client extends Model
 {
     use HasFactory;
 
+    /**
+     * The attributes that are mass assignable
+     *
+     * @var array<int, string>
+     */
     protected $fillable = [
         'name',
         'username',
@@ -22,6 +27,11 @@ class Client extends Model
         'accounts_id',
     ];
 
+    /**
+     * Get the account that owns the Client
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Account, \App\Models\Client>
+     */
     public function account(): BelongsTo
     {
         return $this->belongsTo(Account::class, 'accounts_id');

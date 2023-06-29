@@ -9,9 +9,7 @@ use Livewire\Component;
 
 class UsersData extends Component
 {
-    /**
-     * @var \App\Models\User
-     */
+    /** @var \App\Models\User */
     public $user;
 
     /**
@@ -71,7 +69,7 @@ class UsersData extends Component
     public $password;
 
     /**
-     * Indicate whether the data can be edited
+     * Indicate whether the data can be editable
      *
      * @var bool
      */
@@ -80,13 +78,12 @@ class UsersData extends Component
     /**
      * Trapped events
      *
-     * @var array<string>
+     * @var array<int, string>
      */
     protected $listeners = ['deleteUsers'];
 
     public function render(): View
     {
-        // @phpstan-ignore-next-line
         return view('livewire.users.users-data')->layout('layout.app');
     }
 
@@ -95,14 +92,14 @@ class UsersData extends Component
         $this->user = $user;
 
         $this->fill([
-            'username' => $user->getAttribute('username'),
-            'name' => $user->getAttribute('name'),
-            'email' => $user->getAttribute('email'),
-            'gender' => $user->getAttribute('gender'),
-            'state' => $user->getAttribute('state'),
-            'mobile' => $user->getAttribute('mobile'),
-            'phone' => $user->getAttribute('phone'),
-            'password' => $user->getAttribute('password'),
+            'username' => $user->username,
+            'name' => $user->name,
+            'email' => $user->email,
+            'gender' => $user->gender,
+            'state' => $user->state,
+            'mobile' => $user->mobile,
+            'phone' => $user->phone,
+            'password' => $user->password,
         ]);
     }
 
@@ -123,7 +120,7 @@ class UsersData extends Component
 
     public function deleteUser(): void
     {
-        $this->user->setAttribute('deleted_at', Date::now());
+        $this->user->deleted_at = Date::now();
         $this->user->save();
 
         to_route('users.table');

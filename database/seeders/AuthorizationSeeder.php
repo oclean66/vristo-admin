@@ -54,11 +54,9 @@ class AuthorizationSeeder extends Seeder
         $receptor->syncPermissions(Permission::where('name', 'regexp', 'see-[a-z]+')->get());
 
         // Giving roles to users
-        // @phpstan-ignore-next-line
         $adminUser = User::find(2);
         $adminUser->assignRole($admin);
 
-        // @phpstan-ignore-next-line
         $receptorUser = User::find(3);
         $receptorUser->assignRole($receptor);
     }

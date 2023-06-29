@@ -10,11 +10,17 @@ class Category extends Model
 {
     use HasFactory;
 
+    /**
+     * The attributes that are mass assignable
+     *
+     * @var array<int, string>
+     */
     protected $fillable = ['name', 'description', 'parent_id'];
 
     /**
      * Get all of the accounts for the Category
      *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Account>
      */
     public function accounts(): HasMany
     {

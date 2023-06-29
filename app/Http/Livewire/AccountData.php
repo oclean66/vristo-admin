@@ -11,15 +11,13 @@ class AccountData extends Component
 {
     use WithPagination;
 
-    /**
-     * @var \App\Models\Account|null
-     */
+    /** @var \App\Models\Account|null */
     public $account;
 
     /**
      * Trapped events
      *
-     * @var array<string>
+     * @var array<int, string>
      */
     protected $listeners = ['showAccount'];
 
@@ -30,7 +28,6 @@ class AccountData extends Component
 
     public function showAccount(int $id): void
     {
-        // @phpstan-ignore-next-line
         $this->account = Account::find($id);
     }
 }
