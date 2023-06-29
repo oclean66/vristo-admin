@@ -1,6 +1,8 @@
 <x-app-layout>
-    <div class="grid grid-cols-1 xl:grid-cols-2 gap-4">
+    <div class="grid grid-cols-1 xl:grid-cols-3 gap-4">
         <livewire:authorization.roles />
-        <livewire:authorization.permissions />
+        <div class="col-span-2">
+            <livewire:authorization.permissions />
+        </div>
     </div>
 </x-app-layout>

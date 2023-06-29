@@ -21,8 +21,6 @@
                     <span>{{ $item }}</span>
                 @endforeach
             </div>
-            <div>
-            </div>
         </div>
     @endforeach
     <button class="btn btn-primary" wire:click="givePermissions">Give permissions to role</button>

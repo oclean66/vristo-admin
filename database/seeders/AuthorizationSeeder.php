@@ -16,36 +16,21 @@ class AuthorizationSeeder extends Seeder
     public function run(): void
     {
         // Creating roles
-        $superAdmin = Role::create(['name' => 'super-admin']);
-        $admin = Role::create(['name' => 'admin']);
-        $receptor = Role::create(['name' => 'receptor']);
+        $superAdmin = Role::create([
+            'name' => 'super-admin',
+            'description' => 'Super admin with all of access',
+        ]);
+        $admin = Role::create([
+            'name' => 'admin',
+            'description' => 'Regular admin',
+        ]);
+        $receptor = Role::create([
+            'name' => 'receptor',
+            'description' => 'Only read user',
+        ]);
 
         // Creating permissions
-        // // users
-        // $seeUsers = Permission::create(['name' => 'see-users']);
-        // $createUsers = Permission::create(['name' => 'create-users']);
-        // $updateUsers = Permission::create(['name' => 'update-users']);
-        // $deleteUsers = Permission::create(['name' => 'delete-users']);
-
-        // // accounts
-        // $seeAccounts = Permission::create(['name' => 'see-accounts']);
-        // $createAccounts = Permission::create(['name' => 'create-accounts']);
-        // $updateAccounts = Permission::create(['name' => 'update-accounts']);
-        // $deleteAccounts = Permission::create(['name' => 'delete-accounts']);
-
-        // // clients
-        // $seeClients = Permission::create(['name' => 'see-clients']);
-        // $createClients = Permission::create(['name' => 'create-clients']);
-        // $updateClients = Permission::create(['name' => 'update-clients']);
-        // $deleteClients = Permission::create(['name' => 'delete-clients']);
-
-        // // categories
-        // $seeCategories = Permission::create(['name' => 'see-categories']);
-        // $createCategories = Permission::create(['name' => 'create-categories']);
-        // $updateCategories = Permission::create(['name' => 'update-categories']);
-        // $deleteCategories = Permission::create(['name' => 'delete-categories']);
-
-        autoCreatePermissions(['store', 'update', 'destroy']);
+        autoCreatePermissions();
 
         // Assigning permissions to roles
         $admin->syncPermissions(Permission::all());

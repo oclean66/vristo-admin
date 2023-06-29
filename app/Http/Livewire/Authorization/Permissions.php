@@ -3,16 +3,16 @@
 namespace App\Http\Livewire\Authorization;
 
 use Illuminate\Contracts\View\View;
+use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
 class Permissions extends Component
 {
-    /** @var \Illuminate\Database\Eloquent\Collection<int, \Spatie\Permission\Models\Permission> */
+    /** @var Collection<int, Permission> */
     public $permissions;
-
-    /** @var \Illuminate\Database\Eloquent\Collection<int, \Spatie\Permission\Models\Role> */
+    /** @var Collection<int, Role> */
     public $roles;
 
     /** @var string|null */

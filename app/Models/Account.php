@@ -48,7 +48,7 @@ class Account extends Model
     /**
      * Get the currency that owns the Account
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Currency, \App\Models\Account>
+     * @return BelongsTo<Currency, Account>
      */
     public function currency(): BelongsTo
     {

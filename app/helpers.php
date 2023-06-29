@@ -5,9 +5,9 @@ use Illuminate\Support\Str;
 
 if (!function_exists('autoCreatePermissions')) {
     /**
-     * @param array<string> $permissions
+     * @param null|array<string> $permissions
      */
-    function autoCreatePermissions(array $permissions): void
+    function autoCreatePermissions($permissions = ['store', 'update', 'destroy']): void
     {
         $classList = require base_path('vendor/composer/autoload_classmap.php');
         $classes = array_keys($classList);
