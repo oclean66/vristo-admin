@@ -26,7 +26,7 @@ class AuthServiceProvider extends ServiceProvider
     {
         // Check if the user is a super admin and lets him perform any action
         Gate::before(function (User $user, string $ability) {
-            return $user->hasRole('super_admin') ? true : null;
+            return $user->hasRole('super-admin') ? true : null;
         });
     }
 }

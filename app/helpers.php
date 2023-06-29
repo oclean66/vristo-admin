@@ -1,9 +1,13 @@
 <?php
 
 use Spatie\Permission\Models\Permission;
+use Illuminate\Support\Str;
 
 if (!function_exists('autoCreatePermissions')) {
-    function autoCreatePermissions(): void
+    /**
+     * @param array<string> $permissions
+     */
+    function autoCreatePermissions(array $permissions): void
     {
         $classList = require base_path('vendor/composer/autoload_classmap.php');
         $classes = array_keys($classList);
@@ -22,12 +26,13 @@ if (!function_exists('autoCreatePermissions')) {
             );
 
             foreach ($methods as $method) {
-                // @phpstan-ignore-next-line
-                Permission::updateOrCreate(['name' => $method . '-' . $controllerName]);
+                if (array_search($method, $permissions)) {
+                    Permission::updateOrCreate(['name' => $method . '-' . $controllerName]);
+                }
             }
 
-            // @phpstan-ignore-next-line
             Permission::updateOrCreate(['name' => 'see-' . $controllerName]);
+            Permission::updateOrCreate(['name' => 'show-' . Str::plural($controllerName)]);
         }
     }
 }

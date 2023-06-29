@@ -3,6 +3,7 @@
         <ul class="list-disc">
             <li>{{ $role->name }} <button type="button" class="text-danger hover:underline"
                     wire:click="deleteRole({{ $role->id }})">delete</button></li>
+            <li>{{ $role->getPermissionNames() }}</li>
         </ul>
     @endforeach
     <br>

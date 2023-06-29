@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 use Laravel\Jetstream\Features;
 
-// @phpstan-ignore-next-line
 class UserFactory extends Factory
 {
     /**

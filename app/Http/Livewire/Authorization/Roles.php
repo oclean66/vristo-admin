@@ -23,7 +23,7 @@ class Roles extends Component
     {
         $this->roles = Role::all();
 
-        return view('livewire.authorization.roles')->layout('layout.app');
+        return view('livewire.authorization.roles');
     }
 
     public function createRole(): void

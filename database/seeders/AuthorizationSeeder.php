@@ -16,7 +16,7 @@ class AuthorizationSeeder extends Seeder
     public function run(): void
     {
         // Creating roles
-        Role::create(['name' => 'super-admin']);
+        $superAdmin = Role::create(['name' => 'super-admin']);
         $admin = Role::create(['name' => 'admin']);
         $receptor = Role::create(['name' => 'receptor']);
 
@@ -45,15 +45,17 @@ class AuthorizationSeeder extends Seeder
         // $updateCategories = Permission::create(['name' => 'update-categories']);
         // $deleteCategories = Permission::create(['name' => 'delete-categories']);
 
-        autoCreatePermissions();
+        autoCreatePermissions(['store', 'update', 'destroy']);
 
         // Assigning permissions to roles
         $admin->syncPermissions(Permission::all());
 
-        // @phpstan-ignore-next-line
         $receptor->syncPermissions(Permission::where('name', 'regexp', 'see-[a-z]+')->get());
 
         // Giving roles to users
+        $superUser = User::find(1);
+        $superUser->assignRole($superAdmin);
+
         $adminUser = User::find(2);
         $adminUser->assignRole($admin);
 

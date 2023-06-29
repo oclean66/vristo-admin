@@ -26,4 +26,5 @@
         </div>
     @endforeach
     <button class="btn btn-primary" wire:click="givePermissions">Give permissions to role</button>
+    <button class="btn btn-danger" wire:click="revokePermissions">Revoke permissions to role</button>
 </div>

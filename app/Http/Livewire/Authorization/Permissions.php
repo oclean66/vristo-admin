@@ -12,7 +12,8 @@ class Permissions extends Component
     /** @var \Illuminate\Database\Eloquent\Collection<int, \Spatie\Permission\Models\Permission> */
     public $permissions;
 
-    public mixed $roles;
+    /** @var \Illuminate\Database\Eloquent\Collection<int, \Spatie\Permission\Models\Role> */
+    public $roles;
 
     /** @var string|null */
     public $roleName;
@@ -25,13 +26,20 @@ class Permissions extends Component
         $this->permissions = Permission::all();
         $this->roles = Role::all();
 
-        return view('livewire.authorization.permissions')->layout('layout.app');
+        return view('livewire.authorization.permissions');
     }
 
     public function givePermissions(): void
     {
         $role = Role::findByName($this->roleName);
         // @phpstan-ignore-next-line
-        $role->syncPermissions($this->permissionsNames);
+        $role->givePermissionTo($this->permissionsNames);
+    }
+
+    public function revokePermissions(): void
+    {
+        $role = Role::findByName($this->roleName);
+        // @phpstan-ignore-next-line
+        $role->revokePermissionTo($this->permissionsNames);
     }
 }
