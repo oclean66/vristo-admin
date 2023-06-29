@@ -21,56 +21,37 @@ class AuthorizationSeeder extends Seeder
         $receptor = Role::create(['name' => 'receptor']);
 
         // Creating permissions
-        // users
-        $seeUsers = Permission::create(['name' => 'see-users']);
-        $createUsers = Permission::create(['name' => 'create-users']);
-        $updateUsers = Permission::create(['name' => 'update-users']);
-        $deleteUsers = Permission::create(['name' => 'delete-users']);
+        // // users
+        // $seeUsers = Permission::create(['name' => 'see-users']);
+        // $createUsers = Permission::create(['name' => 'create-users']);
+        // $updateUsers = Permission::create(['name' => 'update-users']);
+        // $deleteUsers = Permission::create(['name' => 'delete-users']);
 
-        // accounts
-        $seeAccounts = Permission::create(['name' => 'see-accounts']);
-        $createAccounts = Permission::create(['name' => 'create-accounts']);
-        $updateAccounts = Permission::create(['name' => 'update-accounts']);
-        $deleteAccounts = Permission::create(['name' => 'delete-accounts']);
+        // // accounts
+        // $seeAccounts = Permission::create(['name' => 'see-accounts']);
+        // $createAccounts = Permission::create(['name' => 'create-accounts']);
+        // $updateAccounts = Permission::create(['name' => 'update-accounts']);
+        // $deleteAccounts = Permission::create(['name' => 'delete-accounts']);
 
-        // clients
-        $seeClients = Permission::create(['name' => 'see-clients']);
-        $createClients = Permission::create(['name' => 'create-clients']);
-        $updateClients = Permission::create(['name' => 'update-clients']);
-        $deleteClients = Permission::create(['name' => 'delete-clients']);
+        // // clients
+        // $seeClients = Permission::create(['name' => 'see-clients']);
+        // $createClients = Permission::create(['name' => 'create-clients']);
+        // $updateClients = Permission::create(['name' => 'update-clients']);
+        // $deleteClients = Permission::create(['name' => 'delete-clients']);
 
-        // categories
-        $seeCategories = Permission::create(['name' => 'see-categories']);
-        $createCategories = Permission::create(['name' => 'create-categories']);
-        $updateCategories = Permission::create(['name' => 'update-categories']);
-        $deleteCategories = Permission::create(['name' => 'delete-categories']);
+        // // categories
+        // $seeCategories = Permission::create(['name' => 'see-categories']);
+        // $createCategories = Permission::create(['name' => 'create-categories']);
+        // $updateCategories = Permission::create(['name' => 'update-categories']);
+        // $deleteCategories = Permission::create(['name' => 'delete-categories']);
+
+        autoCreatePermissions();
 
         // Assigning permissions to roles
-        $admin->syncPermissions([
-            $seeUsers,
-            $createUsers,
-            $updateUsers,
-            $deleteUsers,
-            $seeAccounts,
-            $createAccounts,
-            $updateAccounts,
-            $deleteAccounts,
-            $seeClients,
-            $createClients,
-            $updateClients,
-            $deleteClients,
-            $seeCategories,
-            $createCategories,
-            $updateCategories,
-            $deleteCategories,
-        ]);
+        $admin->syncPermissions(Permission::all());
 
-        $receptor->syncPermissions([
-            $seeUsers,
-            $seeAccounts,
-            $seeClients,
-            $seeCategories,
-        ]);
+        // @phpstan-ignore-next-line
+        $receptor->syncPermissions(Permission::where('name', 'regexp', 'see-[a-z]+')->get());
 
         // Giving roles to users
         // @phpstan-ignore-next-line
