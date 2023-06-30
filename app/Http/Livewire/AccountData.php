@@ -11,8 +11,7 @@ class AccountData extends Component
 {
     use WithPagination;
 
-    /** @var \App\Models\Account|null */
-    public $account;
+    public Account|null $account;
 
     /**
      * Trapped events

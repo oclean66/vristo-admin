@@ -12,14 +12,19 @@ class Permissions extends Component
 {
     /** @var Collection<int, Permission> */
     public $permissions;
+
     /** @var Collection<int, Role> */
     public $roles;
 
-    /** @var string|null */
-    public $roleName;
+    public Role|null $role;
+
+    public string|null $roleName;
 
     /** @var array<null|int, string> */
     public $permissionsNames = [];
+
+    /** @var array<int, string> */
+    protected $listeners = ['solectRole'];
 
     public function render(): View
     {
@@ -31,15 +36,17 @@ class Permissions extends Component
 
     public function givePermissions(): void
     {
-        $role = Role::findByName($this->roleName);
-        // @phpstan-ignore-next-line
-        $role->givePermissionTo($this->permissionsNames);
+        $this->role->givePermissionTo($this->permissionsNames);
     }
 
-    public function revokePermissions(): void
+    public function revokePermissions(string $permission): void
     {
-        $role = Role::findByName($this->roleName);
-        // @phpstan-ignore-next-line
-        $role->revokePermissionTo($this->permissionsNames);
+        $name = Permission::findByName($permission);
+        $this->role->revokePermissionTo($name);
+    }
+
+    public function solectRole(Role $role): void
+    {
+        $this->role = $role;
     }
 }

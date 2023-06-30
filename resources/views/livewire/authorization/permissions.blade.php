@@ -1,28 +1,47 @@
 <div class="panel">
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-        @foreach ($permissions as $permission)
-            <x-inputs.check value="{{ $permission->name }}" wire:model="permissionsNames">
-                {{ $permission->name }}
-            </x-inputs.check>
-        @endforeach
-    </div>
-    <br>
-    <hr>
-    <br>
-    <h2 class="text-xl">Roles</h2>
-    @foreach ($roles as $role)
-        <div class="border border-dark">
-            <x-inputs.radio name="role" value="{{ $role->name }}" class="text-lg" wire:model="roleName">
-                {{ $role->name }}
-            </x-inputs.radio>
-            <br>
-            <div class="grid grid-cols-4 gap-2 w-full">
-                @foreach ($role->getPermissionNames() as $item)
-                    <span>{{ $item }}</span>
-                @endforeach
+    <h4 class="text-2xl font-semibold border-b mb-3 dark:border-dark">{{ __('Permissions') }}</h4>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <x-lists.basic class="min-h-[400px] relative">
+            <div wire:loading>
+                <div class="absolute inset-0 z-[60] grid place-content-center bg-white dark:bg-black rounded-lg">
+                    <span
+                        class="animate-spin border-4 border-primary border-l-transparent rounded-full w-14 h-14 inline-block align-middle"></span>
+                </div>
             </div>
-        </div>
-    @endforeach
-    <button class="btn btn-primary" wire:click="givePermissions">Give permissions to role</button>
-    <button class="btn btn-danger" wire:click="revokePermissions">Revoke permissions to role</button>
+            @isset($role)
+                @if ($role->name == 'super-admin')
+                    @foreach ($permissions as $permission)
+                        <x-lists.li-basic class="flex justify-between">
+                            <span class="text-lg">{{ $permission->name }}</span>
+                        </x-lists.li-basic>
+                    @endforeach
+                @endif
+                @foreach ($role->getPermissionNames() as $permission)
+                    <x-lists.li-basic class="flex justify-between">
+                        <span class="text-lg">{{ $permission }}</span>
+                        <x-badges.outline class="cursor-pointer" color="danger"
+                            @click="$wire.revokePermissions(`{{ $permission }}`)">revoke</x-badges.outline>
+                    </x-lists.li-basic>
+                @endforeach
+            @endisset
+        </x-lists.basic>
+        <x-lists.basic>
+            @foreach ($permissions as $permission)
+                @isset($role)
+                    <x-lists.li-link class="text-lg">
+                        <x-inputs.check value="{{ $permission->name }}" wire:model="permissionsNames">
+                            {{ $permission->name }}</x-inputs.check>
+                    </x-lists.li-link>
+                @else
+                    <x-lists.li-link class="text-lg">{{ $permission->name }}</x-lists.li-link>
+                @endisset
+            @endforeach
+        </x-lists.basic>
+    </div>
+    <div class="flex flex-row-reverse">
+        @if ($role != null && $role->name != 'super-admin')
+            <button class="btn btn-primary mt-5"
+                wire:click="givePermissions">{{ __('Add') . ' ' . __('Permission') . ' ' . __('to') . ' ' . $role->name }}</button>
+        @endif
+    </div>
 </div>

@@ -11,14 +11,15 @@
         @endforeach
     </div>
     <div class="border-t pt-3 dark:border-dark" x-data="{ tab: '' }">
-        <div class="flex justify-evenly mb-5">
-            <button type="button" class="btn btn-primary"
+        <div class="flex justify-center gap-4 mb-5">
+            <button type="button" class="btn" :class="tab === 'create' ? 'btn-primary' : 'btn-outline-primary'"
                 @click="tab === '' ? tab = 'create' : tab = ''">{{ __('Create') }}</button>
-            <button type="button" class="btn btn-info"
+            <button type="button" class="btn" :class="tab === 'edit' ? 'btn-info' : 'btn-outline-info'"
                 @click="tab === '' ? tab = 'edit' : tab = ''">{{ __('Edit') }}</button>
             <x-modal>
                 <x-slot:toggle>
-                    <button type="button" class="btn btn-danger">{{ __('Delete') }}</button>
+                    <button type="button" class="btn"
+                        :class="open === true ? 'btn-danger' : 'btn-outline-danger'">{{ __('Delete') }}</button>
                 </x-slot:toggle>
                 <x-slot:dialog>
                     <div class="panel">

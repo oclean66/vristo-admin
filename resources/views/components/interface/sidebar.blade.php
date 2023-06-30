@@ -44,8 +44,7 @@
 
                 @can('see-users')
                     <li class="menu nav-item">
-                        <a href="{{ route('users.table') }}" type="button" class="group"
-                            :class="{ 'active': activeDropdown === 'users' }">
+                        <a href="{{ route('users.table') }}" type="button" class="group">
                             <div class="flex items-center">
                                 <svg class="group-hover:!text-primary" width="20" height="20" viewBox="0 0 24 24"
                                     fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -66,8 +65,7 @@
 
                 @hasanyrole('super-admin|admin')
                 <li class="menu nav-item">
-                    <a href="{{ route('authorization.index') }}" type="button" class="group"
-                        :class="{ 'active': activeDropdown === 'users' }">
+                    <a href="{{ route('authorization.index') }}" type="button" class="group">
                         <div class="flex items-center">
                             <svg class="group-hover:!text-primary" width="20" height="20" viewBox="0 0 24 24"
                                 fill="none" xmlns="http://www.w3.org/2000/svg">

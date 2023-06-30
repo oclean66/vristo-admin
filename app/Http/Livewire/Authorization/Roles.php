@@ -60,5 +60,7 @@ class Roles extends Component
         $this->roleName = $role->name;
         // @phpstan-ignore-next-line
         $this->roleDescription = $role->description;
+
+        $this->emitTo(Permissions::class, 'solectRole', $role);
     }
 }
