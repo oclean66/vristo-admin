@@ -1,17 +1,18 @@
 <x-blank-layout>
     <div
         class="flex justify-center items-center min-h-screen bg-[url('/assets/images/map.svg')] dark:bg-[url('/assets/images/map-dark.svg')] bg-cover bg-center">
-        <div class="panel sm:w-[480px] m-6 max-w-lg w-full">
-            <h2 class="font-bold text-2xl mb-3">{{ __('Sign In') }}</h2>
-            <p class="mb-7">Enter your email and password to login</p>
+        <div class="panel sm:w-[480px] m-6 max-w-lg w-full relative">
+            <h2 class="font-bold text-center mt-9 text-2xl mb-3">{{ __('Sign In') }}</h2>
+            <img src="{{ asset('assets/images/terrakion-logo.png') }}" alt="Descripción de la imagen" class="absolute w-32  left-1/2 transform -translate-x-1/2 -top-20">
+            <p class="mb-1">{{__('Enter your email and password to login')}}</p>
             <form class="space-y-5" action="{{ route('login') }}" method="POST">
                 @csrf
                 <div>
-                    <x-inputs.email />
+                    <x-inputs.email label="{{ __('Email') }}" />
                     <x-inputs.validate-error field="email" />
                 </div>
                 <div>
-                    <x-inputs.password />
+                    <x-inputs.password label="{{ __('Password') }}" />
                     <x-inputs.validate-error field="password" />
                 </div>
                 <div>
@@ -22,12 +23,12 @@
                 <button type="submit" class="btn btn-primary w-full uppercase">{{ __('Sign In') }}</button>
             </form>
             <div
-                class="relative my-7 h-5 text-center before:w-full before:h-[1px] before:absolute before:inset-0 before:m-auto before:bg-[#ebedf2] dark:before:bg-[#253b5c]">
-                <div class="font-bold text-white-dark bg-white dark:bg-[#0e1726] px-2 relative z-[1] inline-block">
+                class="relative my-3 h-5 text-center before:w-full before:h-[1px] before:absolute before:inset-0 before:m-auto before:bg-[#ebedf2] dark:before:bg-[#253b5c]">
+                {{-- <div class="font-bold text-white-dark bg-white dark:bg-[#0e1726] px-2 relative z-[1] inline-block">
                     <span>OR</span>
-                </div>
+                </div> --}}
             </div>
-            <ul class="flex justify-center gap-2 sm:gap-5 mb-5">
+            {{-- <ul class="flex justify-center gap-2 sm:gap-5 mb-5">
                 <li>
                     <button type="button"
                         class="btn flex gap-1 sm:gap-2 text-black shadow-none bg-white-dark/30 dark:border-[#253b5c] dark:hover:bg-[#1b2e4b] dark:bg-transparent dark:text-white hover:bg-white ">
@@ -87,7 +88,7 @@
                 </li>
             </ul>
             <p class="text-center">Dont't have an account ? <a href="/auth/boxed-signup"
-                    class="text-primary font-bold hover:underline">{{ __('Sign Up') }}</a></p>
+                    class="text-primary font-bold hover:underline">{{ __('Sign Up') }}</a></p> --}}
             <p class="text-center"><a href="{{ route('password.email') }}"
                     class="text-primary font-bold hover:underline">{{ __('Forgot your password?') }}</a></p>
         </div>
