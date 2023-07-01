@@ -20,7 +20,7 @@ class Localization
         if (Session::get('locale') != null) {
             App::setLocale(Session::get('locale'));
         } else {
-            Session::put('locale', 'en');
+            Session::put('locale', 'es');
             App::setLocale(Session::get('locale'));
         }
         
