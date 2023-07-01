@@ -85,7 +85,6 @@ npm install
 ```
 
 ### 4. Run the migrations for create the tables in you database.
-
 ```shell
 php artisan migrate
 ```
