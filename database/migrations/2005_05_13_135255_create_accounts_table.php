@@ -28,6 +28,7 @@ return new class extends Migration
             $table->timestamps(); // created_at / updated_at
             $table->timestamp('deleted_at')->nullable();
             $table->string('balanceType', 5)->nullable();
+            $table->string('accountType', 5)->nullable();
             $table->tinyInteger('emailState')->nullable();
             $table->tinyInteger('phoneState')->nullable();
             $table->string('reference', 45)->nullable();
@@ -35,8 +36,6 @@ return new class extends Migration
             $table->foreign('currencies_id')->references('id')->on('currencies')->cascadeOnDelete();
             $table->foreignId('levels_id');
             $table->foreign('levels_id')->references('id')->on('levels')->cascadeOnDelete();
-            $table->foreignId('category_id')->nullable();
-            $table->foreign('category_id')->references('id')->on('categories')->nullOnDelete();
         });
     }
 

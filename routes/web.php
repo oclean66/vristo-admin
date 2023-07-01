@@ -2,8 +2,8 @@
 
 use App\Http\Controllers\LocalizationController;
 use App\Http\Controllers\UserController;
-use App\Http\Livewire\Authorization\Permissions as AuthorizationPermissions;
-use App\Http\Livewire\Authorization\Roles as AuthorizationRoles;
+use App\Http\Livewire\Authorization\AssignPermissions;
+use App\Http\Livewire\Authorization\AssignRoles;
 use App\Http\Livewire\Users\UsersData;
 use App\Http\Livewire\Users\UsersTable;
 use Illuminate\Support\Facades\Route;
@@ -38,6 +38,8 @@ Route::middleware('auth')->group(function () {
 
     Route::prefix('authorization')->middleware('role:super-admin')->group(function () {
         Route::view('/roles-and-permissions', 'authorization.index')->name('authorization.index');
+        Route::get('/assign-roles', AssignRoles::class)->name('authorization.roles');
+        Route::get('/assign-permissions', AssignPermissions::class)->name('authorization.permissions');
     });
 });
 
