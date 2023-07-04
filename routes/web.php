@@ -40,6 +40,9 @@ Route::middleware('auth')->group(function () {
         Route::get('/roles', AuthorizationRoles::class)->name('authorization.roles');
         Route::get('/permissions', AuthorizationPermissions::class)->name('authorization.permissions');
     });
+
+    Route::view('/my-red', 'livewire.my-red.my-red-tree')->name('my-red');
+
 });
 
 Route::get('locale/{lang}', LocalizationController::class);
