@@ -24,5 +24,7 @@
             @endauth
         </div>
     @endif
-    <h1>Blank page</h1>
+
+   
+
 </x-blank-layout>
