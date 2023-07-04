@@ -25,6 +25,6 @@
         </div>
     @endif
 
-   
+   <x-coming-soon/>
 
 </x-blank-layout>
