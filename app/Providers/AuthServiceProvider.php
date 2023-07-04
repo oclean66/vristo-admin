@@ -2,8 +2,6 @@
 
 namespace App\Providers;
 
-// use Illuminate\Support\Facades\Gate;
-
 use App\Models\User;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
@@ -24,7 +22,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // Check if the user is a super admin and lets him perform any action
+        // Check if the user is a super admin and allow him to perform any action
         Gate::before(function (User $user, string $ability) {
             return $user->hasRole('super-admin') ? true : null;
         });

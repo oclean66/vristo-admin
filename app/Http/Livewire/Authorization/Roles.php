@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Authorization;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
+use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
 class Roles extends Component
@@ -12,7 +13,8 @@ class Roles extends Component
     /** @var Collection<int, Role> */
     public $roles;
 
-    public Role|null $role;
+    /** @var Collection<int, Permission> */
+    public $permissions;
 
     /** @var string */
     public $roleName;
@@ -20,32 +22,65 @@ class Roles extends Component
     /** @var string */
     public $roleDescription;
 
+    /** @var array<int, string> */
+    public $permissionList = [];
+
+    /** @var null|Collection<int, Permission> */
+    public $rolePermissions;
+
+    /** @var array<string|array<int, string>> */
+    public $rules = [
+        'roleName' => ['required', 'string', 'max:255'],
+        'roleDescription' => ['string', 'max:255'],
+    ];
+
     /**
      * Renderize the view of the component
      */
     public function render(): View
     {
         $this->roles = Role::all();
+        $this->permissions = Permission::all();
 
         return view('livewire.authorization.roles');
     }
 
+    public function getRole(Role $role): void
+    {
+        
+        
+        $this->roleName = $role->name;
+        // @phpstan-ignore-next-line
+        $this->roleDescription = $role->description;
+
+        foreach ($role->getPermissionNames() as $permission) {
+            array_push($this->permissionList, $permission);
+        }
+    }
+
     public function createRole(): void
     {
-        Role::create([
+        $this->validate();
+
+        $role = Role::create([
             'name' => $this->roleName,
             'description' => $this->roleDescription,
         ]);
+
+        $role->givePermissionTo($this->permissionList);
+        $this->clearForm();
     }
 
-    public function updateRole(): void
+    public function updateRole(Role $role): void
     {
-        if (isset($this->role)) {
-            $this->role->update([
-                'name' => $this->roleName,
-                'description' => $this->roleDescription,
-            ]);
-        }
+        $role->update([
+            'name' => $this->roleName,
+            'description' => $this->roleDescription,
+        ]);
+
+        $role->syncPermissions($this->permissionList);
+
+        $this->clearForm();
     }
 
     public function deleteRole(Role $role): void
@@ -53,13 +88,13 @@ class Roles extends Component
         $role->delete();
     }
 
-    public function getRole(Role $role): void
+    public function clearForm(): void
     {
-        $this->role = $role;
-        $this->roleName = $role->name;
-        // @phpstan-ignore-next-line
-        $this->roleDescription = $role->description;
+        $this->reset('roleName', 'roleDescription', 'rolePermissions', 'permissionList');
+    }
 
-        $this->emitTo(Permissions::class, 'solectRole', $role);
+    public function getRolePermissions(Role $role): void
+    {
+        $this->rolePermissions = $role->getPermissionNames();
     }
 }

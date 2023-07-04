@@ -2,9 +2,9 @@
     <div class="mb-5 max-w-fit">
         @can('create-users')
             <x-modal>
-                <x-slot:toggle>
+                <x-slot:trigger>
                     <button class="btn btn-primary">{{ __('New') . ' ' . __('User') }}</button>
-                </x-slot:toggle>
+                </x-slot:trigger>
                 <x-slot:dialog>
                     <div class="panel w-[512px] lg:w-[768px] xl:w-[1024px]">
                         <h6 class="text-xl">{{ __('Create') . ' ' . __('User') }}</h6>

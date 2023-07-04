@@ -32,7 +32,6 @@ class Account extends Model
         'mobile',
         'currencies_id',
         'levels_id',
-        'category_id',
     ];
 
     /**

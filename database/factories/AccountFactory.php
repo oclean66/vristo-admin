@@ -33,7 +33,6 @@ class AccountFactory extends Factory
             'mobile' => fake()->e164PhoneNumber(),
             'currencies_id' => Currency::all()->random()->id,
             'levels_id' => Level::all()->random()->id,
-            'category_id' => null
         ];
     }
 }
