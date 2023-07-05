@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\LocalizationController;
 use App\Http\Controllers\UserController;
+use App\Http\Livewire\AccountTree;
 use App\Http\Livewire\Authorization\Permissions as AuthorizationPermissions;
 use App\Http\Livewire\Authorization\Roles as AuthorizationRoles;
 use App\Http\Livewire\Users\UsersData;
@@ -43,6 +44,15 @@ Route::middleware('auth')->group(function () {
 
     Route::view('/my-red', 'livewire.my-red.my-red-tree')->name('my-red');
 
+    Route::prefix('apps')->group(function () {
+        Route::view('/calendar', 'apps.calendar')->name('apps.calendar');
+        Route::view('/chat', 'apps.chat')->name('apps.chat');
+        Route::view('/contacts', 'apps.contacts')->name('apps.contacts');
+        Route::view('/mailbox', 'apps.mailbox')->name('apps.mailbox');
+        Route::view('/notes', 'apps.notes')->name('apps.notes');
+        Route::view('/scrumboard', 'apps.scrumboard')->name('apps.scrumboard');
+        Route::view('/todolist', 'apps.todolist')->name('apps.todolist');
+    });
 });
 
 Route::get('locale/{lang}', LocalizationController::class);
