@@ -1,4 +1,4 @@
-<div class="panel">
+<div class="panel overflow-y-scroll h-[80vh]">
     <h4 class="text-2xl font-semibold border-b mb-3 dark:border-dark">{{ __('Permissions') }}</h4>
     <div class="table-responsive">
         <table class="table-hover">

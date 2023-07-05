@@ -10,10 +10,18 @@ use Spatie\Permission\Models\Role;
 
 class Roles extends Component
 {
-    /** @var Collection<int, Role> */
+    /**
+     * All roles collection
+     *
+     * @var Collection<int, Role>
+     */
     public $roles;
 
-    /** @var Collection<int, Permission> */
+    /**
+     * All permissions collection
+     *
+     * @var Collection<int, Permission>
+     */
     public $permissions;
 
     /** @var string */
@@ -28,15 +36,17 @@ class Roles extends Component
     /** @var null|Collection<int, Permission> */
     public $rolePermissions;
 
-    /** @var array<string|array<int, string>> */
+    /**
+     * Validation Rules.
+     *
+     * @var array<string|array<int, string>>
+     */
     public $rules = [
         'roleName' => ['required', 'string', 'max:255'],
-        'roleDescription' => ['string', 'max:255'],
+        'roleDescription' => ['max:255'],
     ];
 
-    /**
-     * Renderize the view of the component
-     */
+    /** This method render the view **Blade** that belongs to this component. */
     public function render(): View
     {
         $this->roles = Role::all();
@@ -45,6 +55,13 @@ class Roles extends Component
         return view('livewire.authorization.roles');
     }
 
+    /**
+     * Get the role selected by the user and storage its `name` and `description` in
+     * `$roleName` and `$roleDescription`, also put the permission that belongs to rol
+     * into `$permissionList`
+     *
+     * @param  Role  $role Recive a role object or an id
+     */
     public function getRole(Role $role): void
     {
         $this->roleName = $role->name;
@@ -56,6 +73,10 @@ class Roles extends Component
         }
     }
 
+    /**
+     * Create a new role with `$roleName` and `$roleDescription` and give them
+     * the selected permission on `$permissionList`
+     */
     public function createRole(): void
     {
         $this->validate();
@@ -67,8 +88,15 @@ class Roles extends Component
 
         $role->givePermissionTo($this->permissionList);
         $this->clearForm();
+
+        $this->emitSelf('created');
     }
 
+    /**
+     * Update the given role using the `$roleName` and `$roleDescription` propierties
+     *
+     * @param  Role  $role Recive a role object or an id
+     */
     public function updateRole(Role $role): void
     {
         $role->update([
@@ -77,29 +105,55 @@ class Roles extends Component
         ]);
 
         $this->clearForm();
+
+        $this->emitSelf('updated');
     }
 
+    /**
+     * Delete the given role
+     *
+     * @param  Role  $role Recive a role object or an id
+     */
     public function deleteRole(Role $role): void
     {
         $role->delete();
+
+        $this->emitSelf('deleted');
     }
 
+    /** Reset the form fields */
     public function clearForm(): void
     {
         $this->reset('roleName', 'roleDescription', 'rolePermissions', 'permissionList');
     }
 
+    /**
+     * Store the permissions that belongs to the given role in `$rolePermissions`
+     *
+     * @param  Role  $role Recive a role object or an id
+     */
     public function getRolePermissions(Role $role): void
     {
         $this->rolePermissions = $role->getPermissionNames();
     }
 
+    /**
+     * Assign the selected permissions from `$permissionList` to the given role
+     *
+     * @param  Role  $role Recive a role object or an id
+     */
     public function addPermissions(Role $role): void
     {
         $role->givePermissionTo($this->permissionList);
         $this->clearForm();
     }
 
+    /**
+     * Remove the given permission from the given role
+     *
+     * @param  Role  $role Recive a role object or an id
+     * @param  string  $permission Permission that want to revoke
+     */
     public function revokePermission(Role $role, string $permission): void
     {
         $role->revokePermissionTo($permission);

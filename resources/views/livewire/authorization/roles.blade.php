@@ -200,4 +200,49 @@
             </div>
         </x-slot:dialog>
     </x-static-modal>
+    <script>
+        document.addEventListener('livewire:load', function() {
+            @this.on('created', () => {
+                const toast = window.Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                });
+                toast.fire({
+                    icon: 'success',
+                    title: `{{ __('Role') . ' ' . __('Created.') }}`,
+                    padding: '10px 20px',
+                });
+            });
+
+            @this.on('updated', () => {
+                const toast = window.Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                });
+                toast.fire({
+                    icon: 'success',
+                    title: `{{ __('Saved.') }}`,
+                    padding: '10px 20px',
+                });
+            });
+
+            @this.on('deleted', () => {
+                const toast = window.Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                });
+                toast.fire({
+                    icon: 'success',
+                    title: `{{ __('Deleted') }}`,
+                    padding: '10px 20px',
+                });
+            });
+        })
+    </script>
 </div>

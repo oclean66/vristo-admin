@@ -36,24 +36,25 @@ if (! function_exists('autoCreatePermissions')) {
 
         }
 
-        // $liveComponents = array_filter($classes, function ($class) {
-        //     return str_contains($class, 'App\Http\Livewire');
-        // });
+        $liveComponents = array_filter($classes, function ($class) {
+            return str_contains($class, 'App\Http\Livewire');
+        });
 
-        // foreach ($liveComponents as $component) {
-        //     $methods = get_class_methods($component);
+        /* foreach ($liveComponents as $component) {
+            $methods = get_class_methods($component);
 
-        //     $componentName = strtolower(
-        //         str_replace('\\', '-', str_replace('App\Http\Livewire\\', '', $component))
-        //     );
+            $componentName = strtolower(
+                str_replace('\\', '-', str_replace('App\Http\Livewire\\', '', $component))
+            );
 
-        //     foreach ($methods as $method) {
-        //         if (array_search($method, $permissions)) {
-        //             Permission::updateOrCreate(['name' => $method.'-'.$componentName]);
-        //         }
-        //     }
+            foreach ($methods as $method) {
+                if (array_search($method, $permissions)) {
+                    Permission::updateOrCreate(['name' => $method.'-'.$componentName]);
+                }
+                // Permission::updateOrCreate(['name' => $method.'-'.$componentName]);
+            }
 
-        //     Permission::updateOrCreate(['name' => 'show-'.$componentName]);
-        // }
+            Permission::updateOrCreate(['name' => 'show-'.$componentName]);
+        } */
     }
 }

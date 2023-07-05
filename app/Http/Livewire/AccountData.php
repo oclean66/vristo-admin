@@ -14,17 +14,23 @@ class AccountData extends Component
     public Account|null $account;
 
     /**
-     * Trapped events
+     * Recived events
      *
      * @var array<int, string>
      */
     protected $listeners = ['showAccount'];
 
+    /** This method render the view **Blade** that belongs to this component. */
     public function render(): View
     {
         return view('livewire.account-data');
     }
 
+    /**
+     * Event recived that show the selected account data
+     *
+     * @param  string  $id Id recived from the `AccountRecursive` component
+     */
     public function showAccount(int $id): void
     {
         $this->account = Account::find($id);

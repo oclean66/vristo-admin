@@ -1,47 +1,47 @@
 /* perfect scrollbar */
-@import 'perfect-scrollbar.min.css';
+@import "perfect-scrollbar.min.css";
 
 /* animate.css */
-@import 'animate.css';
+@import "animate.css";
 
 /* quill editor */
-@import 'quill-editor.css';
+@import "quill-editor.css";
 
 /* full calendar */
-@import 'fullcalendar.css';
+@import "fullcalendar.css";
 
 /* swiper */
-@import 'swiper.css';
+@import "swiper.css";
 
 /* sweetalert */
-@import 'sweetalert.css';
+@import "sweetalert.css";
 
 /* tippy */
-@import 'tippy.css';
+@import "tippy.css";
 
 /* noUi-slider */
-@import 'noui-slider.css';
+@import "noui-slider.css";
 
 /* flatpickr */
-@import 'flatpickr.css';
+@import "flatpickr.css";
 
 /* file upload with preview */
-@import 'file-upload-preview.css';
+@import "file-upload-preview.css";
 
 /* markdown-editor */
-@import 'markdown-editor.css';
+@import "markdown-editor.css";
 
 /* select2 */
-@import 'select2.css';
+@import "select2.css";
 
 /* scrumboard */
-@import 'scrumboard.css';
+@import "scrumboard.css";
 
 /* simple-datatable */
-@import 'simple-datatables.css';
+@import "simple-datatables.css";
 
 /* dragndrop */
-@import 'dragndrop.css';
+@import "dragndrop.css";
 
 @tailwind base;
 @tailwind components;
@@ -377,7 +377,7 @@
     label {
         @apply mb-1.5 block font-semibold;
     }
-    [dir='rtl'] select {
+    [dir="rtl"] select {
         background-position: left 0.5rem center;
     }
 
@@ -620,7 +620,9 @@
     @apply text-white;
 }
 
-.apexcharts-canvas .apexcharts-tooltip.apexcharts-theme-light .apexcharts-tooltip-title {
+.apexcharts-canvas
+    .apexcharts-tooltip.apexcharts-theme-light
+    .apexcharts-tooltip-title {
     @apply border-dark bg-[#060818];
 }
 
@@ -646,10 +648,16 @@
     color: #e0e6ed !important;
 }
 
-.dark .apexcharts-canvas .apexcharts-radialbar-track.apexcharts-track .apexcharts-radialbar-area {
+.dark
+    .apexcharts-canvas
+    .apexcharts-radialbar-track.apexcharts-track
+    .apexcharts-radialbar-area {
     stroke: #191e3a;
 }
-.dark .apexcharts-canvas .apexcharts-series-markers.apexcharts-series-bubble .apexcharts-marker {
+.dark
+    .apexcharts-canvas
+    .apexcharts-series-markers.apexcharts-series-bubble
+    .apexcharts-marker {
     stroke: #191e3a;
 }
 
@@ -668,6 +676,27 @@
     @apply ltr:!mr-1.5 rtl:ml-1.5 rtl:!mr-0;
 }
 
-[dir='rtl'] .apexcharts-tooltip-marker {
+[dir="rtl"] .apexcharts-tooltip-marker {
     @apply mr-0 ml-2.5;
+}
+
+/* ScrollBar */
+/* Width */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    @apply dark:bg-black;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    @apply bg-black-light rounded;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #aaa;
 }
