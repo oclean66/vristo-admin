@@ -16,12 +16,20 @@ class AssignRoles extends Component
     /** @var Collection<int, Role> */
     public $roles;
 
-    public string $roleName = '';
+    public null|Role $selectedRole;
+
+    /** @var null|Collection<int, User> */
+    public $authorizeUsers;
 
     /** @var array<int, User> */
     public $selectedUsers = [];
 
+    /** @var array<int, User> */
+    public $authorizeSelectedUsers = [];
+
     public string $search = '';
+
+    public string $authorizeSearch = '';
 
     public function render(): View
     {
@@ -40,32 +48,32 @@ class AssignRoles extends Component
         $this->resetPage();
     }
 
-    public function getRole(string $name): void
+    public function getRole(Role $role): void
     {
-        $this->roleName = $name;
+        $this->selectedRole = $role;
+        $this->authorizeUsers = User::role($role->name)->get();
     }
 
     public function assignRole(): void
     {
-        if (empty($this->selectedUsers) || $this->roleName == '') {
-            return;
+        if (isset($this->selectedRole) && ! empty($this->selectedUsers)) {
+            foreach ($this->selectedUsers as $user) {
+                $user = User::findOrFail($user);
+                $user->assignRole($this->selectedRole->name);
+            }
+            $this->getRole($this->selectedRole);
         }
 
-        foreach ($this->selectedUsers as $user) {
-            $user = User::findOrFail($user);
-            $user->assignRole($this->roleName);
-        }
     }
 
     public function revokeRole(): void
     {
-        if (empty($this->selectedUsers) || $this->roleName == '') {
-            return;
-        }
-
-        foreach ($this->selectedUsers as $user) {
-            $user = User::findOrFail($user);
-            $user->removeRole($this->roleName);
+        if (isset($this->selectedRole) && ! empty($this->authorizeSelectedUsers)) {
+            foreach ($this->authorizeSelectedUsers as $user) {
+                $user = User::findOrFail($user);
+                $user->removeRole($this->selectedRole->name);
+            }
+            $this->getRole($this->selectedRole);
         }
     }
 }
