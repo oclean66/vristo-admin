@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Livewire\AccountTree;
 use App\Http\Livewire\Authorization\Permissions as AuthorizationPermissions;
 use App\Http\Livewire\Authorization\Roles as AuthorizationRoles;
+use App\Http\Livewire\Dashboard;
 use App\Http\Livewire\Users\UsersData;
 use App\Http\Livewire\Users\UsersTable;
 use Illuminate\Support\Facades\Route;
@@ -27,7 +28,7 @@ Route::get('/', function () {
 Route::view('/home', 'home')->name('home');
 
 Route::middleware('auth')->group(function () {
-    Route::view('/dashboard', 'dashboard')->name('dashboard');
+    Route::get('/dashboard', Dashboard::class)->name('dashboard');
 
     Route::prefix('users')->middleware('role:admin|super-admin|receptor')->group(function () {
         Route::get('/', UsersTable::class)->can('see-users')->name('users.table');
