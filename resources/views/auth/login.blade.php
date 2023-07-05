@@ -2,8 +2,10 @@
     <div
         class="flex justify-center items-center min-h-screen bg-[url('/assets/images/map.svg')] dark:bg-[url('/assets/images/map-dark.svg')] bg-cover bg-center">
         <div class="panel sm:w-[480px] m-6 max-w-lg w-full relative">
+            <div class="absolute w-32 left-1/2 transform -translate-x-1/2 -top-20">
+                <img src="{{ asset('assets/images/terrakion-logo.png') }}" alt="Descripción de la imagen" >
+            </div>
             <h2 class="font-bold text-center mt-9 text-2xl mb-3">{{ __('Sign In') }}</h2>
-            <img src="{{ asset('assets/images/terrakion-logo.png') }}" alt="Descripción de la imagen" class="absolute w-32  left-1/2 transform -translate-x-1/2 -top-20">
             <p class="mb-1">{{__('Enter your email and password to login')}}</p>
             <form class="space-y-5" action="{{ route('login') }}" method="POST">
                 @csrf
