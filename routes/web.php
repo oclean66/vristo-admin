@@ -45,6 +45,12 @@ Route::middleware('auth')->group(function () {
     Route::view('/my-red', 'livewire.my-red.my-red-tree')->name('my-red');
 
     Route::prefix('apps')->group(function () {
+        Route::prefix('invoice')->group(function () {
+            Route::view('/add', 'apps.invoice.add')->name('apps.invoice.add');
+            Route::view('/edit', 'apps.invoice.edit')->name('apps.invoice.edit');
+            Route::view('/list', 'apps.invoice.list')->name('apps.invoice.list');
+            Route::view('/preview', 'apps.invoice.preview')->name('apps.invoice.preview');
+        });
         Route::view('/calendar', 'apps.calendar')->name('apps.calendar');
         Route::view('/chat', 'apps.chat')->name('apps.chat');
         Route::view('/contacts', 'apps.contacts')->name('apps.contacts');

@@ -355,11 +355,37 @@
                     <li>
                         <a href="{{route('apps.todolist')}}">{{__('Todolist')}}</a>
                     </li>
-                
-                    
+                   
+                     <li class="relative">
+                        <a href="javascript:;">{{__('Invoice')}}
+                            <div class="ltr:ml-auto rtl:mr-auto rtl:rotate-180">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M9 5L15 12L9 19" stroke="currentColor" stroke-width="1.5"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                        </a>
+                        <ul
+                            class="rounded absolute top-0 ltr:left-[95%] rtl:right-[95%] min-w-[180px] bg-white z-[10] text-dark dark:text-white-dark dark:bg-[#1b2e4b] shadow p-0 py-2 hidden">
+                            <li>
+                                <a href="{{route('apps.invoice.add')}}">  {{__('Add')}} </a>
+                            </li>
+                            <li>
+                                <a href="{{route('apps.invoice.edit')}}"> {{__('Edit')}} </a>
+                            </li>
+                            <li>
+                                <a href="{{route('apps.invoice.list')}}"> {{__('List')}} </a>
+                            </li>
+                            <li>
+                                <a href="{{route('apps.invoice.preview')}}"> {{__('Preview')}} </a>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
             </li>
-         {{-- <li class="menu nav-item relative">
+
+       {{-- <li class="menu nav-item relative">
                 <a href="javascript:;" class="nav-link">
                     <div class="flex items-center">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
@@ -603,8 +629,8 @@
                         </ul>
                     </li>
                 </ul>
-            </li>
-            <li class="menu nav-item relative">
+            </li> --}}
+           {{-- <li class="menu nav-item relative">
                 <a href="javascript:;" class="nav-link">
                     <div class="flex items-center">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none"

@@ -1,4 +1,7 @@
 {
+    "Invoice": "Invoice",
+    "List": "List",
+    "Preview": "Preview",
     "Chat": "Chat",
     "Contacts": "Contacts",
     "Mailbox": "Mailbox",
