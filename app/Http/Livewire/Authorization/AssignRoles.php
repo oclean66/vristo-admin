@@ -21,8 +21,7 @@ class AssignRoles extends Component
     /** @var array<int, User> */
     public $selectedUsers = [];
 
-    // @phpstan-ignore-next-line
-    public $search;
+    public string $search = '';
 
     public function render(): View
     {

@@ -42,7 +42,7 @@
                     </a>
                 </li>
 
-                @can('see-users')
+                @hasanyrole('super-admin|admin')
                     <li class="menu nav-item">
                         <a href="{{ route('users.table') }}" type="button" class="group">
                             <div class="flex items-center">
@@ -61,7 +61,7 @@
                             </div>
                         </a>
                     </li>
-                @endcan
+                @endhasanyrole
 
                 @hasanyrole('super-admin|admin')
                     <li class="menu nav-item" x-data="{ open: false }">
@@ -78,7 +78,7 @@
                                         fill="currentColor" />
                                 </svg>
                                 <span
-                                    class="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">{{ __('Authorization') }}</span>
+                                    class="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">{{ __('Roles') . ' & ' . __('Permissions') }}</span>
                             </div>
                             <div class="rtl:rotate-180" :class="{ '!rotate-90': open }">
 
@@ -91,8 +91,7 @@
                         </button>
                         <ul x-cloak x-collapse x-transition x-show="open" class="sub-menu text-gray-500">
                             <li>
-                                <a
-                                    href="{{ route('authorization.index') }}">{{ __('Roles') . ' & ' . __('Permissions') }}</a>
+                                <a href="{{ route('authorization.index') }}">{{ __('Roles') }}</a>
                             </li>
                             <li>
                                 <a href="{{ route('authorization.roles') }}">{{ __('Assign') . ' ' . __('Roles') }}</a>

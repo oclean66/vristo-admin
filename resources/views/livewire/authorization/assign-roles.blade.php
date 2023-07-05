@@ -24,8 +24,9 @@
             <table class="table-hover">
                 <thead>
                     <tr>
-                        <th></th>
-                        <th>ID</th>
+                        <th>
+                            <x-inputs.check />
+                        </th>
                         <th>{{ __('Name') }}</th>
                         <th>{{ __('Email') }}</th>
                         <th>{{ __('Role') }}</th>
@@ -37,7 +38,6 @@
                             <td>
                                 <x-inputs.check value="{{ $user->id }}" wire:model="selectedUsers" />
                             </td>
-                            <td>{{ $user->id }}</td>
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->email }}</td>
                             <td>{{ $user->getRoleNames()->first() }}</td>

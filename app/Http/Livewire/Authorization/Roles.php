@@ -47,8 +47,6 @@ class Roles extends Component
 
     public function getRole(Role $role): void
     {
-        
-        
         $this->roleName = $role->name;
         // @phpstan-ignore-next-line
         $this->roleDescription = $role->description;
@@ -78,8 +76,6 @@ class Roles extends Component
             'description' => $this->roleDescription,
         ]);
 
-        $role->syncPermissions($this->permissionList);
-
         $this->clearForm();
     }
 
@@ -96,5 +92,17 @@ class Roles extends Component
     public function getRolePermissions(Role $role): void
     {
         $this->rolePermissions = $role->getPermissionNames();
+    }
+
+    public function addPermissions(Role $role): void
+    {
+        $role->givePermissionTo($this->permissionList);
+        $this->clearForm();
+    }
+
+    public function revokePermission(Role $role, string $permission): void
+    {
+        $role->revokePermissionTo($permission);
+        $this->getRolePermissions($role);
     }
 }

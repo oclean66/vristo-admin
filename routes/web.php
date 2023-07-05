@@ -36,7 +36,7 @@ Route::middleware('auth')->group(function () {
         Route::put('/{user}', [UserController::class, 'update'])->can('users-update')->name('users.update');
     });
 
-    Route::prefix('authorization')->middleware('role:super-admin')->group(function () {
+    Route::prefix('authorization')->middleware('role:super-admin|admin')->group(function () {
         Route::view('/roles-and-permissions', 'authorization.index')->name('authorization.index');
         Route::get('/assign-roles', AssignRoles::class)->name('authorization.roles');
         Route::get('/assign-permissions', AssignPermissions::class)->name('authorization.permissions');

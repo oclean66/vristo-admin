@@ -17,23 +17,36 @@
                         <td>{{ $role->name }}</td>
                         <td>{{ $role->description }}</td>
                         <td class="flex flex-col items-center md:flex-row justify-center gap-2">
-                            <x-modal>
+                            <x-static-modal>
                                 <x-slot:trigger>
-                                    <button class="transition hover:scale-110">
+                                    <button class="transition hover:scale-110" wire:click="getRole({{ $role->id }})">
                                         <x-badges.basic class="lowercase"
                                             wire:click="getRolePermissions({{ $role->id }})">{{ __('Permissions') }}
                                         </x-badges.basic>
                                     </button>
                                 </x-slot:trigger>
+                                <x-slot:title>{{ __('Permissions') }}</x-slot:title>
+                                <x-slot:closer wire:click="clearForm">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px"
+                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                                        stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6">
+                                        <line x1="18" y1="6" x2="6" y2="18">
+                                        </line>
+                                        <line x1="6" y1="6" x2="18" y2="18">
+                                        </line>
+                                    </svg>
+                                </x-slot:closer>
                                 <x-slot:dialog>
                                     <div class="panel min-w-[600px]" wire:loading.class="hidden">
-                                        <h4 class="text-2xl font-semibold border-b mb-3 dark:border-dark">
-                                            {{ __('Permissions') }}</h4>
                                         @if ($rolePermissions)
-                                            <x-list>
+                                            <x-list class="mt-4 h-80 overflow-y-scroll">
                                                 @if ($rolePermissions->isNotEmpty())
                                                     @foreach ($rolePermissions as $permission)
-                                                        <x-list-item>{{ $permission }}</x-list-item>
+                                                        <x-list-item class="flex justify-between">
+                                                            <p>{{ $permission }}</p>
+                                                            <span class="text-danger underline cursor-pointer lowercase"
+                                                                wire:click="revokePermission({{ $role->id }}, '{{ $permission }}')">{{ __('Revoke') }}</span>
+                                                        </x-list-item>
                                                     @endforeach
                                                 @elseif ($role->name == 'super-admin')
                                                     <x-list-item>This role have all permissions</x-list-item>
@@ -42,43 +55,12 @@
                                                 @endif
                                             </x-list>
                                         @endif
-                                    </div>
-                                </x-slot:dialog>
-                            </x-modal>
-                            <x-static-modal>
-                                <x-slot:trigger>
-                                    <button class="transition hover:scale-110">
-                                        <x-badges.basic color="info" class="lowercase"
-                                            wire:click="getRole({{ $role->id }})">
-                                            {{ __('Edit') }}
-                                        </x-badges.basic>
-                                    </button>
-                                </x-slot:trigger>
-                                <x-slot:title>{{ __('Edit') . ' ' . __('Role') }}</x-slot:title>
-                                <x-slot:closer>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px"
-                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-                                        stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"
-                                        wire:click="clearForm">
-                                        <line x1="18" y1="6" x2="6" y2="18">
-                                        </line>
-                                        <line x1="6" y1="6" x2="18" y2="18">
-                                        </line>
-                                    </svg>
-                                </x-slot:closer>
-                                <x-slot:dialog>
-                                    <div class="panel w-[512px] lg:w-[768px] xl:w-[1024px]">
-                                        <form>
-                                            <x-inputs.text label="{{ __('Name') }}" wire:model="roleName" />
-                                            <x-inputs.validate-error field="roleName" />
-                                            <x-inputs.text label="{{ __('Description') }}"
-                                                wire:model="roleDescription" />
-                                            <x-inputs.validate-error field="roleDescription" />
+                                        @if ($role->name != 'super-admin')
                                             <div x-data="{ open: false }">
                                                 <span
                                                     class="text-lg flex justify-between items-center mt-6 cursor-pointer border-b hover:text-primary hover:border-primary hover:dark:border-primary dark:border-dark"
                                                     @click="open = !open">
-                                                    {{ __('Permissions') }}
+                                                    {{ __('Add') . ' ' . __('Permissions') }}
                                                     <div class="transition" :class="open && 'rotate-90'">
                                                         <svg width="20" height="20" viewBox="0 0 24 24"
                                                             fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -100,8 +82,43 @@
                                                             </x-list-item>
                                                         @endforeach
                                                     </x-list>
+                                                    <button class="btn btn-success w-full mt-5"
+                                                        wire:click="addPermissions({{ $role->id }})"
+                                                        @click="open = false">{{ __('Save') }}</button>
                                                 </div>
                                             </div>
+                                        @endif
+                                    </div>
+                                </x-slot:dialog>
+                            </x-static-modal>
+                            <x-static-modal>
+                                <x-slot:trigger>
+                                    <button class="transition hover:scale-110">
+                                        <x-badges.basic color="info" class="lowercase"
+                                            wire:click="getRole({{ $role->id }})">
+                                            {{ __('Edit') }}
+                                        </x-badges.basic>
+                                    </button>
+                                </x-slot:trigger>
+                                <x-slot:title>{{ __('Edit') . ' ' . __('Role') }}</x-slot:title>
+                                <x-slot:closer wire:click="clearForm">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px"
+                                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                                        stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6">
+                                        <line x1="18" y1="6" x2="6" y2="18">
+                                        </line>
+                                        <line x1="6" y1="6" x2="18" y2="18">
+                                        </line>
+                                    </svg>
+                                </x-slot:closer>
+                                <x-slot:dialog>
+                                    <div class="panel w-[512px] lg:w-[768px] xl:w-[1024px]">
+                                        <form>
+                                            <x-inputs.text label="{{ __('Name') }}" wire:model="roleName" />
+                                            <x-inputs.validate-error field="roleName" />
+                                            <x-inputs.text label="{{ __('Description') }}"
+                                                wire:model="roleDescription" />
+                                            <x-inputs.validate-error field="roleDescription" />
                                             <div class="flex justify-start gap-2 mt-8">
                                                 <button type="button" class="btn btn-info"
                                                     wire:click="updateRole({{ $role->id }})"
@@ -131,9 +148,9 @@
         </x-slot:trigger>
         <x-slot:title>{{ __('Create') . ' ' . __('Role') }}</x-slot:title>
         <x-slot:closer>
-            <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6"
-                wire:click="clearForm">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24"
+                fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                stroke-linejoin="round" class="w-6 h-6" wire:click="clearForm">
                 <line x1="18" y1="6" x2="6" y2="18">
                 </line>
                 <line x1="6" y1="6" x2="18" y2="18">
