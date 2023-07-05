@@ -1,6 +1,13 @@
 <x-app-layout>
 
-
+    <ul class="flex space-x-2 rtl:space-x-reverse mb-5">
+        <li>
+            <span>{{__('Apps')}}</span>
+        </li>
+        <li class="before:content-['/'] ltr:before:mr-1 rtl:before:ml-1">
+            <span>{{__('List')}}</span>
+        </li>
+    </ul>
     <div x-data="invoiceList">
         <script src="/assets/js/simple-datatables.js"></script>
 

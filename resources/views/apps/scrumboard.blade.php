@@ -1,6 +1,14 @@
 <x-app-layout>
 
     <script src="/assets/js/Sortable.min.js"></script>
+    <ul class="flex space-x-2 rtl:space-x-reverse mb-5">
+        <li>
+            <span>{{__('Apps')}}</span>
+        </li>
+        <li class="before:content-['/'] ltr:before:mr-1 rtl:before:ml-1">
+            <span>{{__('Scrumboard')}}</span>
+        </li>
+    </ul>
     <div x-data="scrumboard">
 
         <div>

@@ -2,7 +2,14 @@
 
     <link rel="stylesheet" type="text/css" href="{{ Vite::asset('resources/css/quill.snow.css') }}" />
     <script src="/assets/js/quill.js"></script>
-
+    <ul class="flex space-x-2 rtl:space-x-reverse mb-5">
+        <li>
+            <span>{{__('Apps')}}</span>
+        </li>
+        <li class="before:content-['/'] ltr:before:mr-1 rtl:before:ml-1">
+            <span>{{__('Todolist')}}</span>
+        </li>
+    </ul>
     <div x-data="todolist">
         <div class="flex gap-5 relative sm:h-[calc(100vh_-_150px)] h-full">
             <div class="panel p-4 flex-none w-[240px] max-w-full  absolute xl:relative z-10 space-y-4 xl:h-auto h-full xl:block ltr:xl:rounded-r-md ltr:rounded-r-none rtl:xl:rounded-l-md rtl:rounded-l-none hidden"

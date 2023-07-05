@@ -1,7 +1,14 @@
 <x-app-layout>
 
 
-
+    <ul class="flex space-x-2 rtl:space-x-reverse mb-5">
+        <li>
+            <span>{{__('Apps')}}</span>
+        </li>
+        <li class="before:content-['/'] ltr:before:mr-1 rtl:before:ml-1">
+            <span>{{__('Add')}}</span>
+        </li>
+    </ul>
     <div x-data="invoiceAdd">
         <div class="flex xl:flex-row flex-col gap-2.5">
             <div class="panel px-0 flex-1 py-6 ltr:xl:mr-6 rtl:xl:ml-6">

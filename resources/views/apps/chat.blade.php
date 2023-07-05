@@ -1,5 +1,12 @@
 <x-app-layout>
-
+    <ul class="flex space-x-2 rtl:space-x-reverse mb-5">
+        <li>
+            <span>{{__('Apps')}}</span>
+        </li>
+        <li class="before:content-['/'] ltr:before:mr-1 rtl:before:ml-1">
+            <span>{{__('Chat')}}</span>
+        </li>
+    </ul>
 
     <div x-data="chat">
         <div class="flex gap-5 relative sm:h-[calc(100vh_-_150px)] h-full sm:min-h-0"

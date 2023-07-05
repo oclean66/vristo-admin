@@ -3,7 +3,14 @@
 
     <link rel="stylesheet" type="text/css" href="{{ Vite::asset('resources/css/quill.snow.css') }}" />
     <script src="/assets/js/quill.js"></script>
-
+    <ul class="flex space-x-2 rtl:space-x-reverse mb-5">
+        <li>
+            <span>{{__('Apps')}}</span>
+        </li>
+        <li class="before:content-['/'] ltr:before:mr-1 rtl:before:ml-1">
+            <span>{{__('Mailbox')}}</span>
+        </li>
+    </ul>
     <div x-data="mailbox">
         <div class="flex gap-5 relative sm:h-[calc(100vh_-_150px)] h-full">
             <div class="overlay bg-black/60 z-[5] w-full h-full absolute rounded-md hidden"

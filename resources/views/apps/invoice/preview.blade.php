@@ -1,6 +1,13 @@
 <x-app-layout>
 
-
+    <ul class="flex space-x-2 rtl:space-x-reverse mb-5">
+        <li>
+            <span>{{__('Apps')}}</span>
+        </li>
+        <li class="before:content-['/'] ltr:before:mr-1 rtl:before:ml-1">
+            <span>{{__('Preview')}}</span>
+        </li>
+    </ul>
     <div x-data="invoicePreview">
         <div class="flex items-center lg:justify-end justify-center flex-wrap gap-4 mb-6">
             <button type="button" class="btn btn-info gap-2">

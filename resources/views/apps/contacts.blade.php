@@ -1,5 +1,12 @@
 <x-app-layout>
-
+    <ul class="flex space-x-2 rtl:space-x-reverse mb-5">
+        <li>
+            <span>{{__('Apps')}}</span>
+        </li>
+        <li class="before:content-['/'] ltr:before:mr-1 rtl:before:ml-1">
+            <span>{{__('Contacts')}}</span>
+        </li>
+    </ul>
     <div x-data="contacts">
         <div class="flex items-center justify-between flex-wrap gap-4">
             <h2 class="text-xl">Contacts</h2>

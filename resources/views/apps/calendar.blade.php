@@ -1,5 +1,12 @@
 <x-app-layout>
-
+    <ul class="flex space-x-2 rtl:space-x-reverse mb-5">
+        <li>
+            <span>{{__('Apps')}}</span>
+        </li>
+        <li class="before:content-['/'] ltr:before:mr-1 rtl:before:ml-1">
+            <span>{{__('Calendar')}}</span>
+        </li>
+    </ul>
     <link href="{{ Vite::asset('resources/css/fullcalendar.min.css') }}" rel='stylesheet' />
     <script src='/assets/js/fullcalendar.min.js'></script>
     <div x-data="calendar">
