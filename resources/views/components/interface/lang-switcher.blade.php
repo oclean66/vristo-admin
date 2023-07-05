@@ -27,12 +27,12 @@
             Alpine.data("locale", () => ({
                 languages: [{
                         id: 1,
-                        key: 'English',
+                        key: '{{__('English')}}',
                         value: 'en',
                     },
                     {
                         id: 2,
-                        key: 'Spanish',
+                        key: '{{__('Spanish')}}',
                         value: 'es',
                     }
                 ],
