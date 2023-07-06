@@ -60,6 +60,8 @@ class DatabaseSeeder extends Seeder
             'price' => 4100,
         ]);
 
+        Currency::factory(6)->create();
+
         // Currency::factory()->create([
         //     'name' => 'Venezuelan Bolivar',
         //     'code' => 'VEN',

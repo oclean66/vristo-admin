@@ -1,3 +1,12 @@
+
+<ul class="flex space-x-2 rtl:space-x-reverse mb-5">
+    <li>
+        <span>{{__('Authorization')}}</span>
+    </li>
+    <li class="before:content-['/'] ltr:before:mr-1 rtl:before:ml-1">
+        <span>{{__('Permissions')}}</span>
+    </li>
+</ul>
 <div class="panel">
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
         @foreach ($permissions as $permission)

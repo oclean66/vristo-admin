@@ -37,14 +37,14 @@
 
     <div class="main-container text-black dark:text-white-dark min-h-screen" :class="[$store.app.navbar]">
 
-        {{-- <x-interface.theme-customiser /> --}}
+        <x-interface.theme-customiser />
 
         <x-interface.sidebar />
 
         <div class="main-content">
             <x-interface.navbar />
 
-            <div class="p-6 animate__animated" :class="[$store.app.animation]">
+            <div class="px-6 py-4 animate__animated" :class="[$store.app.animation]">
                 {{ $slot }}
 
                 <x-interface.footer />

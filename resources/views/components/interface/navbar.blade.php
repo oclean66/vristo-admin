@@ -213,10 +213,10 @@
         </div>
 
         <!-- horizontal menu -->
-        {{-- <ul
-            class="horizontal-menu hidden py-1.5 font-semibold px-6 lg:space-x-1.5 xl:space-x-8 rtl:space-x-reverse bg-white border-t border-[#ebedf2] dark:border-[#191e3a] dark:bg-[#0e1726] text-black dark:text-white-dark">
+        <ul
+            class=" horizontal-menu hidden py-1.5 font-semibold px-6 lg:space-x-1.5 xl:space-x-8 rtl:space-x-reverse bg-white border-t border-[#ebedf2] dark:border-[#191e3a] dark:bg-[#0e1726] text-black dark:text-white-dark">
             <li class="menu nav-item relative">
-                <a href="javascript:;" class="nav-link">
+                <a href="{{route('dashboard')}}" class="nav-link">
                     <div class="flex items-center">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
@@ -227,64 +227,52 @@
                                 d="M9 17.25C8.58579 17.25 8.25 17.5858 8.25 18C8.25 18.4142 8.58579 18.75 9 18.75H15C15.4142 18.75 15.75 18.4142 15.75 18C15.75 17.5858 15.4142 17.25 15 17.25H9Z"
                                 fill="currentColor" />
                         </svg>
-                        <span class="px-1">Dashboard</span>
+                        <span class="px-1">{{__('Dashboard')}}</span>
                     </div>
-                    <div class="right_arrow">
+                    {{-- <div class="right_arrow">
                         <svg class="w-4 h-4 rotate-90" width="16" height="16" viewBox="0 0 24 24"
                             fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M9 5L15 12L9 19" stroke="currentColor" stroke-width="1.5"
                                 stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
+                    </div> --}}
+                </a>
+              
+            </li>
+            @can('see-users')
+            <li class="menu nav-item relative">
+                <a href="{{ route('users.table') }}" type="button" class="nav-link"
+                    :class="{ 'active': activeDropdown === 'users' }">
+                    <div class="flex items-center">
+                        <svg class="group-hover:!text-primary" width="20" height="20" viewBox="0 0 24 24"
+                            fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle opacity="0.5" cx="15" cy="6" r="3"
+                                fill="currentColor" />
+                            <ellipse opacity="0.5" cx="16" cy="17" rx="5" ry="3"
+                                fill="currentColor" />
+                            <circle cx="9.00098" cy="6" r="4" fill="currentColor" />
+                            <ellipse cx="9.00098" cy="17.001" rx="7" ry="4"
+                                fill="currentColor" />
+                        </svg>
+                        <span
+                            class="ltr:pl-3 rtl:pr-3 text-black dark:text-[#506690] dark:group-hover:text-white-dark">{{ __('Users') }}</span>
                     </div>
                 </a>
-                <ul class="sub-menu">
-                    <li>
-                        <a href="/">Sales</a>
-                    </li>
-                    <li>
-                        <a href="/analytics">Analytics</a>
-                    </li>
-                    <li>
-                        <a href="/finance">Finance</a>
-                    </li>
-                    <li>
-                        <a href="/crypto">Crypto</a>
-                    </li>
-                </ul>
             </li>
+        @endcan
             <li class="menu nav-item relative">
                 <a href="javascript:;" class="nav-link">
                     <div class="flex items-center">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <g opacity="0.5">
-                                <path
-                                    d="M14 2.75C15.9068 2.75 17.2615 2.75159 18.2892 2.88976C19.2952 3.02503 19.8749 3.27869 20.2981 3.7019C20.7213 4.12511 20.975 4.70476 21.1102 5.71085C21.2484 6.73851 21.25 8.09318 21.25 10C21.25 10.4142 21.5858 10.75 22 10.75C22.4142 10.75 22.75 10.4142 22.75 10V9.94359C22.75 8.10583 22.75 6.65019 22.5969 5.51098C22.4392 4.33856 22.1071 3.38961 21.3588 2.64124C20.6104 1.89288 19.6614 1.56076 18.489 1.40314C17.3498 1.24997 15.8942 1.24998 14.0564 1.25H14C13.5858 1.25 13.25 1.58579 13.25 2C13.25 2.41421 13.5858 2.75 14 2.75Z"
-                                    fill="currentColor" />
-                                <path
-                                    d="M9.94358 1.25H10C10.4142 1.25 10.75 1.58579 10.75 2C10.75 2.41421 10.4142 2.75 10 2.75C8.09318 2.75 6.73851 2.75159 5.71085 2.88976C4.70476 3.02503 4.12511 3.27869 3.7019 3.7019C3.27869 4.12511 3.02503 4.70476 2.88976 5.71085C2.75159 6.73851 2.75 8.09318 2.75 10C2.75 10.4142 2.41421 10.75 2 10.75C1.58579 10.75 1.25 10.4142 1.25 10V9.94358C1.24998 8.10583 1.24997 6.65019 1.40314 5.51098C1.56076 4.33856 1.89288 3.38961 2.64124 2.64124C3.38961 1.89288 4.33856 1.56076 5.51098 1.40314C6.65019 1.24997 8.10583 1.24998 9.94358 1.25Z"
-                                    fill="currentColor" />
-                                <path
-                                    d="M22 13.25C22.4142 13.25 22.75 13.5858 22.75 14V14.0564C22.75 15.8942 22.75 17.3498 22.5969 18.489C22.4392 19.6614 22.1071 20.6104 21.3588 21.3588C20.6104 22.1071 19.6614 22.4392 18.489 22.5969C17.3498 22.75 15.8942 22.75 14.0564 22.75H14C13.5858 22.75 13.25 22.4142 13.25 22C13.25 21.5858 13.5858 21.25 14 21.25C15.9068 21.25 17.2615 21.2484 18.2892 21.1102C19.2952 20.975 19.8749 20.7213 20.2981 20.2981C20.7213 19.8749 20.975 19.2952 21.1102 18.2892C21.2484 17.2615 21.25 15.9068 21.25 14C21.25 13.5858 21.5858 13.25 22 13.25Z"
-                                    fill="currentColor" />
-                                <path
-                                    d="M2.75 14C2.75 13.5858 2.41421 13.25 2 13.25C1.58579 13.25 1.25 13.5858 1.25 14V14.0564C1.24998 15.8942 1.24997 17.3498 1.40314 18.489C1.56076 19.6614 1.89288 20.6104 2.64124 21.3588C3.38961 22.1071 4.33856 22.4392 5.51098 22.5969C6.65019 22.75 8.10583 22.75 9.94359 22.75H10C10.4142 22.75 10.75 22.4142 10.75 22C10.75 21.5858 10.4142 21.25 10 21.25C8.09318 21.25 6.73851 21.2484 5.71085 21.1102C4.70476 20.975 4.12511 20.7213 3.7019 20.2981C3.27869 19.8749 3.02503 19.2952 2.88976 18.2892C2.75159 17.2615 2.75 15.9068 2.75 14Z"
-                                    fill="currentColor" />
-                            </g>
-                            <path
-                                d="M5.52721 5.52721C5 6.05442 5 6.90294 5 8.6C5 9.73137 5 10.2971 5.35147 10.6485C5.70294 11 6.26863 11 7.4 11H8.6C9.73137 11 10.2971 11 10.6485 10.6485C11 10.2971 11 9.73137 11 8.6V7.4C11 6.26863 11 5.70294 10.6485 5.35147C10.2971 5 9.73137 5 8.6 5C6.90294 5 6.05442 5 5.52721 5.52721Z"
-                                fill="currentColor" />
-                            <path
-                                d="M5.52721 18.4728C5 17.9456 5 17.0971 5 15.4C5 14.2686 5 13.7029 5.35147 13.3515C5.70294 13 6.26863 13 7.4 13H8.6C9.73137 13 10.2971 13 10.6485 13.3515C11 13.7029 11 14.2686 11 15.4V16.6C11 17.7314 11 18.2971 10.6485 18.6485C10.2971 19 9.73138 19 8.60002 19C6.90298 19 6.05441 19 5.52721 18.4728Z"
-                                fill="currentColor" />
-                            <path
-                                d="M13 7.4C13 6.26863 13 5.70294 13.3515 5.35147C13.7029 5 14.2686 5 15.4 5C17.0971 5 17.9456 5 18.4728 5.52721C19 6.05442 19 6.90294 19 8.6C19 9.73137 19 10.2971 18.6485 10.6485C18.2971 11 17.7314 11 16.6 11H15.4C14.2686 11 13.7029 11 13.3515 10.6485C13 10.2971 13 9.73137 13 8.6V7.4Z"
-                                fill="currentColor" />
-                            <path
-                                d="M13.3515 18.6485C13 18.2971 13 17.7314 13 16.6V15.4C13 14.2686 13 13.7029 13.3515 13.3515C13.7029 13 14.2686 13 15.4 13H16.6C17.7314 13 18.2971 13 18.6485 13.3515C19 13.7029 19 14.2686 19 15.4C19 17.097 19 17.9456 18.4728 18.4728C17.9456 19 17.0971 19 15.4 19C14.2687 19 13.7029 19 13.3515 18.6485Z"
-                                fill="currentColor" />
-                        </svg>
-                        <span class="px-1">Apps</span>
+                        <svg class="group-hover:!text-primary" width="20" height="20" viewBox="0 0 24 24"
+                        fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path opacity="0.5" fill-rule="evenodd" clip-rule="evenodd"
+                            d="M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12Z"
+                            fill="currentColor" />
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M12 5.25C12.4142 5.25 12.75 5.58579 12.75 6V6.31673C14.3804 6.60867 15.75 7.83361 15.75 9.5C15.75 9.91421 15.4142 10.25 15 10.25C14.5858 10.25 14.25 9.91421 14.25 9.5C14.25 8.82154 13.6859 8.10339 12.75 7.84748V11.3167C14.3804 11.6087 15.75 12.8336 15.75 14.5C15.75 16.1664 14.3804 17.3913 12.75 17.6833V18C12.75 18.4142 12.4142 18.75 12 18.75C11.5858 18.75 11.25 18.4142 11.25 18V17.6833C9.61957 17.3913 8.25 16.1664 8.25 14.5C8.25 14.0858 8.58579 13.75 9 13.75C9.41421 13.75 9.75 14.0858 9.75 14.5C9.75 15.1785 10.3141 15.8966 11.25 16.1525V12.6833C9.61957 12.3913 8.25 11.1664 8.25 9.5C8.25 7.83361 9.61957 6.60867 11.25 6.31673V6C11.25 5.58579 11.5858 5.25 12 5.25ZM11.25 7.84748C10.3141 8.10339 9.75 8.82154 9.75 9.5C9.75 10.1785 10.3141 10.8966 11.25 11.1525V7.84748ZM14.25 14.5C14.25 13.8215 13.6859 13.1034 12.75 12.8475V16.1525C13.6859 15.8966 14.25 15.1785 14.25 14.5Z"
+                            fill="currentColor" />
+                    </svg>
+                        <span class="px-1">{{__('Authorization')}}</span>
                     </div>
                     <div class="right_arrow">
                         <svg class="w-4 h-4 rotate-90" width="16" height="16" viewBox="0 0 24 24"
@@ -296,202 +284,65 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a href="/apps/chat">Chat</a>
+                        <a href="{{ route('authorization.roles') }}">{{ __('Roles') }}</a>
                     </li>
                     <li>
-                        <a href="/apps/mailbox">Mailbox</a>
-                    </li>
-                    <li>
-                        <a href="/apps/todolist">Todo List</a>
-                    </li>
-                    <li>
-                        <a href="/apps/notes">Notes</a>
-                    </li>
-                    <li>
-                        <a href="/apps/scrumboard">Scrumboard</a>
-                    </li>
-                    <li>
-                        <a href="/apps/contacts">Contacts</a>
-                    </li>
-                    <li class="relative">
-                        <a href="javascript:;">Invoice
-                            <div class="ltr:ml-auto rtl:mr-auto rtl:rotate-180">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M9 5L15 12L9 19" stroke="currentColor" stroke-width="1.5"
-                                        stroke-linecap="round" stroke-linejoin="round" />
-                                </svg>
-                            </div>
-                        </a>
-                        <ul
-                            class="rounded absolute top-0 ltr:left-[95%] rtl:right-[95%] min-w-[180px] bg-white z-[10] text-dark dark:text-white-dark dark:bg-[#1b2e4b] shadow p-0 py-2 hidden">
-                            <li>
-                                <a href="/apps/invoice/list">List</a>
-                            </li>
-                            <li>
-                                <a href="/apps/invoice/preview">Preview</a>
-                            </li>
-                            <li>
-                                <a href="/apps/invoice/add">Add</a>
-                            </li>
-                            <li>
-                                <a href="/apps/invoice/edit">Edit</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="/apps/calendar">Calendar</a>
+                        <a href="{{ route('authorization.permissions') }}">{{ __('Permissions') }}</a>
                     </li>
                 </ul>
             </li>
-            <li class="menu nav-item relative">
-                <a href="javascript:;" class="nav-link">
+
+           <li class="menu nav-item relative">
+                <a href="{{route('my-red')}}" class="nav-link">
                     <div class="flex items-center">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M8.42229 20.6181C10.1779 21.5395 11.0557 22.0001 12 22.0001V12.0001L2.63802 7.07275C2.62423 7.09491 2.6107 7.11727 2.5974 7.13986C2 8.15436 2 9.41678 2 11.9416V12.0586C2 14.5834 2 15.8459 2.5974 16.8604C3.19479 17.8749 4.27063 18.4395 6.42229 19.5686L8.42229 20.6181Z"
-                                fill="currentColor" />
-                            <path opacity="0.7"
-                                d="M17.5774 4.43152L15.5774 3.38197C13.8218 2.46066 12.944 2 11.9997 2C11.0554 2 10.1776 2.46066 8.42197 3.38197L6.42197 4.43152C4.31821 5.53552 3.24291 6.09982 2.6377 7.07264L11.9997 12L21.3617 7.07264C20.7564 6.09982 19.6811 5.53552 17.5774 4.43152Z"
-                                fill="currentColor" />
-                            <path opacity="0.5"
-                                d="M21.4026 7.13986C21.3893 7.11727 21.3758 7.09491 21.362 7.07275L12 12.0001V22.0001C12.9443 22.0001 13.8221 21.5395 15.5777 20.6181L17.5777 19.5686C19.7294 18.4395 20.8052 17.8749 21.4026 16.8604C22 15.8459 22 14.5834 22 12.0586V11.9416C22 9.41678 22 8.15436 21.4026 7.13986Z"
-                                fill="currentColor" />
-                        </svg>
-                        <span class="px-1">Components</span>
+                        <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+                                    width="16" height="16" viewBox="0 0 920.000000 920.000000"
+                                    preserveAspectRatio="xMidYMid meet">
+                                   <g transform="translate(0.000000,920.000000) scale(0.100000,-0.100000)"
+                                   fill="#888ea8" stroke="none">
+                                   <path d="M4442 9189 c-259 -33 -496 -152 -672 -335 -126 -131 -208 -268 -263
+                                   -439 -44 -136 -52 -191 -52 -365 0 -98 6 -189 13 -225 32 -149 101 -313 181
+                                   -435 100 -152 315 -328 485 -397 l81 -32 0 -988 0 -988 -1250 -5 c-1148 -5
+                                   -1255 -7 -1315 -23 -300 -81 -526 -235 -680 -462 -84 -124 -131 -232 -177
+                                   -405 -15 -58 -17 -156 -22 -958 l-6 -893 -81 -32 c-183 -74 -383 -243 -499
+                                   -421 -239 -366 -244 -878 -14 -1253 74 -120 242 -288 362 -362 101 -62 230
+                                   -113 361 -144 130 -29 382 -29 512 0 235 55 392 141 559 308 126 126 199 235
+                                   252 377 61 161 77 252 77 438 0 186 -16 277 -77 438 -98 261 -345 515 -601
+                                   619 l-81 32 -3 783 c-2 499 1 812 8 862 25 194 139 306 334 327 44 5 590 8
+                                   1211 7 l1130 -3 0 -988 0 -988 -81 -32 c-170 -69 -385 -245 -485 -397 -80
+                                   -122 -149 -286 -181 -435 -7 -36 -13 -127 -13 -225 0 -174 8 -229 52 -365 55
+                                   -171 137 -308 263 -439 318 -331 813 -434 1268 -263 173 65 366 211 483 365
+                                   90 119 175 311 211 477 7 36 13 127 13 225 0 98 -6 189 -13 225 -32 149 -101
+                                   313 -181 435 -100 152 -315 328 -485 397 l-81 32 0 988 0 988 1195 0 1195 0
+                                   55 -22 c113 -46 183 -121 218 -233 15 -50 17 -130 17 -888 l0 -833 -81 -32
+                                   c-183 -74 -383 -243 -499 -421 -239 -367 -245 -877 -14 -1253 74 -120 242
+                                   -288 362 -362 101 -62 230 -113 361 -144 130 -29 382 -29 512 0 235 55 392
+                                   141 559 308 167 167 253 324 308 559 29 130 29 382 0 512 -51 219 -139 385
+                                   -288 542 -103 109 -254 214 -368 258 -40 15 -74 29 -76 31 -2 1 -4 391 -6 865
+                                   -2 846 -2 865 -23 965 -62 287 -191 499 -411 675 -94 75 -285 169 -416 205
+                                   l-100 28 -1250 5 -1250 5 0 988 0 988 81 32 c170 69 385 245 485 397 80 122
+                                   149 286 181 435 7 36 13 127 13 225 0 174 -8 229 -52 365 -55 171 -137 308
+                                   -263 439 -249 259 -616 384 -988 335z m341 -797 c76 -38 129 -92 166 -171 23
+                                   -50 26 -68 26 -171 0 -110 -2 -119 -33 -182 -38 -77 -92 -130 -171 -167 -50
+                                   -23 -68 -26 -171 -26 -103 0 -121 3 -171 26 -79 37 -133 90 -171 167 -31 63
+                                   -33 72 -33 182 0 103 3 121 26 170 69 149 183 213 366 207 91 -3 109 -7 166
+                                   -35z m-3452 -6900 c77 -37 130 -91 168 -171 23 -50 26 -68 26 -171 0 -110 -2
+                                   -119 -33 -182 -38 -77 -92 -130 -171 -167 -50 -23 -68 -26 -171 -26 -103 0
+                                   -121 3 -171 26 -79 37 -133 90 -171 167 -31 63 -33 72 -33 182 0 103 3 121 26
+                                   170 69 148 183 212 364 207 89 -3 107 -6 166 -35z m3452 0 c76 -38 129 -92
+                                   166 -171 23 -50 26 -68 26 -171 0 -110 -2 -119 -33 -182 -38 -77 -92 -130
+                                   -171 -167 -50 -23 -68 -26 -171 -26 -103 0 -121 3 -171 26 -79 37 -133 90
+                                   -171 167 -31 63 -33 72 -33 182 0 103 3 121 26 170 69 149 183 213 366 207 91
+                                   -3 109 -7 166 -35z m3448 0 c77 -37 130 -91 168 -171 23 -50 26 -68 26 -171 0
+                                   -110 -2 -119 -33 -182 -38 -77 -92 -130 -171 -167 -50 -23 -68 -26 -171 -26
+                                   -103 0 -121 3 -171 26 -79 37 -133 90 -171 167 -31 63 -33 72 -33 182 0 103 3
+                                   121 26 170 69 148 183 212 364 207 89 -3 107 -6 166 -35z"/>
+                                   </g>
+                                   </svg>
+                        <span class="px-1">{{__('My network')}}</span>
                     </div>
-                    <div class="right_arrow">
-                        <svg class="w-4 h-4 rotate-90" width="16" height="16" viewBox="0 0 24 24"
-                            fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M9 5L15 12L9 19" stroke="currentColor" stroke-width="1.5"
-                                stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                    </div>
+                  
                 </a>
-                <ul class="sub-menu">
-                    <li>
-                        <a href="/components/tabs">Tabs</a>
-                    </li>
-                    <li>
-                        <a href="/components/accordions">Accordions</a>
-                    </li>
-                    <li>
-                        <a href="/components/modals">Modals</a>
-                    </li>
-                    <li>
-                        <a href="/components/cards">Cards</a>
-                    </li>
-                    <li>
-                        <a href="/components/carousel">Carousel</a>
-                    </li>
-                    <li>
-                        <a href="/components/countdown">Countdown</a>
-                    </li>
-                    <li>
-                        <a href="/components/counter">Counter</a>
-                    </li>
-                    <li>
-                        <a href="/components/sweetalert">Sweet Alerts</a>
-                    </li>
-                    <li>
-                        <a href="/components/timeline">Timeline</a>
-                    </li>
-                    <li>
-                        <a href="/components/notifications">Notifications</a>
-                    </li>
-                    <li>
-                        <a href="/components/media-object">Media Object</a>
-                    </li>
-                    <li>
-                        <a href="/components/list-group">List Group</a>
-                    </li>
-                    <li>
-                        <a href="/components/pricing-table">Pricing Tables</a>
-                    </li>
-                    <li>
-                        <a href="/components/lightbox">Lightbox</a>
-                    </li>
-                </ul>
-            </li>
-            <li class="menu nav-item relative">
-                <a href="javascript:;" class="nav-link">
-                    <div class="flex items-center">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                d="M8.73167 5.77133L5.66953 9.91436C4.3848 11.6526 3.74244 12.5217 4.09639 13.205C4.10225 13.2164 4.10829 13.2276 4.1145 13.2387C4.48945 13.9117 5.59888 13.9117 7.81775 13.9117C9.05079 13.9117 9.6673 13.9117 10.054 14.2754L10.074 14.2946L13.946 9.72466L13.926 9.70541C13.5474 9.33386 13.5474 8.74151 13.5474 7.55682V7.24712C13.5474 3.96249 13.5474 2.32018 12.6241 2.03721C11.7007 1.75425 10.711 3.09327 8.73167 5.77133Z"
-                                fill="currentColor"></path>
-                            <path opacity="0.5"
-                                d="M10.4527 16.4432L10.4527 16.7528C10.4527 20.0374 10.4527 21.6798 11.376 21.9627C12.2994 22.2457 13.2891 20.9067 15.2685 18.2286L18.3306 14.0856C19.6154 12.3474 20.2577 11.4783 19.9038 10.7949C19.8979 10.7836 19.8919 10.7724 19.8857 10.7613C19.5107 10.0883 18.4013 10.0883 16.1824 10.0883C14.9494 10.0883 14.3329 10.0883 13.9462 9.72461L10.0742 14.2946C10.4528 14.6661 10.4527 15.2585 10.4527 16.4432Z"
-                                fill="currentColor"></path>
-                        </svg>
-                        <span class="px-1">Elements</span>
-                    </div>
-                    <div class="right_arrow">
-                        <svg class="w-4 h-4 rotate-90" width="16" height="16" viewBox="0 0 24 24"
-                            fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M9 5L15 12L9 19" stroke="currentColor" stroke-width="1.5"
-                                stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                    </div>
-                </a>
-                <ul class="sub-menu">
-                    <li>
-                        <a href="/elements/alerts">Alerts</a>
-                    </li>
-                    <li>
-                        <a href="/elements/avatar">Avatar</a>
-                    </li>
-                    <li>
-                        <a href="/elements/badges">Badges</a>
-                    </li>
-                    <li>
-                        <a href="/elements/breadcrumbs">Breadcrumbs</a>
-                    </li>
-                    <li>
-                        <a href="/elements/buttons">Buttons</a>
-                    </li>
-                    <li>
-                        <a href="/elements/buttons-group">Button Groups</a>
-                    </li>
-                    <li>
-                        <a href="/elements/color-library">Color Library</a>
-                    </li>
-                    <li>
-                        <a href="/elements/dropdown">Dropdown</a>
-                    </li>
-                    <li>
-                        <a href="/elements/infobox">Infobox</a>
-                    </li>
-                    <li>
-                        <a href="/elements/jumbotron">Jumbotron</a>
-                    </li>
-                    <li>
-                        <a href="/elements/loader">Loader</a>
-                    </li>
-                    <li>
-                        <a href="/elements/pagination">Pagination</a>
-                    </li>
-                    <li>
-                        <a href="/elements/popovers">Popovers</a>
-                    </li>
-                    <li>
-                        <a href="/elements/progress-bar">Progress Bar</a>
-                    </li>
-                    <li>
-                        <a href="/elements/search">Search</a>
-                    </li>
-                    <li>
-                        <a href="/elements/tooltips">Tooltips</a>
-                    </li>
-                    <li>
-                        <a href="/elements/treeview">Treeview</a>
-                    </li>
-                    <li>
-                        <a href="/elements/typography">Typography</a>
-                    </li>
-                </ul>
             </li>
             <li class="menu nav-item relative">
                 <a href="javascript:;" class="nav-link">
@@ -511,7 +362,7 @@
                                 d="M5.76613 14L4.97883 14.3149C2.99294 15.1093 2 15.5065 2 16C2 16.4935 2.99294 16.8907 4.97883 17.6851L7.7873 18.8085C9.77318 19.6028 10.7661 20 12 20C13.2339 20 14.2268 19.6028 16.2127 18.8085L19.0212 17.6851C21.0071 16.8907 22 16.4935 22 16C22 15.5065 21.0071 15.1093 19.0212 14.3149L18.2339 14L16.2127 14.8085C14.2268 15.6028 13.2339 16 12 16C10.7661 16 9.77318 15.6028 7.7873 14.8085L5.76613 14Z"
                                 fill="currentColor" />
                         </svg>
-                        <span class="px-1">Tables</span>
+                        <span class="px-1">{{__('Apps')}}</span>
                     </div>
                     <div class="right_arrow">
                         <svg class="w-4 h-4 rotate-90" width="16" height="16" viewBox="0 0 24 24"
@@ -523,11 +374,30 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a href="/tables">Tables</a>
+                        <a href="{{route('apps.calendar')}}">{{__('Calendar')}}</a>
                     </li>
-                    <li class="relative">
-                        <a href="javascript:;">Data Tables
-                            <div class="ltr:ml-auto rtl:mr-auto  rtl:rotate-180">
+                    <li>
+                        <a href="{{route('apps.chat')}}">{{__('Chat')}}</a>
+                    </li>
+                    <li>
+                        <a href="{{route('apps.contacts')}}">{{__('Contacts')}}</a>
+                    </li>
+                    <li>
+                        <a href="{{route('apps.mailbox')}}">{{__('Mailbox')}}</a>
+                    </li>
+                    <li>
+                        <a href="{{route('apps.notes')}}">{{__('Notes')}}</a>
+                    </li>
+                    <li>
+                        <a href="{{route('apps.scrumboard')}}">{{__('Scrumboard')}}</a>
+                    </li>
+                    <li>
+                        <a href="{{route('apps.todolist')}}">{{__('Todolist')}}</a>
+                    </li>
+                   
+                     <li class="relative">
+                        <a href="javascript:;">{{__('Invoice')}}
+                            <div class="ltr:ml-auto rtl:mr-auto rtl:rotate-180">
                                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path d="M9 5L15 12L9 19" stroke="currentColor" stroke-width="1.5"
@@ -538,49 +408,23 @@
                         <ul
                             class="rounded absolute top-0 ltr:left-[95%] rtl:right-[95%] min-w-[180px] bg-white z-[10] text-dark dark:text-white-dark dark:bg-[#1b2e4b] shadow p-0 py-2 hidden">
                             <li>
-                                <a href="/datatables/basic">Basic</a>
+                                <a href="{{route('apps.invoice.add')}}">  {{__('Add')}} </a>
                             </li>
                             <li>
-                                <a href="/datatables/advanced">Advanced</a>
+                                <a href="{{route('apps.invoice.edit')}}"> {{__('Edit')}} </a>
                             </li>
                             <li>
-                                <a href="/datatables/skin">Skin</a>
+                                <a href="{{route('apps.invoice.list')}}"> {{__('List')}} </a>
                             </li>
                             <li>
-                                <a href="/datatables/order-sorting">Order Sorting</a>
-                            </li>
-                            <li>
-                                <a href="/datatables/multi-column">Multi Column</a>
-                            </li>
-                            <li>
-                                <a href="/datatables/multiple-tables">Multiple Tables</a>
-                            </li>
-                            <li>
-                                <a href="/datatables/alt-pagination">Alt. Pagination</a>
-                            </li>
-                            <li>
-                                <a href="/datatables/checkbox">Checkbox</a>
-                            </li>
-                            <li>
-                                <a href="/datatables/range-search">Range Search</a>
-                            </li>
-                            <li>
-                                <a href="/datatables/export">Export</a>
-                            </li>
-                            <li>
-                                <a href="/datatables/sticky-header">Sticky Header</a>
-                            </li>
-                            <li>
-                                <a href="/datatables/clone-header">Clone Header</a>
-                            </li>
-                            <li>
-                                <a href="/datatables/column-chooser">Column Chooser</a>
+                                <a href="{{route('apps.invoice.preview')}}"> {{__('Preview')}} </a>
                             </li>
                         </ul>
                     </li>
                 </ul>
             </li>
-            <li class="menu nav-item relative">
+
+       {{-- <li class="menu nav-item relative">
                 <a href="javascript:;" class="nav-link">
                     <div class="flex items-center">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
@@ -824,8 +668,8 @@
                         </ul>
                     </li>
                 </ul>
-            </li>
-            <li class="menu nav-item relative">
+            </li> --}}
+           {{-- <li class="menu nav-item relative">
                 <a href="javascript:;" class="nav-link">
                     <div class="flex items-center">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
@@ -864,8 +708,8 @@
                         <a href="https://vristo.sbthemes.com" target="_blank">Documentation</a>
                     </li>
                 </ul>
-            </li>
-        </ul> --}}
+            </li> --}}
+        </ul>
     </div>
 
     <script>

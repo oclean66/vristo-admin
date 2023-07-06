@@ -1,3 +1,7 @@
+<h1 class="text-4xl font-semibold font-sans"> {{ __('Users') }} </h1>
+<div class="w-full bg-[#ebedf2] dark:bg-[#253b5c] my-5 h-1"></div>
+
+
 <div class="panel">
     <div class="mb-5 max-w-fit">
         @can('create-users')

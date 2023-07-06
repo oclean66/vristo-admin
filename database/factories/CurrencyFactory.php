@@ -18,8 +18,8 @@ class CurrencyFactory extends Factory
     {
         return [
             'name' => fake()->countryISOAlpha3(),
-            'code' => fake()->countryISOAlpha3(),
-            'price' => 1,
+            'code' => fake()->unique()->countryISOAlpha3(),
+            'price' => fake()->randomFloat(2,1,10),
         ];
     }
 }
