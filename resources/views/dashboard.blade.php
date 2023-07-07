@@ -1,8 +1,4 @@
 <x-app-layout>
-    {{-- <div class="panel grid grid-cols-1 xl:grid-cols-2 gap-4 mb-5">
-        <livewire:account-tree />
-        <livewire:account-data />
-    </div> --}}
     <div class="grid grid-cols-1 xl:grid-cols-2 gap-4">
         {{-- Mailbox and Notification --}}
         <div class="flex items-center space-x-1.5">
@@ -185,7 +181,7 @@
                 </ul>
             </div>
         </div>
-        
+
         {{-- tabs --}}
         <x-tab />
         <x-vertical-tab />

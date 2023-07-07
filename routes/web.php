@@ -3,11 +3,9 @@
 use App\Http\Controllers\LocalizationController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
-use App\Http\Livewire\Authorization\AssignPermissions;
 use App\Http\Livewire\Authorization\AssignRoles;
 use App\Http\Livewire\Authorization\CreateRole;
 use App\Http\Livewire\Authorization\EditRole;
-use App\Http\Livewire\Authorization\Permissions;
 use App\Http\Livewire\Authorization\RoleTable;
 use App\Http\Livewire\Users\UsersData;
 use App\Http\Livewire\Users\UsersTable;
@@ -34,11 +32,11 @@ Route::middleware('auth')->group(function () {
     Route::view('/dashboard', 'dashboard')->name('dashboard');
 
     Route::prefix('users')->middleware('role:admin|super-admin|receptor')->group(function () {
-        Route::get('/', UsersTable::class)->can('see-users')->name('users.table');
+        Route::get('/', UsersTable::class)->name('users.table');
         Route::get('/create', [UserController::class, 'create'])->name('users.create');
-        Route::post('/', [UserController::class, 'store'])->can('create-users')->name('users.store');
+        Route::post('/', [UserController::class, 'store'])->name('users.store');
         Route::get('/{user}', UsersData::class)->name('users.data');
-        Route::put('/{user}', [UserController::class, 'update'])->can('users-update')->name('users.update');
+        Route::put('/{user}', [UserController::class, 'update'])->name('users.update');
     });
 
     Route::prefix('authorization')->group(function () {
@@ -48,13 +46,8 @@ Route::middleware('auth')->group(function () {
             Route::post('/{id}', [RoleController::class, 'store'])->can('store-role')->name('authorization.roles.store');
             Route::get('/edit/{id}', EditRole::class)->can('update-role')->name('authorization.roles.edit');
             Route::put('/{id}', [RoleController::class, 'update'])->can('update-role')->name('authorization.roles.update');
-            Route::get('/assign-roles', AssignRoles::class)->can('assign-role|revoke-role')->name('authorization.assign-roles');
+            Route::get('/assign-roles', AssignRoles::class)->can('assign-role')->name('authorization.assign-roles');
             Route::delete('/{id}', [RoleController::class, 'destroy'])->can('destroy-role')->name('authorization.roles.destroy');
-        });
-
-        Route::prefix('permissions')->group(function () {
-            Route::get('/', Permissions::class)->name('');
-            Route::get('/assign-permissions', AssignPermissions::class)->name('authorization.permissions');
         });
     });
 });

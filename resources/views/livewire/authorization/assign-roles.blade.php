@@ -4,6 +4,7 @@
             <h4 class="text-2xl font-semibold">{{ __('Manage Roles') }}</h4>
             <p class="my-2">Lorem ipsum dolor sit amet.</p>
         </div>
+        <h5 class="text-lg text-center tracking-widest">{{ __('Roles') }}</h5>
         <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
             @foreach ($roles as $role)
                 <button type="button" wire:click="getRole({{ $role->id }})"
@@ -17,10 +18,12 @@
     </div>
     <div class="flex flex-col xl:flex-row gap-4">
         <div class="panel xl:basis-1/2">
-            <div class="flex gap-2 mb-5">
-                <button class="btn btn-danger min-w-max"
+            <div class="flex items-center gap-2 mb-5">
+                <button class="btn btn-danger rounded-full"
                     wire:click="revokeRole">{{ __('Revoke') . ' ' . __('Role') }}</button>
-                <x-inputs.text label="none" wire:model="search" placeholder="Search..." />
+                <div class="flex-1">
+                    <x-inputs.search wire:model="search" placeholder="{{ __('Search') }}..." />
+                </div>
             </div>
             <div class="table-responsive">
                 <table class="table-hover">
@@ -53,9 +56,11 @@
         </div>
         <div class="panel xl:basis-1/2">
             <div class="flex gap-2 mb-5">
-                <button class="btn btn-primary min-w-max"
+                <button class="btn btn-primary rounded-full"
                     wire:click="assignRole">{{ __('Assign') . ' ' . __('Role') }}</button>
-                <x-inputs.text label="none" wire:model="search" placeholder="Search..." />
+                <div class="flex-1">
+                    <x-inputs.search wire:model="search" placeholder="{{ __('Search') }}..." />
+                </div>
             </div>
             <div class="table-responsive">
                 <table class="table-hover">

@@ -23,7 +23,9 @@
 </head>
 
 <body x-data="main" class="antialiased relative font-nunito text-sm font-normal overflow-x-hidden"
-    :class="[$store.app.sidebar ? 'toggle-sidebar' : '', $store.app.theme, $store.app.menu, $store.app.layout, $store.app.rtlClass]">
+    :class="[$store.app.sidebar ? 'toggle-sidebar' : '', $store.app.theme, $store.app.menu, $store.app.layout, $store.app
+        .rtlClass
+    ]">
 
     <!-- sidebar menu overlay -->
     <div x-cloak class="fixed inset-0 bg-[black]/60 z-50 lg:hidden" :class="{ 'hidden': !$store.app.sidebar }"
@@ -45,6 +47,9 @@
             <x-interface.navbar />
 
             <div class="p-6 animate__animated" :class="[$store.app.animation]">
+                <x-interface.breadcumb />
+
+
                 {{ $slot }}
 
                 <x-interface.footer />

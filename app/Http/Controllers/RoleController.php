@@ -12,7 +12,7 @@ class RoleController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request): RedirectResponse
-    {
+    {   
         $request->validate([
             'name' => ['string', 'max:255', 'unique:roles'],
             'description' => ['nullable', 'string', 'max:255'],

@@ -32,7 +32,6 @@ class AuthorizationSeeder extends Seeder
         autoCreatePermissions();
 
         Permission::create(['name' => 'assign-role']);
-        Permission::create(['name' => 'revoke-role']);
 
         // Assigning permissions to roles
         $admin->syncPermissions(Permission::all());

@@ -93,12 +93,12 @@
                             <li>
                                 <a href="{{ route('authorization.roles') }}">{{ __('Roles') }}</a>
                             </li>
-                            @canany(['assign-role', 'revoke-role'])
-                            <li>
-                                <a href="assign-roles:;">{{ __('Assign') . ' ' . __('Roles') }}</a>
-                            </li>
-                                
-                            @endcanany
+                            @can('assign-role')
+                                <li>
+                                    <a
+                                        href="{{ route('authorization.assign-roles') }}">{{ __('Assign') . ' ' . __('Roles') }}</a>
+                                </li>
+                            @endcan
                             <li>
                                 <a href="operations:;">{{ __('Operations') }}</a>
                             </li>
