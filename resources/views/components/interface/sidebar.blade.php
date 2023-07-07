@@ -63,7 +63,7 @@
                     </li>
                 @endhasanyrole
 
-                @hasanyrole('super-admin|admin')
+                @canany(['see-role', 'show-role'])
                     <li class="menu nav-item" x-data="{ open: false }">
                         <button type="button" class="nav-link group" @click="open = !open">
                             <div class="flex items-center">
@@ -91,17 +91,20 @@
                         </button>
                         <ul x-cloak x-collapse x-transition x-show="open" class="sub-menu text-gray-500">
                             <li>
-                                <a href="{{ route('authorization.index') }}">{{ __('Roles') }}</a>
+                                <a href="{{ route('authorization.roles') }}">{{ __('Roles') }}</a>
                             </li>
+                            @canany(['assign-role', 'revoke-role'])
                             <li>
-                                <a href="{{ route('authorization.roles') }}">{{ __('Assign') . ' ' . __('Roles') }}</a>
+                                <a href="assign-roles:;">{{ __('Assign') . ' ' . __('Roles') }}</a>
                             </li>
+                                
+                            @endcanany
                             <li>
                                 <a href="operations:;">{{ __('Operations') }}</a>
                             </li>
                         </ul>
                     </li>
-                @endhasanyrole
+                @endcanany
 
                 <h2
                     class="py-3 px-7 flex items-center uppercase font-extrabold bg-white-light/30 dark:bg-dark dark:bg-opacity-[0.08] -mx-4 mb-1">

@@ -29,7 +29,7 @@ class AccountData extends Component
     /**
      * Event recived that show the selected account data
      *
-     * @param  string  $id Id recived from the `AccountRecursive` component
+     * @param  int  $id Id recived from the `AccountRecursive` component
      */
     public function showAccount(int $id): void
     {

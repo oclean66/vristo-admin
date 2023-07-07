@@ -1,9 +1,14 @@
 <?php
 
 use App\Http\Controllers\LocalizationController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Livewire\Authorization\AssignPermissions;
 use App\Http\Livewire\Authorization\AssignRoles;
+use App\Http\Livewire\Authorization\CreateRole;
+use App\Http\Livewire\Authorization\EditRole;
+use App\Http\Livewire\Authorization\Permissions;
+use App\Http\Livewire\Authorization\RoleTable;
 use App\Http\Livewire\Users\UsersData;
 use App\Http\Livewire\Users\UsersTable;
 use Illuminate\Support\Facades\Route;
@@ -36,10 +41,21 @@ Route::middleware('auth')->group(function () {
         Route::put('/{user}', [UserController::class, 'update'])->can('users-update')->name('users.update');
     });
 
-    Route::prefix('authorization')->middleware('role:super-admin|admin')->group(function () {
-        Route::view('/roles-and-permissions', 'authorization.index')->name('authorization.index');
-        Route::get('/assign-roles', AssignRoles::class)->name('authorization.roles');
-        Route::get('/assign-permissions', AssignPermissions::class)->name('authorization.permissions');
+    Route::prefix('authorization')->group(function () {
+        Route::prefix('roles')->group(function () {
+            Route::get('/', RoleTable::class)->can('see-role')->name('authorization.roles');
+            Route::get('/create', CreateRole::class)->can('store-role')->name('authorization.roles.create');
+            Route::post('/{id}', [RoleController::class, 'store'])->can('store-role')->name('authorization.roles.store');
+            Route::get('/edit/{id}', EditRole::class)->can('update-role')->name('authorization.roles.edit');
+            Route::put('/{id}', [RoleController::class, 'update'])->can('update-role')->name('authorization.roles.update');
+            Route::get('/assign-roles', AssignRoles::class)->can('assign-role|revoke-role')->name('authorization.assign-roles');
+            Route::delete('/{id}', [RoleController::class, 'destroy'])->can('destroy-role')->name('authorization.roles.destroy');
+        });
+
+        Route::prefix('permissions')->group(function () {
+            Route::get('/', Permissions::class)->name('');
+            Route::get('/assign-permissions', AssignPermissions::class)->name('authorization.permissions');
+        });
     });
 });
 

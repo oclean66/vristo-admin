@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
@@ -31,6 +30,9 @@ class AuthorizationSeeder extends Seeder
 
         // Creating permissions
         autoCreatePermissions();
+
+        Permission::create(['name' => 'assign-role']);
+        Permission::create(['name' => 'revoke-role']);
 
         // Assigning permissions to roles
         $admin->syncPermissions(Permission::all());

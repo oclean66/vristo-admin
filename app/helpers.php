@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Support\Str;
 use Spatie\Permission\Models\Permission;
 
 if (! function_exists('autoCreatePermissions')) {
@@ -32,15 +31,15 @@ if (! function_exists('autoCreatePermissions')) {
             }
 
             Permission::updateOrCreate(['name' => 'see-'.$controllerName]);
-            Permission::updateOrCreate(['name' => 'show-'.Str::plural($controllerName)]);
+            Permission::updateOrCreate(['name' => 'show-'.$controllerName]);
 
         }
 
-        $liveComponents = array_filter($classes, function ($class) {
+        /* $liveComponents = array_filter($classes, function ($class) {
             return str_contains($class, 'App\Http\Livewire');
         });
 
-        /* foreach ($liveComponents as $component) {
+        foreach ($liveComponents as $component) {
             $methods = get_class_methods($component);
 
             $componentName = strtolower(
