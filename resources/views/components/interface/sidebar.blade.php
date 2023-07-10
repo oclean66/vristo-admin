@@ -99,9 +99,6 @@
                                         href="{{ route('authorization.assign-roles') }}">{{ __('Assign') . ' ' . __('Roles') }}</a>
                                 </li>
                             @endcan
-                            <li>
-                                <a href="operations:;">{{ __('Operations') }}</a>
-                            </li>
                         </ul>
                     </li>
                 @endcanany

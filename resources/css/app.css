@@ -693,10 +693,10 @@
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    @apply bg-black-light rounded;
+    @apply bg-white-dark rounded;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-    background: #aaa;
+    background-color: #afb3c2;
 }
