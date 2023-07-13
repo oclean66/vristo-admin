@@ -15,7 +15,7 @@
                         <x-inputs.validate-error field="description" />
                     </div>
                 </div>
-                <div class="basis-1/2 border-l dark:border-dark pl-4 max-h-96 overflow-y-scroll">
+                <div class="basis-1/2 border-l dark:border-dark pl-4 overflow-y-scroll">
                     <h5 class="text-lg font-semibold tracking-wider uppercase border-b dark:border-dark mb-2">
                         {{ __('Permissions') }}</h5>
                     @foreach ($permissionList as $permissionName => $permissions)
